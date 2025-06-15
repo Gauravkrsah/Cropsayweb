@@ -1,0 +1,160 @@
+/* Product Card Animations and Effects - Simplified */
+
+/* Enhanced product card hover effects for modern e-commerce - reduced */
+.product-card {
+  transition: box-shadow 0.2s ease;
+}
+
+.product-card:hover {
+  box-shadow: 0 4px 12px -2px rgba(0, 0, 0, 0.1);
+}
+
+/* Simplified animations for better performance */
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.03);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+/* Define emphasis animation without scaling */
+@keyframes emphasis {
+  0%, 100% {
+    box-shadow: 0 15px 30px rgba(54, 47, 217, 0.1);
+  }
+  50% {
+    box-shadow: 0 15px 30px rgba(54, 47, 217, 0.3);
+  }
+}
+
+/* Simplified container for better performance */
+.visible-cards-container {
+  padding: 0.5rem;
+  border-radius: 0.75rem;
+}
+
+/* Simplified product card styling */
+.product-card {
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+  border: 1px solid #e0e0e0;
+}
+
+.product-card:hover {
+  border-color: #0C831F;
+  box-shadow: 0 15px 30px rgba(54, 47, 217, 0.2);
+  transform: translateY(-10px);
+  animation: emphasis 2s infinite;
+}
+
+/* Prevent images from expanding on hover */
+.product-card img {
+  transition: none !important;
+  transform: none !important;
+}
+
+.product-card:hover img {
+  transform: none !important;
+}
+
+.product-card.animated::after {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  background: linear-gradient(
+    45deg,
+    #ff0000,
+    #ff7300,
+    #fffb00,
+    #48ff00,
+    #00ffd5,
+    #002bff,
+    #7a00ff,
+    #ff00c8,
+    #ff0000
+  );
+  background-size: 400% 400%;
+  border-radius: 12px;
+  z-index: -1;
+  animation: border-shimmer 3s linear infinite;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.product-card.animated:hover::after {
+  opacity: 0.3;
+}
+
+/* Enhanced spotlight effect */
+.product-card .spotlight {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background: radial-gradient(
+    circle at var(--x) var(--y),
+    rgba(255, 255, 255, 0.5) 0%,
+    rgba(255, 255, 255, 0) 60%
+  );
+  opacity: 0;
+  transition: opacity 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.product-card:hover .spotlight {
+  opacity: 1;
+}
+
+/* Badge animation */
+.product-card .badge {
+  animation: pulse 2s infinite;
+  transition: all 0.3s ease;
+}
+
+.product-card:hover .badge {
+  transform: scale(1.1);
+}
+
+/* Cleaner View All button effects */
+.view-all-button {
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.view-all-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.2),
+    transparent
+  );
+  transition: all 0.5s ease;
+}
+
+.view-all-button:hover::before {
+  left: 100%;
+}
+
+.view-all-button svg {
+  transition: transform 0.3s ease;
+}
+
+.view-all-button:hover svg {
+  transform: translateX(3px);
+}

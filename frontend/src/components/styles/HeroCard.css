@@ -1,0 +1,233 @@
+/* Enhanced Hero Card Effects - Mobile First Design */
+.hero-product-card {
+  position: relative;
+  z-index: 10;
+}
+
+/* Enhanced mobile responsiveness */
+@media (max-width: 640px) {
+  .hero-product-card {
+    padding: 0 8px;
+  }
+}
+
+/* Make card content semi-transparent on hover to better show animations */
+.hero-product-card:hover .card-content-wrapper > * {
+  opacity: 0.98;
+}
+
+.hero-product-card .card-hover {
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+/* Enhanced card hover effects */
+.hero-product-card:hover {
+  transform: translateY(-8px) scale(1.02);
+}
+
+@media (max-width: 768px) {
+  .hero-product-card:hover {
+    transform: translateY(-4px) scale(1.01);
+  }
+}
+
+.hero-product-card img {
+  transition: all 0.4s ease-in-out;
+  transform: scale(1);
+}
+
+.hero-product-card:hover img {
+  transform: scale(1.05);
+}
+
+/* Enhanced badge animation */
+.hero-product-card .badge-pulse {
+  animation: pulse 2.5s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(255, 59, 48, 0.5);
+  }
+  70% {
+    box-shadow: 0 0 0 8px rgba(255, 59, 48, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(255, 59, 48, 0);
+  }
+}
+
+/* Enhanced button hover effects with mobile optimization */
+.hero-product-card button {
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.hero-product-card button::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.2);
+  transition: width 0.4s ease;
+}
+
+.hero-product-card button:hover::after {
+  width: 100%;
+}
+
+.hero-product-card button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(12, 131, 31, 0.3);
+}
+
+@media (max-width: 768px) {
+  .hero-product-card button:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 15px rgba(12, 131, 31, 0.2);
+  }
+}
+
+/* Enhanced card animation states */
+.card-btn-animation {
+  animation: cardPurchaseAnimation 1s ease-in-out;
+}
+
+@keyframes cardPurchaseAnimation {
+  0% { transform: scale(1); }
+  50% { transform: scale(0.95); }
+  100% { transform: scale(1); }
+}
+
+.card-btn-hover {
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+/* Shadow enhancements for better depth */
+.hero-product-card .shadow-xl {
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+}
+
+.hero-product-card .hover\:shadow-3xl:hover {
+  box-shadow: 0 35px 60px -12px rgba(0, 0, 0, 0.35);
+}
+
+@media (max-width: 768px) {
+  .hero-product-card .shadow-xl {
+    box-shadow: 0 15px 35px -12px rgba(0, 0, 0, 0.2);
+  }
+  
+  .hero-product-card .hover\:shadow-3xl:hover {
+    box-shadow: 0 20px 40px -12px rgba(0, 0, 0, 0.25);
+  }
+}
+
+/* Enhanced responsiveness for special offer badge */
+@media (max-width: 480px) {
+  .hero-product-card .absolute.-right-12 {
+    right: -2.5rem;
+  }
+  
+  .hero-product-card .absolute.-right-16 {
+    right: -3rem;
+  }
+}
+
+
+/* Bark animation effects - more subtle */
+.bark-btn-animation {
+  animation: subtle-shake 0.7s cubic-bezier(.36,.07,.19,.97) both;
+}
+
+@keyframes subtle-shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-2px); }
+  50% { transform: translateX(2px); }
+  75% { transform: translateX(-1px); }
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  20% { transform: translateX(-3px) rotate(-1deg); }
+  40% { transform: translateX(3px) rotate(1deg); }
+  60% { transform: translateX(-3px) rotate(-0.5deg); }
+  80% { transform: translateX(3px) rotate(0.5deg); }
+}
+
+/* Bark bubble speech */
+.bark-bubble {
+  position: absolute;
+  top: -30px;
+  right: -20px;
+  background-color: #0C831F;
+  color: white;
+  padding: 8px 15px;
+  border-radius: 15px;
+  font-weight: bold;
+  font-size: 14px;
+  opacity: 0;
+  transform: scale(0);
+  animation: barkBubble 1.5s forwards cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  z-index: 100;
+}
+
+.bark-bubble::after {
+  content: '';
+  position: absolute;
+  bottom: -8px;
+  right: 15px;
+  border-width: 10px 8px 0;
+  border-style: solid;
+  border-color: #0C831F transparent transparent;
+}
+
+@keyframes barkBubble {
+  0% { 
+    opacity: 0; 
+    transform: scale(0) translateY(0); 
+  }
+  20% { 
+    opacity: 1; 
+    transform: scale(1) translateY(0); 
+  }
+  70% { 
+    opacity: 1; 
+    transform: scale(1) translateY(0);
+  }
+  100% { 
+    opacity: 0; 
+    transform: scale(0.5) translateY(-20px); 
+  }
+}
+
+/* Sound wave animation for bark effect */
+.bark-btn-animation::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 10px;
+  height: 10px;
+  background: rgba(255, 255, 255, 0.4);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  animation: soundWave 1s forwards;
+  z-index: 1;
+  pointer-events: none;
+}
+
+@keyframes soundWave {
+  0% {
+    width: 10px;
+    height: 10px;
+    opacity: 1;
+  }
+  100% {
+    width: 300px;
+    height: 300px;
+    opacity: 0;
+  }
+}

@@ -1,0 +1,46 @@
+/* Hide X buttons on product cards */
+.blinkit-product-image button:not(.ar-camera-icon) {
+  display: none !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+}
+
+/* Target circular X buttons in top-right of product images (from screenshot) */
+.blinkit-product-image > button[style*="position: absolute"],
+.blinkit-product-image button[style*="top"],
+.blinkit-product-image button[style*="right"] {
+  display: none !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+}
+
+/* Target any SVG X icons */
+.blinkit-product-image svg:not(.ar-camera-icon svg) {
+  display: none !important;
+}
+
+/* Target any close buttons by common class names */
+.blinkit-product-image .close,
+.blinkit-product-image .dismiss,
+.blinkit-product-image .remove,
+.blinkit-product-image [class*="close"],
+.blinkit-product-image [class*="dismiss"],
+.blinkit-product-image [class*="remove"] {
+  display: none !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+}
+
+/* Target the exact circular white button with X from the screenshot */
+.blinkit-product-image button[style*="background: rgb(255, 255, 255)"],
+.blinkit-product-image button[style*="background: white"],
+.blinkit-product-image button[style*="background-color: white"],
+.blinkit-product-image button[style*="background-color: rgb(255, 255, 255)"] {
+  display: none !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+}

@@ -1,0 +1,68 @@
+/* Styles for mobile navigation */
+@media (max-width: 1023px) {
+  /* Add padding to main content to prevent it from being covered by the fixed navigation */
+  body {
+    padding-bottom: 5rem; /* 80px = height of the bottom navigation + extra space */
+  }
+  
+  /* Hide the scrollbar in the mobile menu to make it cleaner */
+  .menu-scrollbar-hide {
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE/Edge */
+  }
+  
+  .menu-scrollbar-hide::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Opera */
+  }
+}
+
+/* Enhanced visual effects for active state - More subtle transition */
+.nav-icon-active {
+  transition: all 0.5s ease;
+  box-shadow: 0 2px 8px rgba(54, 47, 217, 0.15);
+}
+
+/* Bottom navigation center button elevation */
+.nav-center-button {
+  filter: drop-shadow(0 4px 6px rgba(54, 47, 217, 0.3));
+  transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+.nav-center-button:active {
+  transform: translateY(2px);
+  filter: drop-shadow(0 2px 3px rgba(54, 47, 217, 0.2));
+}
+
+/* Smooth gradient transition instead of pulse animation */
+.smooth-highlight {
+  background-size: 200% 200%;
+  transition: all 0.5s ease;
+}
+
+/* Smooth transition for menu items */
+.mobile-menu-item {
+  transform: translateY(0);
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.mobile-menu-item-enter {
+  transform: translateY(10px);
+  opacity: 0;
+}
+
+.mobile-menu-item-enter-active {
+  transform: translateY(0);
+  opacity: 1;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.mobile-menu-item-exit {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.mobile-menu-item-exit-active {
+  transform: translateY(10px);
+  opacity: 0;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}

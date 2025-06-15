@@ -1,0 +1,35 @@
+/* Cart button styling */
+.cart-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(to right, #0C831F, #059669); /* Green gradient */
+  border-radius: 0.5rem;
+  color: white;
+  padding: 0.5rem 0.75rem;
+  font-weight: 500;
+  gap: 0.5rem;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 5px rgba(12, 131, 31, 0.2);
+}
+
+.cart-button:hover {
+  background: linear-gradient(to right, #0a6b1a, #047857); /* Darker green gradient on hover */
+  box-shadow: 0 3px 8px rgba(12, 131, 31, 0.3);
+}
+
+/* Removed cart-button-mobile class as we're now using standard navigation styling for mobile */
+
+.cart-count {
+  font-weight: 600;
+}
+
+.cart-price {
+  display: flex;
+  align-items: center;
+}
+
+.rupee-symbol {
+  font-size: 0.875rem;
+  margin-right: 0.125rem;
+}

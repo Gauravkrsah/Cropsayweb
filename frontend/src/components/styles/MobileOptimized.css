@@ -1,0 +1,468 @@
+/* Mobile-First Responsive Design Utilities */
+
+/* Hero Section Mobile Optimizations */
+@media (max-width: 640px) {
+  /* Hero content mobile optimization */
+  .hero-content {
+    padding: 1rem;
+    text-align: left !important;
+  }
+  
+  .hero-content h1 {
+    font-size: 1.875rem !important; /* text-3xl */
+    line-height: 1.2 !important;
+    text-align: left !important;
+  }
+  
+  .hero-content p {
+    font-size: 0.875rem !important; /* text-sm */
+    line-height: 1.4 !important;
+    text-align: left !important;
+    margin-top: 1rem !important;
+  }
+  
+  /* Hero card mobile optimization */
+  .hero-product-card {
+    padding: 0.75rem !important;
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+  
+  .hero-product-card .card {
+    max-width: 100% !important;
+    margin: 0 !important;
+  }
+  
+  /* Button alignment for mobile */
+  .hero-content .flex {
+    justify-content: flex-start !important;
+  }
+  
+  /* Contact expert button mobile */
+  .hero-content button {
+    width: 100% !important;
+    margin-bottom: 0.5rem !important;
+  }
+  
+  /* Price section mobile optimization */
+  .card-content-wrapper .flex {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 1rem !important;
+  }
+  
+  .card-content-wrapper button {
+    width: 100% !important;
+    justify-content: center !important;
+  }
+}
+
+/* Small mobile devices */
+@media (max-width: 480px) {
+  .hero-content h1 {
+    font-size: 1.5rem !important; /* text-2xl */
+  }
+  
+  .hero-content p {
+    font-size: 0.8rem !important;
+  }
+  
+  /* Adjust image height for very small screens */
+  .hero-product-card img {
+    height: 12rem !important; /* h-48 */
+  }
+}
+
+/* Tablet optimization */
+@media (min-width: 641px) and (max-width: 1024px) {
+  .hero-content {
+    text-align: left !important;
+  }
+  
+  .hero-content h1 {
+    text-align: left !important;
+  }
+  
+  .hero-content p {
+    text-align: left !important;
+  }
+}
+
+/* Large screen optimization */
+@media (min-width: 1025px) {
+  .hero-content {
+    text-align: left !important;
+  }
+  
+  .hero-content .flex {
+    justify-content: flex-start !important;
+  }
+}
+
+/* Ensure all buttons start from left */
+.hero-content .flex.flex-col,
+.hero-content .flex.flex-row {
+  justify-content: flex-start !important;
+  align-items: flex-start !important;
+}
+
+@media (min-width: 640px) {
+  .hero-content .flex.flex-row {
+    align-items: center !important;
+  }
+}
+
+/* Free delivery badge alignment */
+.hero-content .bg-white\/15 {
+  margin-left: 0 !important;
+  margin-right: auto !important;
+}
+
+/* Enhanced mobile touch targets */
+@media (max-width: 768px) {
+  button, .button, [role="button"] {
+    min-height: 44px;
+    min-width: 44px;
+  }
+}
+
+/* Better mobile spacing */
+.mobile-safe-area {
+  padding-left: env(safe-area-inset-left);
+  padding-right: env(safe-area-inset-right);
+}
+
+/* Mobile-optimized text scaling */
+@media (max-width: 480px) {
+  .mobile-text-scale {
+    font-size: clamp(0.875rem, 2.5vw, 1rem);
+  }
+  
+  .mobile-heading-scale {
+    font-size: clamp(1.5rem, 5vw, 2.5rem);
+  }
+}
+
+/* Enhanced mobile card hover states */
+@media (hover: none) and (pointer: coarse) {
+  .mobile-card:active {
+    transform: scale(0.98);
+    transition: transform 0.1s ease;
+  }
+}
+
+/* Mobile-optimized grid layouts */
+@media (max-width: 640px) {
+  .mobile-grid-responsive {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+}
+
+@media (min-width: 640px) and (max-width: 768px) {
+  .mobile-grid-responsive {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+}
+
+/* Better mobile scroll behavior */
+.mobile-smooth-scroll {
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Mobile-first hero section adjustments */
+@media (max-width: 768px) {
+  .hero-mobile-spacing {
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-mobile-spacing {
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
+  }
+}
+
+/* Enhanced mobile button interactions */
+@media (max-width: 768px) {
+  .mobile-button-enhanced {
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+    font-weight: 600;
+    border-radius: 0.75rem;
+    transition: all 0.2s ease;
+  }
+  
+  .mobile-button-enhanced:active {
+    transform: scale(0.95);
+  }
+}
+
+/* Mobile-optimized image styling */
+.mobile-image-responsive {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+@media (max-width: 768px) {
+  .mobile-image-responsive {
+    border-radius: 0.75rem;
+  }
+}
+
+/* Better mobile form inputs */
+@media (max-width: 768px) {
+  input, textarea, select {
+    font-size: 16px; /* Prevents zoom on iOS */
+    padding: 0.75rem;
+    border-radius: 0.5rem;
+  }
+}
+
+/* Mobile-specific animations */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Enhanced mobile navigation spacing */
+@media (max-width: 1023px) {
+  .mobile-nav-spacing {
+    padding-bottom: 6rem; /* Account for bottom navigation */
+  }
+}
+
+/* Mobile-optimized flex layouts */
+@media (max-width: 640px) {
+  .mobile-flex-column {
+    flex-direction: column;
+    gap: 1rem;
+  }
+}
+
+/* Better mobile card layouts */
+@media (max-width: 768px) {
+  .mobile-card-spacing {
+    margin: 0.5rem;
+    padding: 1rem;
+    border-radius: 1rem;
+  }
+}
+
+/* Mobile-first contact section enhancements */
+@media (max-width: 768px) {
+  .contact-mobile-optimized {
+    padding: 1.5rem;
+    margin: 0.5rem;
+  }
+  
+  .contact-mobile-optimized h3 {
+    font-size: 1.125rem;
+    margin-bottom: 0.75rem;
+  }
+  
+  .contact-mobile-optimized p {
+    font-size: 0.875rem;
+    line-height: 1.5;
+  }
+}
+
+/* Rating component mobile optimization */
+@media (max-width: 640px) {
+  .hero-product-card .card-content-wrapper .absolute.bottom-0 {
+    padding: 12px 16px;
+  }
+  
+  .hero-product-card .card-content-wrapper .absolute.bottom-0 .flex.items-center.justify-between {
+    gap: 8px;
+  }
+  
+  .hero-product-card .card-content-wrapper .absolute.bottom-0 h3 {
+    font-size: 1.125rem;
+    line-height: 1.3;
+    margin-right: 8px;
+  }
+  
+  /* Rating badge mobile optimization */
+  .hero-product-card .bg-\[#0C831F\]\/95 {
+    min-width: fit-content;
+    flex-shrink: 0;
+  }
+}
+
+/* Enhanced Hero Rating Mobile & Desktop Fixes */
+@media (max-width: 640px) {
+  /* Fix rating component positioning and sizing */
+  .hero-product-card .absolute.bottom-0 .flex.items-center.justify-between {
+    gap: 6px !important;
+    align-items: flex-end !important;
+    flex-wrap: nowrap !important;
+  }
+  
+  .hero-product-card .absolute.bottom-0 h3 {
+    font-size: 1rem !important;
+    line-height: 1.2 !important;
+    flex: 1 !important;
+    min-width: 0 !important;
+    margin-right: 8px !important;
+  }
+  
+  /* Compact rating badge for mobile */
+  .hero-product-card .bg-\[\#0C831F\]\/95.px-2 {
+    padding: 3px 6px !important;
+    gap: 2px !important;
+    border-radius: 12px !important;
+    flex-shrink: 0 !important;
+    max-width: fit-content !important;
+  }
+  
+  .hero-product-card .bg-\[\#0C831F\]\/95.px-2 svg {
+    width: 10px !important;
+    height: 10px !important;
+  }
+  
+  .hero-product-card .bg-\[\#0C831F\]\/95.px-2 span {
+    font-size: 9px !important;
+    font-weight: 600 !important;
+    white-space: nowrap !important;
+  }
+  
+  /* Ensure rating doesn't overflow */
+  .hero-product-card .absolute.bottom-0 {
+    padding: 10px 12px !important;
+    background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.6) 60%, transparent 100%) !important;
+  }
+}
+
+/* Rating badge positioning - mobile optimized */
+@media (max-width: 640px) {
+  .hero-product-card .absolute.bottom-4.right-4 {
+    bottom: 0.75rem !important;
+    right: 0.75rem !important;
+    padding: 0.375rem 0.625rem !important;
+    border-radius: 9999px !important;
+    backdrop-filter: blur(8px) !important;
+    -webkit-backdrop-filter: blur(8px) !important;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06) !important;
+  }
+  
+  .hero-product-card .absolute.bottom-4.right-4 svg {
+    width: 0.875rem !important;
+    height: 0.875rem !important;
+  }
+  
+  .hero-product-card .absolute.bottom-4.right-4 span:first-of-type {
+    font-size: 0.75rem !important;
+    font-weight: 700 !important;
+  }
+  
+  .hero-product-card .absolute.bottom-4.right-4 span:last-of-type {
+    font-size: 0.625rem !important;
+  }
+}
+
+/* Tablet and larger screens */
+@media (min-width: 641px) {
+  .hero-product-card .absolute.bottom-4.right-4 {
+    bottom: 1rem !important;
+    right: 1rem !important;
+    padding: 0.5rem 0.75rem !important;
+  }
+  
+  .hero-product-card .absolute.bottom-4.right-4 svg {
+    width: 1rem !important;
+    height: 1rem !important;
+  }
+  
+  .hero-product-card .absolute.bottom-4.right-4 span:first-of-type {
+    font-size: 0.875rem !important;
+  }
+  
+  .hero-product-card .absolute.bottom-4.right-4 span:last-of-type {
+    font-size: 0.75rem !important;
+  }
+}
+
+/* Ensure rating doesn't overlap with title */
+@media (max-width: 640px) {
+  .hero-product-card h3 {
+    padding-right: 4rem !important;
+  }
+}
+
+@media (min-width: 641px) {
+  .hero-product-card h3 {
+    padding-right: 5rem !important;
+  }
+}
+
+/* Desktop Hero Section Improvements */
+@media (min-width: 1024px) {
+  /* Better content spacing */
+  .hero-content {
+    padding-right: 4rem;
+  }
+  
+  .hero-product-card {
+    padding-left: 2rem;
+  }
+  
+  /* Improved hero text hierarchy */
+  .hero-content h1 {
+    font-size: 4.5rem !important;
+    line-height: 1.05 !important;
+    margin-bottom: 2rem;
+    letter-spacing: -0.02em;
+  }
+  
+  .hero-content p {
+    font-size: 1.25rem !important;
+    line-height: 1.7 !important;
+    margin-bottom: 2.5rem;
+    max-width: 90%;
+  }
+  
+  /* Better card constraints */
+  .hero-product-card .max-w-xs {
+    max-width: 18rem !important;
+  }
+    /* Enhanced button spacing */
+  .hero-content .flex.gap-3 {
+    gap: 2rem !important;
+  }
+}
+
+@media (min-width: 1280px) {
+  /* Extra large screens */
+  .hero-content h1 {
+    font-size: 5rem !important;
+  }
+  
+  .hero-content {
+    padding-right: 5rem;
+  }
+}
+
+/* Better mobile hero card */
+@media (max-width: 1023px) {
+  .hero-product-card {
+    padding: 0 1rem;
+    margin-top: 2rem;
+  }
+  
+  .hero-content {
+    text-align: center;
+  }
+  
+  .hero-content .justify-start {
+    justify-content: center !important;
+  }
+}

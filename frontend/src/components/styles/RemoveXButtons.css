@@ -1,0 +1,35 @@
+/* Styles to hide unwanted X buttons from product cards */
+
+/* Target common selectors for X/close buttons that might appear in product cards */
+.blinkit-product-image .close-button,
+.blinkit-product-card .close-icon,
+.blinkit-product-card .remove-button,
+.blinkit-product-image button:not(.ar-camera-icon),
+.blinkit-product-card [aria-label*="close"],
+.blinkit-product-card [aria-label*="remove"],
+.blinkit-product-image .x-icon,
+.blinkit-product-image > button {
+  display: none !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+}
+
+/* Override any externally applied styles to remove X buttons */
+.blinkit-product-image .icon-button svg,
+.blinkit-product-image .icon-button img {
+  display: none !important;
+}
+
+/* Only allow the AR camera icon */
+.blinkit-product-image .ar-camera-icon {
+  display: flex !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+  pointer-events: auto !important;
+}
+
+/* Add this class to the body when script removes X buttons */
+.x-buttons-removed .blinkit-product-image > button:not(.ar-camera-icon) {
+  display: none !important;
+}

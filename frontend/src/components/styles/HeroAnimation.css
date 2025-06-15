@@ -1,0 +1,59 @@
+/* More subtle floating animations with decreased movement */
+@keyframes float-1 {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-6px) rotate(2deg); }
+}
+
+@keyframes float-2 {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-8px) rotate(-3deg); }
+}
+
+@keyframes float-3 {
+  0%, 100% { transform: translateX(0) rotate(0deg); }
+  50% { transform: translateX(6px) rotate(2deg); }
+}
+
+/* Subtle diagonal floating animation */
+@keyframes float-diagonal {
+  0%, 100% { transform: translate(0, 0) rotate(0deg); }
+  50% { transform: translate(5px, -5px) rotate(1deg); }
+}
+
+/* Improved slow pulse animation */
+.animate-slow-pulse {
+  animation: pulse 8s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+.animate-bounce-slow {
+  animation: bounce 3s infinite;
+}
+
+/* Shimmering effect */
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+.animate-shimmer {
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  background-size: 200% 100%;
+  animation: shimmer 3s infinite;
+}
+
+/* Subtle glow effect */
+@keyframes glow {
+  0%, 100% { filter: drop-shadow(0 0 2px rgba(255, 255, 255, 0.5)); }
+  50% { filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.8)); }
+}
+
+.animate-glow {
+  animation: glow 4s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 0.15; }
+  50% { opacity: 0.08; }
+}
+
+
