@@ -278,11 +278,11 @@
 }
 
 .blinkit-add-btn:hover {
-  background-color: #2520b9;
+  background-color: #10b981;
 }
 
 .blinkit-add-btn:active {
-  background-color: #1d198a;
+  background-color: #059669;
 }
 
 /* Bark animation for ADD button */
@@ -293,7 +293,7 @@
   }
   50% {
     transform: scale(1.1);
-    background-color: #2520b9;
+    background-color: #10b981;
   }
   100% {
     transform: scale(1);
@@ -344,11 +344,11 @@
 }
 
 .blinkit-quantity-btn:hover {
-  background-color: #2520b9;
+  background-color: #10b981;
 }
 
 .blinkit-quantity-btn:active {
-  background-color: #1d198a;
+  background-color: #059669;
 }
 
 .blinkit-quantity-value {
@@ -565,40 +565,33 @@
   100% { content: "."; }
 }
 
-/* Responsive adjustments for mobile */
+/* Mobile optimizations - maintain desktop look with touch improvements */
 @media (max-width: 640px) {
-  .blinkit-product-card {
-    height: 240px;
+  /* Grid optimizations for mobile */
+  .premium-product-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+    padding: 0 8px;
   }
   
-  .blinkit-product-image {
-    height: 130px;
-  }
-  
-  .blinkit-product-name {
-    font-size: 0.8rem;
-    min-height: 32px;
-  }
-  
-  .blinkit-current-price {
-    font-size: 0.85rem;
-  }
-  
-  .blinkit-original-price {
-    font-size: 0.7rem;
-  }
-  
-  .blinkit-add-btn,
-  .blinkit-quantity-selector {
-    height: 26px;
-  }
-  
+  /* Keep desktop proportions but add better touch targets */
   .blinkit-add-btn {
-    font-size: 0.75rem;
+    min-height: 28px; /* Better touch target */
+    font-size: 0.8rem;
   }
   
-  .blinkit-quantity-value {
-    font-size: 0.8rem;
+  .blinkit-quantity-selector {
+    height: 28px; /* Consistent with add button */
+  }
+  
+  .blinkit-quantity-btn {
+    min-width: 24px; /* Better touch target */
+  }
+  
+  /* Slightly larger discount badge for readability */
+  .blinkit-discount-badge {
+    font-size: 11px;
+    padding: 5px 8px;
   }
 }
 
@@ -685,54 +678,30 @@
   width: 100%;
 }
 
-/* Responsive adjustments for mobile */
+/* Clean mobile optimizations - minimal changes to preserve desktop look */
 @media (max-width: 640px) {
   .premium-product-grid {
     grid-template-columns: repeat(2, 1fr);
     gap: 0.75rem;
   }
   
-  .premium-product-image {
-    height: 130px;
-  }
-  
-  .premium-product-content {
-    padding: 0.5rem;
-    height: calc(100% - 130px);
-  }
-  
-  .premium-product-title {
-    font-size: 0.75rem;
-  }
-  
-  .premium-product-subtitle {
-    font-size: 0.625rem;
-    margin-bottom: 0.25rem;
-  }
-  
-  .premium-product-price {
-    font-size: 0.8rem;
-  }
-  
-  .premium-product-original-price {
-    font-size: 0.65rem;
-  }
-  
-  .premium-actions-row {
-    width: 100%;
+  /* Better touch targets without changing appearance */
+  .premium-quantity-btn {
+    min-width: 32px;
+    min-height: 32px;
   }
   
   .premium-quantity-selector {
-    width: 100%;
-    justify-content: space-between;
+    height: 32px;
   }
   
-  /* Make category tabs more compact on mobile */
+  /* More compact category tabs on mobile */
   .premium-category-tab {
     padding: 0.4rem 0.75rem;
     font-size: 0.75rem;
   }
-    /* Ensure header has enough padding on mobile */
+  
+  /* Ensure header has enough padding on mobile */
   .premium-header {
     padding: 0.5rem 0;
   }

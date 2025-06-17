@@ -16,8 +16,7 @@ import {
   MenubarTrigger,
   MenubarContent,
   MenubarItem,
-  MenubarSeparator,
-  MenubarLabel,
+  MenubarSeparator,  MenubarLabel,
   MenubarSub,
   MenubarSubTrigger,
   MenubarSubContent
@@ -25,7 +24,6 @@ import {
 import { motion, AnimatePresence } from "framer-motion";
 import { cn } from "@/lib/utils";
 import { useCart } from "@/context/CartContext";
-import { useIsMobile } from "@/hooks/use-mobile";
 
 const Navigation = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -33,16 +31,17 @@ const Navigation = () => {
   const [isSearchFocused, setIsSearchFocused] = useState(false);
   const searchInputRef = useRef<HTMLInputElement>(null);
   const searchContainerRef = useRef<HTMLDivElement>(null);
-  const location = useLocation();  const navigate = useNavigate();
+  const location = useLocation();
+  const navigate = useNavigate();
   const { totalItems, totalPrice } = useCart();
-  const isMobile = useIsMobile();
-    // Animated placeholders
-  const placeholders = ["Search for Seeds...", "Search for Fertilizers...", "Search for Tools...", "Search for Pesticides..."];
+  
+  // Animated placeholders
+  const placeholders = ["Search for Food...", "Search for Supplies...", "Search for Grooming...", "Search for Accessories..."];
   const [currentPlaceholder, setCurrentPlaceholder] = useState(0);
   const [isPlaceholderVisible, setIsPlaceholderVisible] = useState(true);
   
   // Search suggestions
-  const allCategories = ["Seeds", "Fertilizers", "Tools", "Pesticides", "Irrigation", "Plant Care", "Soil Testing", "Greenhouse", "Organic Products", "Farm Equipment"];
+  const allCategories = ["Dog Food", "Cat Food", "Pet Supplies", "Grooming Tools", "Pet Toys", "Dog Accessories", "Cat Accessories", "Training Supplies", "Pet Beds", "Treats"];
   const [filteredSuggestions, setFilteredSuggestions] = useState<string[]>([]);
   const [showSuggestions, setShowSuggestions] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
@@ -128,74 +127,76 @@ const Navigation = () => {
       document.removeEventListener('mousedown', handleDocumentClick);
     };
   }, []);
-  // Agricultural categories
+
+  // Dog-focused categories
   const categories = [
     {
-      name: "Seeds",
+      name: "Food",
       subcategories: [
-        { name: "Vegetable Seeds", items: ["Tomato Seeds", "Cucumber Seeds", "Lettuce Seeds", "Carrot Seeds", "Onion Seeds"] },
-        { name: "Cereal Seeds", items: ["Wheat Seeds", "Rice Seeds", "Maize Seeds", "Barley Seeds", "Millet Seeds"] },
-        { name: "Flower Seeds", items: ["Marigold Seeds", "Sunflower Seeds", "Rose Seeds", "Dahlia Seeds", "Cosmos Seeds"] },
-        { name: "Herb Seeds", items: ["Basil Seeds", "Mint Seeds", "Coriander Seeds", "Parsley Seeds", "Dill Seeds"] }
+        { name: "Dry Food", items: ["Puppy Dry Food", "Adult Dry Food", "Senior Dry Food", "Grain-Free Options", "Weight Management"] },
+        { name: "Wet Food", items: ["Puppy Wet Food", "Adult Wet Food", "Senior Wet Food", "Stews & Gravies", "Pâté"] },
+        { name: "Treats", items: ["Training Treats", "Dental Chews", "Jerky Treats", "Biscuits & Cookies", "Soft Treats"] },
+        { name: "Special Diets", items: ["Prescription Diets", "Hypoallergenic", "Sensitive Digestion", "Joint Health", "Skin & Coat"] }
       ]
     },
     {
-      name: "Fertilizers",
+      name: "Supplies",
       subcategories: [
-        { name: "Organic Fertilizers", items: ["Vermicompost", "Cow Dung Manure", "Poultry Manure", "Bone Meal", "Neem Cake"] },
-        { name: "Chemical Fertilizers", items: ["NPK Fertilizers", "Urea", "DAP", "Potash", "Micronutrients"] },
-        { name: "Liquid Fertilizers", items: ["Foliar Spray", "Root Feed", "Growth Promoters", "Bloom Boosters", "Seaweed Extract"] },
-        { name: "Specialized", items: ["Soil Conditioners", "pH Adjusters", "Calcium Supplements", "Iron Chelates", "Trace Elements"] }
+        { name: "Beds & Furniture", items: ["Orthopedic Beds", "Crate Mats", "Sofa Beds", "Elevated Beds", "Outdoor Beds"] },
+        { name: "Bowls & Feeders", items: ["Slow Feeders", "Elevated Feeders", "Water Fountains", "Travel Bowls", "Food Storage"] },
+        { name: "Crates & Carriers", items: ["Travel Crates", "Wire Crates", "Soft Carriers", "Car Seats", "Backpacks"] },
+        { name: "Cleaning & Waste", items: ["Poop Bags", "Pee Pads", "Stain Removers", "Odor Eliminators", "Sanitizers"] }
       ]
     },
     {
-      name: "Tools",
+      name: "Grooming",
       subcategories: [
-        { name: "Hand Tools", items: ["Spades", "Hoes", "Pruning Shears", "Hand Cultivators", "Weeding Tools"] },
-        { name: "Power Tools", items: ["Tillers", "Chainsaws", "Hedge Trimmers", "Brush Cutters", "Water Pumps"] },
-        { name: "Irrigation", items: ["Drip Systems", "Sprinklers", "Hoses", "Timers", "Pressure Pumps"] },
-        { name: "Harvesting", items: ["Sickles", "Harvesting Knives", "Collection Baskets", "Threshers", "Storage Containers"] }
+        { name: "Shampoo & Conditioner", items: ["Sensitive Skin", "Flea & Tick", "Medicated", "Detangling", "Waterless"] },
+        { name: "Tools & Brushes", items: ["Deshedding Tools", "Slicker Brushes", "Nail Clippers", "Electric Clippers", "Combs"] },
+        { name: "Oral Care", items: ["Toothbrushes", "Toothpaste", "Dental Sprays", "Water Additives", "Dental Chews"] },
+        { name: "Coat Care", items: ["Deodorizing Sprays", "Moisturizers", "Detanglers", "Eye Wipes", "Ear Cleaners"] }
       ]
     },
     {
-      name: "Plant Protection",
+      name: "Accessories",
       subcategories: [
-        { name: "Pesticides", items: ["Insecticides", "Fungicides", "Herbicides", "Nematicides", "Rodenticides"] },
-        { name: "Organic Protection", items: ["Neem Oil", "Bio-pesticides", "Beneficial Insects", "Trap Crops", "Companion Plants"] },
-        { name: "Physical Protection", items: ["Nets", "Row Covers", "Mulch Films", "Bird Scarers", "Fencing"] },
-        { name: "Disease Management", items: ["Copper Fungicides", "Sulfur", "Bordeaux Mixture", "Bio-fungicides", "Systemic Treatments"] }
+        { name: "Collars & Leashes", items: ["Training Collars", "Harnesses", "Retractable Leashes", "Rope Leashes", "ID Tags"] },
+        { name: "Clothing & Gear", items: ["Winter Coats", "Rain Jackets", "Sweaters", "Bandanas", "Booties"] },
+        { name: "Toys", items: ["Chew Toys", "Interactive Toys", "Fetch Toys", "Plush Toys", "Puzzle Toys"] },
+        { name: "Training & Behavior", items: ["Training Clickers", "Anti-Bark Devices", "Training Pads", "Crate Training Aids", "Anxiety Relief"] }
       ]
     }
   ];
-    // Agricultural brands with product subcategories
+  
+  // Dog-focused brands with product subcategories
   const brands = [
     {
-      name: "East West Seed",
-      products: ["Hybrid Vegetable Seeds", "Open Pollinated Seeds", "Tropical Varieties", "Disease Resistant Seeds", "High Yield Varieties", "Greenhouse Seeds"]
+      name: "Royal Canin",
+      products: ["Breed Specific Formulas", "Veterinary Diets", "Size Health Nutrition", "Puppy Food", "Royal Canin Adult Dog Food", "Senior Dog Food"]
     },
     {
-      name: "Syngenta",
-      products: ["Crop Protection", "Seeds", "Fungicides", "Herbicides", "Insecticides", "Growth Regulators"]
+      name: "Pedigree",
+      products: ["Dry Dog Food", "Wet Dog Food", "Dog Treats", "Dental Sticks", "Puppy Food", "Senior Dog Food"]
     },
     {
-      name: "Bayer CropScience",
-      products: ["Hybrid Seeds", "Crop Protection", "Digital Farming", "Biologicals", "Herbicides", "Fungicides"]
+      name: "Blue Buffalo",
+      products: ["Wilderness", "Life Protection Formula", "Freedom Grain-Free", "Basics Limited Ingredient", "Natural Veterinary Diet"]
     },
     {
-      name: "IFFCO",
-      products: ["NPK Fertilizers", "Urea", "DAP", "Micronutrients", "Organic Fertilizers", "Nano Fertilizers"]
+      name: "Hill's Science Diet",
+      products: ["Puppy Food", "Adult Food", "Senior Food", "Perfect Weight", "Sensitive Skin", "Oral Care"]
     },
     {
-      name: "Mahindra",
-      products: ["Tractors", "Farm Equipment", "Tillers", "Harvesters", "Implements", "Irrigation Systems"]
+      name: "Purina Pro Plan",
+      products: ["Sport", "Focus", "Savor", "Bright Mind", "Sensitive Skin & Stomach", "Veterinary Diets"]
     },
     {
-      name: "Godrej Agrovet",
-      products: ["Animal Feed", "Crop Protection", "Oil Palm", "Dairy", "Poultry", "Aquaculture"]
+      name: "Wellness",
+      products: ["CORE", "Complete Health", "Simple", "TruFood", "Treats & Supplements", "Puppy Formulas"]
     },
     {
-      name: "UPL",
-      products: ["Crop Protection", "Seeds", "Post Harvest", "Specialty Products", "Biologicals", "Adjuvants"]
+      name: "Taste of the Wild",
+      products: ["High Prairie", "Pacific Stream", "Sierra Mountain", "Wetlands", "Pine Forest", "Puppy Formula"]
     }
   ];
   
@@ -206,12 +207,9 @@ const Navigation = () => {
   return (
     <nav className="bg-gradient-to-r from-white via-white to-green-50 shadow-sm border-b border-gray-100 sticky top-0 z-50">
       <div className="w-full max-w-screen-2xl mx-auto px-4 sm:px-8 lg:px-12">
-        <div className="flex items-center justify-between h-14 md:h-16">          {/* Logo - Simple and clean design with responsive sizing */}          <Link to="/" className="flex items-center space-x-1 sm:space-x-2 flex-shrink-0 mr-1 sm:mr-4">
-            <img 
-              src={isMobile ? "/mobilelogo.svg" : "/logo.svg"} 
-              alt="Cropsay" 
-              className="h-6 w-auto xs:h-7 sm:h-8 md:h-9 lg:h-10 xl:h-11" 
-            />
+        <div className="flex items-center justify-between h-14 md:h-16">          {/* Logo - Simple and clean design with responsive sizing */}
+          <Link to="/" className="flex items-center space-x-1 sm:space-x-2 flex-shrink-0 mr-1 sm:mr-4">
+            <img src="/logo.svg" alt="Paws & Paradise" className="h-4 w-auto xs:h-5 sm:h-6 md:h-7 lg:h-8" />
           </Link>
             {/* Mobile Search - Takes priority in mobile view */}          
           <div className="flex-1 max-w-xs sm:max-w-md md:hidden mx-1" ref={searchContainerRef}>
@@ -368,7 +366,7 @@ const Navigation = () => {
                   <div className="grid grid-cols-3">
                     <div className="p-4 border-r border-gray-100">
                       <MenubarLabel className="font-semibold text-gray-500 text-xs uppercase mb-3">
-                        Categories
+                        Dog Categories
                       </MenubarLabel>
                       <div>
                         {categories.map((category) => (
@@ -414,8 +412,9 @@ const Navigation = () => {
                         ))}
                       </div>
                     </div>
-                    <div className="col-span-2 p-4">                      <MenubarLabel className="font-semibold text-gray-500 text-xs uppercase mb-3">
-                        Premium Agricultural Brands
+                    <div className="col-span-2 p-4">
+                      <MenubarLabel className="font-semibold text-gray-500 text-xs uppercase mb-3">
+                        Premium Dog Brands
                       </MenubarLabel>
                       <div className="grid grid-cols-2 gap-4">
                         {brands.map((brand) => (
@@ -666,13 +665,12 @@ const Navigation = () => {
         <div className={`lg:hidden border-t border-gray-100 bg-white transform transition-transform duration-300 ease-in-out overflow-hidden ${isMenuOpen ? 'max-h-[80vh] opacity-100 shadow-md' : 'max-h-0 opacity-0'}`}>
           <div className="px-4 py-4 space-y-1.5 menu-scrollbar-hide max-h-[calc(80vh-4rem)] overflow-y-auto">
             {/* Mobile Navigation Links */}
-            <Link 
-              to="/" 
+            <Link              to="/" 
               className={`block px-4 py-2.5 rounded-lg ${
                 isActive("/") 
-                  ? "text-white font-medium bg-gradient-to-r from-[#0C831F] to-green-600" 
+                  ? "text-white font-medium bg-gradient-to-r from-[#0C831F] to-green-500" 
                   : "text-gray-700 hover:bg-gray-50"
-              }`} 
+              }`}
               onClick={() => setIsMenuOpen(false)}
             >
               <div className="flex items-center">
@@ -685,7 +683,7 @@ const Navigation = () => {
             <details className="group">
               <summary className={`block px-4 py-2.5 cursor-pointer select-none rounded-lg ${
                 isShopActive 
-                  ? "text-white font-medium bg-gradient-to-r from-[#0C831F] to-green-600" 
+                  ? "text-white font-medium bg-gradient-to-r from-[#0C831F] to-green-500" 
                   : "text-gray-700 hover:bg-gray-50"
               }`}>
                 <div className="flex items-center justify-between">
@@ -698,7 +696,7 @@ const Navigation = () => {
               </summary>
               <div className="pt-1 pb-1 pl-3">
                 <div className="mb-3 mt-1">
-                  <span className="text-xs text-gray-500 font-medium block px-4 py-1">Categories</span>
+                  <span className="text-xs text-gray-500 font-medium block px-4 py-1">Dog Categories</span>
                   <div className="border-l border-gray-100 pl-3 mt-1">
                     {categories.map((category) => (
                       <details key={category.name} className="mb-2">
@@ -741,7 +739,7 @@ const Navigation = () => {
                 </div>
                 
                 <div>
-                  <span className="text-xs text-gray-500 font-medium block px-4 py-1">Premium Agricultural Brands</span>
+                  <span className="text-xs text-gray-500 font-medium block px-4 py-1">Premium Dog Brands</span>
                   <div className="border-l border-gray-100 pl-3 mt-1">
                     {brands.map((brand) => (
                       <details key={brand.name} className="mb-2">
@@ -779,7 +777,7 @@ const Navigation = () => {
               to="/expert" 
               className={`block px-4 py-2.5 rounded-lg ${
                 isActive("/expert") 
-                  ? "text-white font-medium bg-gradient-to-r from-[#0C831F] to-green-600" 
+                  ? "text-white font-medium bg-gradient-to-r from-[#0C831F] to-green-500" 
                   : "text-gray-700 hover:bg-gray-50"
               }`} 
               onClick={() => setIsMenuOpen(false)}
@@ -794,7 +792,7 @@ const Navigation = () => {
               to="/contact" 
               className={`block px-4 py-2.5 rounded-lg ${
                 isActive("/contact") 
-                  ? "text-white font-medium bg-gradient-to-r from-[#0C831F] to-green-600" 
+                  ? "text-white font-medium bg-gradient-to-r from-[#0C831F] to-green-500" 
                   : "text-gray-700 hover:bg-gray-50"
               }`} 
               onClick={() => setIsMenuOpen(false)}
@@ -809,7 +807,7 @@ const Navigation = () => {
               to="/subscription" 
               className={`block px-4 py-2.5 rounded-lg ${
                 isActive("/subscription") 
-                  ? "text-white font-medium bg-gradient-to-r from-[#0C831F] to-green-600" 
+                  ? "text-white font-medium bg-gradient-to-r from-[#0C831F] to-green-500" 
                   : "text-gray-700 hover:bg-gray-50"
               }`} 
               onClick={() => setIsMenuOpen(false)}
@@ -822,7 +820,7 @@ const Navigation = () => {
               <button 
                 className={`block w-full text-left px-4 py-2 rounded-lg 
                   ${isActive("/account") 
-                    ? "text-white font-medium bg-gradient-to-r from-[#0C831F] to-green-600" 
+                    ? "text-white font-medium bg-gradient-to-r from-[#0C831F] to-green-500" 
                     : "text-gray-700 hover:bg-gray-50"
                   }`} 
                 onClick={(e) => {
@@ -858,7 +856,7 @@ const Navigation = () => {
             
             {/* Shop Button in Center - Elevated and Highlighted with improved animation */}
             <Link to="/shop" className="flex flex-col items-center justify-center relative -mt-5">
-              <div className={`w-14 h-14 rounded-full bg-gradient-to-b from-[#0C831F] to-green-700 flex items-center justify-center shadow-lg nav-center-button ${isShopActive ? "ring-4 ring-green-100" : ""}`}>
+              <div className={`w-14 h-14 rounded-full bg-gradient-to-b from-[#0C831F] to-green-600 flex items-center justify-center shadow-lg nav-center-button ${isShopActive ? "ring-4 ring-green-100" : ""}`}>
                 <Store className="h-6 w-6 text-white" />
               </div>
               <span className={`text-xs mt-1 font-medium text-[#0C831F]`}>Shop</span>

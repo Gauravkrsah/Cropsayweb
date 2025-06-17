@@ -1,59 +1,16 @@
-/* Mobile-First Responsive Design Utilities */
+/* Mobile-First Responsive Design - CLEAN AND MINIMAL */
 
-/* Hero Section Mobile Optimizations */
+/* Remove problematic mobile overrides */
 @media (max-width: 640px) {
-  /* Hero content mobile optimization */
-  .hero-content {
-    padding: 1rem;
-    text-align: left !important;
-  }
-  
+  /* Keep hero section natural - NO FORCED STYLES */
   .hero-content h1 {
-    font-size: 1.875rem !important; /* text-3xl */
-    line-height: 1.2 !important;
-    text-align: left !important;
+    font-size: 1.5rem;
+    line-height: 1.2;
   }
   
   .hero-content p {
-    font-size: 0.875rem !important; /* text-sm */
-    line-height: 1.4 !important;
-    text-align: left !important;
-    margin-top: 1rem !important;
-  }
-  
-  /* Hero card mobile optimization */
-  .hero-product-card {
-    padding: 0.75rem !important;
-    width: 100% !important;
-    max-width: 100% !important;
-  }
-  
-  .hero-product-card .card {
-    max-width: 100% !important;
-    margin: 0 !important;
-  }
-  
-  /* Button alignment for mobile */
-  .hero-content .flex {
-    justify-content: flex-start !important;
-  }
-  
-  /* Contact expert button mobile */
-  .hero-content button {
-    width: 100% !important;
-    margin-bottom: 0.5rem !important;
-  }
-  
-  /* Price section mobile optimization */
-  .card-content-wrapper .flex {
-    flex-direction: column !important;
-    align-items: flex-start !important;
-    gap: 1rem !important;
-  }
-  
-  .card-content-wrapper button {
-    width: 100% !important;
-    justify-content: center !important;
+    font-size: 0.875rem;
+    line-height: 1.4;
   }
 }
 
@@ -328,9 +285,8 @@
     width: 10px !important;
     height: 10px !important;
   }
-  
-  .hero-product-card .bg-\[\#0C831F\]\/95.px-2 span {
-    font-size: 9px !important;
+    .hero-product-card .bg-\[\#0C831F\]\/95.px-2 span {
+    font-size: 0.75rem !important;
     font-weight: 600 !important;
     white-space: nowrap !important;
   }
@@ -358,14 +314,13 @@
     width: 0.875rem !important;
     height: 0.875rem !important;
   }
-  
-  .hero-product-card .absolute.bottom-4.right-4 span:first-of-type {
-    font-size: 0.75rem !important;
+    .hero-product-card .absolute.bottom-4.right-4 span:first-of-type {
+    font-size: 0.875rem !important;
     font-weight: 700 !important;
   }
   
   .hero-product-card .absolute.bottom-4.right-4 span:last-of-type {
-    font-size: 0.625rem !important;
+    font-size: 0.75rem !important;
   }
 }
 

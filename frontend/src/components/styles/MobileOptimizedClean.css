@@ -1,0 +1,49 @@
+/* Mobile-First Responsive Design - CLEAN AND MINIMAL */
+
+/* Simple mobile optimizations without breaking existing layout */
+@media (max-width: 640px) {
+  /* Typography improvements for hero section only */
+  .hero-content h1 {
+    font-size: 1.5rem;
+    line-height: 1.2;
+  }
+  
+  .hero-content p {
+    font-size: 0.875rem;
+    line-height: 1.4;
+  }
+  
+  /* Ensure forms don't zoom on iOS */
+  input, textarea, select {
+    font-size: 16px !important;
+  }
+  
+  /* Better touch targets for general buttons (not product cards) */
+  button:not(.blinkit-add-btn):not(.blinkit-quantity-btn) {
+    min-height: 44px;
+  }
+  
+  /* Ensure mobile cards look exactly like desktop but with better touch */
+  .blinkit-product-card {
+    /* Keep desktop appearance exactly the same */
+    transform: none;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+  
+  .blinkit-product-card:active {
+    /* Only add slight press effect on mobile */
+    transform: scale(0.98);
+  }
+  
+  /* Ensure add to cart buttons are touch-friendly but look the same */
+  .blinkit-add-btn,
+  .blinkit-quantity-btn {
+    min-height: 28px; /* Minimum touch target */
+    transition: all 0.2s ease;
+  }
+  
+  .blinkit-add-btn:active,
+  .blinkit-quantity-btn:active {
+    transform: scale(0.95);
+  }
+}

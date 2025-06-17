@@ -1,0 +1,32 @@
+/* Comprehensive Mobile Optimization for CropSay - MINIMAL AND CLEAN */
+
+/* Global Mobile Fixes */
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+
+body {
+  overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Mobile-First Container Adjustments - MINIMAL */
+@media (max-width: 640px) {
+  /* Better touch targets */
+  button {
+    min-height: 44px;
+  }
+  
+  /* Typography improvements */
+  h1 {
+    font-size: 1.5rem !important;
+    line-height: 1.2 !important;
+  }
+  
+  /* Form inputs prevent zoom on iOS */
+  input, textarea, select {
+    font-size: 1rem !important;
+  }
+}
+
+
