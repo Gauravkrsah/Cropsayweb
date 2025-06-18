@@ -40,20 +40,20 @@ const Index = () => {
       setCardAnimation(false);
     }, 1000);
   };
-    
-  // Scroll handlers for product lists
+    // Scroll handlers for product lists
   const scrollProducts = (containerRef: React.RefObject<HTMLDivElement>, direction: 'left' | 'right') => {
     if (!containerRef.current) return;
     
     const container = containerRef.current;
-    const scrollAmount = 600; // Adjusted for wider cards (290px) + gap (4)
+    // Calculate scroll amount: 2 cards (220px each) + 2 gaps (16px each) = 472px
+    const scrollAmount = window.innerWidth >= 640 ? 472 : 424; // Smaller cards on mobile
     
     if (direction === 'left') {
       container.scrollLeft -= scrollAmount;
     } else {
       container.scrollLeft += scrollAmount;
     }
-  };  const categories = [
+  };const categories = [
     { name: "Seeds", image: "https://images.unsplash.com/photo-1416879595882-3373a0480b5b?w=300&h=300&fit=crop", count: "500+", icon: "🌱" },
     { name: "Fertilizers", image: "https://images.unsplash.com/photo-1605000797499-95a51c5269ae?w=300&h=300&fit=crop", count: "200+", icon: "🧪" },
     { name: "Tools", image: "https://images.unsplash.com/photo-1416879595882-3373a0480b5b?w=300&h=300&fit=crop", count: "150+", icon: "🛠️" },
@@ -459,8 +459,8 @@ const Index = () => {
           </div>
         </div>
           <div className="px-0">          <div ref={featuredProductsScrollRef} className="overflow-x-auto scrollbar-hide pb-4 sm:pb-6">
-            <div className="flex gap-4 w-max">              {hotDeals.slice(0, 8).map((product) => (
-                <div key={product.id} className="flex-shrink-0">                  <ProductCard
+            <div className="flex gap-3 sm:gap-4 w-max">              {hotDeals.slice(0, 8).map((product) => (
+                <div key={product.id} className="flex-shrink-0 w-[200px] sm:w-[220px]">                  <ProductCard
                     image={product.image}
                     name={product.name}
                     quantity="80g"
@@ -509,8 +509,8 @@ const Index = () => {
           </div>
         </div>
             {/* Horizontal scrollable product list with improved cards */}          
-        <div className="px-4 sm:px-6 lg:px-12">          <div ref={hotDealsScrollRef} className="overflow-x-auto scrollbar-hide pb-4 sm:pb-6">            <div className="flex gap-4 w-max">                  {hotDeals.map((product) => (
-                <div key={product.id} className="flex-shrink-0">                  <ProductCard
+        <div className="px-4 sm:px-6 lg:px-12">          <div ref={hotDealsScrollRef} className="overflow-x-auto scrollbar-hide pb-4 sm:pb-6">            <div className="flex gap-3 sm:gap-4 w-max">                  {hotDeals.map((product) => (
+                <div key={product.id} className="flex-shrink-0 w-[200px] sm:w-[220px]">                  <ProductCard
                     image={product.image}
                     name={product.name}
                     quantity="4x80g"
@@ -558,8 +558,8 @@ const Index = () => {
           </div>
         </div>
               {/* Horizontal scrollable product list with improved cards */}
-        <div className="px-4 sm:px-6 lg:px-12">          <div ref={newArrivalsScrollRef} className="overflow-x-auto scrollbar-hide pb-4 sm:pb-6">            <div className="flex gap-4 w-max">              {newArrivals.map((product) => (
-                <div key={product.id} className="flex-shrink-0">                  <ProductCard
+        <div className="px-4 sm:px-6 lg:px-12">          <div ref={newArrivalsScrollRef} className="overflow-x-auto scrollbar-hide pb-4 sm:pb-6">            <div className="flex gap-3 sm:gap-4 w-max">              {newArrivals.map((product) => (
+                <div key={product.id} className="flex-shrink-0 w-[200px] sm:w-[220px]">                  <ProductCard
                     image={product.image}
                     name={product.name}
                     quantity="250ml"
