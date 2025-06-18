@@ -10,6 +10,7 @@ import { Badge } from "@/components/ui/badge";
 import "@/components/styles/MobileNavigation.css";
 import "@/components/styles/SearchAnimation.css";
 import "@/components/styles/CartButton.css";
+import "@/components/styles/ResponsiveNavigation.css";
 import LoginDialog from "@/components/LoginDialog";
 import {
   Menubar,
@@ -569,46 +570,50 @@ const Navigation = () => {
                   )}
                 </AnimatePresence>
               </form>            </div>
-            
-            {/* Account and Cart - Matched with the image */}
-            <div className="flex items-center gap-3 ml-2">
+              {/* Account and Cart - Improved responsive design */}
+            <div className="flex items-center gap-2 md:gap-3 ml-2">
               {/* Account - Login Dialog */}
               <LoginDialog>
                 <Button 
                   variant="ghost" 
                   size="sm" 
-                  className="px-3 sm:px-4 py-1.5 hover:bg-gray-100 rounded-md text-gray-700 hover:text-[#0C831F] transition-colors flex items-center"
+                  className="px-2 md:px-3 lg:px-4 py-1.5 hover:bg-gray-100 rounded-md text-gray-700 hover:text-[#0C831F] transition-colors flex items-center"
                 >
-                  <span className="mr-1 sm:mr-1.5 text-xs sm:text-sm">Login</span>
-                  <User className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
+                  <span className="mr-1 md:mr-1.5 text-xs md:text-sm hidden md:inline">Login</span>
+                  <User className="h-4 w-4" />
                 </Button>
               </LoginDialog>
               
-              {/* Cart - New Design with blue gradient */}
+              {/* Cart - Responsive design with better mobile adaptation */}
               <Link to="/cart" className="cart-button">
-                <ShoppingCart className="h-5 w-5" />
-                <span className="cart-count">{totalItems} {totalItems === 1 ? 'item' : 'items'}</span>
-                <span className="cart-price">
-                  <span className="rupee-symbol">रु.</span>{totalPrice}
-                </span>
+                <ShoppingCart className="h-4 w-4 md:h-5 md:w-5 flex-shrink-0" />
+                <div className="flex flex-col md:flex-row md:items-center md:gap-2">
+                  <span className="cart-count text-xs md:text-sm leading-tight">
+                    <span className="hidden sm:inline">{totalItems} {totalItems === 1 ? 'item' : 'items'}</span>
+                    <span className="sm:hidden">{totalItems}</span>
+                  </span>
+                  <span className="cart-price text-xs md:text-sm leading-tight">
+                    <span className="rupee-symbol">रु.</span>{totalPrice}
+                  </span>
+                </div>
               </Link>
             </div>
-          </div>
-
-          {/* Mobile Menu Toggle (only visible on mobile) */}
+          </div>          {/* Mobile Menu Toggle - Enhanced responsive design */}
           <Button
             variant="ghost"
             size="sm"
-            className="md:hidden p-1.5 hover:bg-gray-100 rounded-full"
+            className="md:hidden p-1 sm:p-1.5 hover:bg-gray-100 rounded-full transition-colors"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
           >
-            {isMenuOpen ? <X className="h-5 w-5 text-gray-600" /> : <Menu className="h-5 w-5 text-gray-600" />}
+            {isMenuOpen ? 
+              <X className="h-4 w-4 sm:h-5 sm:w-5 text-gray-600" /> : 
+              <Menu className="h-4 w-4 sm:h-5 sm:w-5 text-gray-600" />
+            }
           </Button>
         </div>
-        
-        {/* Mobile Navigation - Slide Menu with Enhanced Animation */}
-        <div className={`lg:hidden border-t border-gray-100 bg-white transform transition-transform duration-300 ease-in-out overflow-hidden ${isMenuOpen ? 'max-h-[80vh] opacity-100 shadow-md' : 'max-h-0 opacity-0'}`}>
-          <div className="px-4 py-4 space-y-1.5 menu-scrollbar-hide max-h-[calc(80vh-4rem)] overflow-y-auto">
+          {/* Mobile Navigation - Enhanced responsive slide menu */}
+        <div className={`lg:hidden border-t border-gray-100 bg-white transform transition-all duration-300 ease-in-out overflow-hidden ${isMenuOpen ? 'max-h-[85vh] sm:max-h-[80vh] opacity-100 shadow-md' : 'max-h-0 opacity-0'}`}>
+          <div className="px-3 sm:px-4 py-3 sm:py-4 space-y-1 sm:space-y-1.5 menu-scrollbar-hide max-h-[calc(85vh-4rem)] sm:max-h-[calc(80vh-4rem)] overflow-y-auto">
             {/* Mobile Navigation Links */}
             <Link              to="/" 
               className={`block px-4 py-2.5 rounded-lg ${
@@ -775,9 +780,9 @@ const Navigation = () => {
               <span className={`text-xs mt-1 font-medium text-[#0C831F]`}>Shop</span>
             </Link>            <Link to="/cart" className="flex flex-col items-center justify-center">
               <div className={`p-1.5 rounded-full relative transition-colors ${isActive("/cart") ? "text-[#0C831F]" : "text-gray-500"}`}>
-                <ShoppingCart className="h-5 w-5" />
-                <Badge className="absolute -top-1 -right-1 bg-[#0C831F] text-white text-xs h-4 w-4 flex items-center justify-center rounded-full border border-white shadow-sm" style={{fontSize:'0.7rem', minHeight:'1.1rem', minWidth:'1.1rem'}}>
-                  {totalItems}
+                <ShoppingCart className="h-4 w-4 sm:h-5 sm:w-5" />
+                <Badge className="absolute -top-1 -right-1 bg-[#0C831F] text-white text-xs h-4 w-4 sm:h-5 sm:w-5 flex items-center justify-center rounded-full border border-white shadow-sm" style={{fontSize:'0.625rem', minHeight:'1rem', minWidth:'1rem'}}>
+                  {totalItems > 99 ? '99+' : totalItems}
                 </Badge>
               </div>
               <span className={`text-xs mt-0.5 transition-colors ${isActive("/cart") ? "text-[#0C831F] font-medium" : "text-gray-500"}`}>Cart</span>

@@ -271,117 +271,154 @@ const Index = () => {
     reviews: 235,
     discount: 38
   };
-
-  return (    <div className="min-h-screen bg-white overflow-x-hidden">      {/* Announcement Bar - Improved with gradient */}      <div className="bg-gradient-to-r from-green-600 via-[#0C831F] to-green-500 text-white text-center py-1 sm:py-1.5 md:py-2 text-xs sm:text-sm md:text-base font-medium w-full flex items-center justify-center space-x-2">
+  return (
+    <div className="min-h-screen bg-white overflow-x-hidden">
+      {/* Announcement Bar - Improved with gradient */}
+      <div className="bg-gradient-to-r from-green-600 via-[#0C831F] to-green-500 text-white text-center py-1 sm:py-1.5 md:py-2 text-xs sm:text-sm md:text-base font-medium w-full flex items-center justify-center space-x-2">
         <span className="bg-white bg-opacity-20 rounded-full w-4 h-4 inline-flex items-center justify-center text-[8px] sm:text-[10px]">✓</span>
-        <span>FREE SHIPPING ON ORDERS OVER RS. 2000 IN KATHMANDU VALLEY</span>      </div>      {/* Hero Section - Enhanced mobile-first responsive design */}
-      <section ref={heroRef} className="hero-section relative bg-gradient-to-br from-green-600 via-[#0C831F] to-[#0a6b1a] overflow-hidden w-full py-4 sm:py-6 md:py-8 lg:py-12 min-h-[85vh] sm:min-h-[75vh] md:min-h-[70vh] flex items-center">
-        {/* Enhanced background patterns with better mobile optimization */}
-        <div className="absolute top-0 left-0 w-full h-full overflow-hidden">
-          {/* Simplified background pattern for better mobile performance */}
-          <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxnIGZpbGw9IiNmZmZmZmYiIGZpbGwtb3BhY2l0eT0iMC4wMiI+PHBhdGggZD0iTTM2IDM0djZoNnYtNmgtNnptMCAwdi02aC02djZoNnptNiAwaDZ2LTZoLTZ2NnptLTEyIDBoLTZ2LTZoNnY2eiIvPjwvZz48L2c+PC9zdmc+')] opacity-20"></div>
-          {/* Enhanced gradient overlay for better contrast */}
-          <div className="absolute inset-0 bg-gradient-to-t from-green-900/40 to-transparent"></div>
-          <div className="absolute inset-0 bg-gradient-to-r from-green-800/20 to-transparent"></div>
-        </div>
-        
-        <div className="w-full max-w-7xl mx-auto px-3 sm:px-4 md:px-6 lg:px-12 xl:px-16 relative z-10">
-          <div className="grid grid-cols-1 lg:grid-cols-[1fr,380px] gap-4 sm:gap-6 md:gap-8 lg:gap-12 items-center min-h-[75vh] sm:min-h-[65vh]">
-            {/* Text content - left-aligned mobile-friendly design */}
-            <div className="hero-content text-white z-10 relative order-2 lg:order-1 text-left max-w-full lg:max-w-2xl mx-auto lg:mx-0">
-              <div className="space-y-3 sm:space-y-4 md:space-y-6">
-                <h1 className="text-xl xs:text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight leading-[1.1] text-left" style={{ fontFamily: 'var(--font-rounded, "DM Sans", "Inter", system-ui, sans-serif)' }}>
-                  Everything Your<br className="hidden xs:block" />
-                  <span className="xs:hidden"> </span>
-                  <span className="text-green-300 block mt-1 sm:mt-2">
-                    Farm Needs
-                  </span>
-                </h1>
-                <p className="text-sm xs:text-base sm:text-lg md:text-xl opacity-90 max-w-2xl leading-relaxed text-green-100 tracking-wide text-left" style={{ fontFamily: 'var(--font-rounded, "DM Sans", "Inter", system-ui, sans-serif)' }}>
-                  Premium quality agricultural products delivered fast to your doorstep in Kathmandu Valley.
-                </p>
-              </div>
-              
-              <div className="flex items-center justify-start mt-4 sm:mt-6 bg-white/15 backdrop-blur-sm rounded-full py-2 sm:py-3 px-4 sm:px-6 w-fit">
-                <div className="flex items-center text-green-300">
-                  <span className="w-2 h-2 sm:w-2.5 sm:h-2.5 bg-green-300 rounded-full mr-3 animate-pulse"></span>
-                  <span className="font-medium text-sm sm:text-base tracking-wider" style={{ fontFamily: 'var(--font-rounded, "DM Sans", "Inter", system-ui, sans-serif)' }}>Free delivery in 30 minutes</span>
+        <span>FREE SHIPPING ON ORDERS OVER RS. 2000 IN KATHMANDU VALLEY</span>
+      </div>
+      
+      {/* Hero Section - Enhanced responsive design for all screen sizes */}
+      <section ref={heroRef} className="hero-section relative bg-gradient-to-br from-green-600 via-[#0C831F] to-[#0a6b1a] overflow-hidden w-full">
+        {/* Dynamic responsive padding and min-height */}
+        <div className="py-6 sm:py-8 md:py-12 lg:py-16 xl:py-20 min-h-[90vh] xxs:min-h-[85vh] xs:min-h-[80vh] sm:min-h-[75vh] md:min-h-[70vh] lg:min-h-[75vh] xl:min-h-[80vh] flex items-center">
+          {/* Enhanced background patterns with better mobile optimization */}
+          <div className="absolute top-0 left-0 w-full h-full overflow-hidden">
+            {/* Simplified background pattern for better mobile performance */}
+            <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxnIGZpbGw9IiNmZmZmZmYiIGZpbGwtb3BhY2l0eT0iMC4wMiI+PHBhdGggZD0iTTM2IDM0djZoNnYtNmgtNnptMCAwdi02aC02djZoNnptNiAwaDZ2LTZoLTZ2NnptLTEyIDBoLTZ2LTZoNnY2eiIvPjwvZz48L2c+PC9zdmc+')] opacity-20"></div>
+            {/* Enhanced gradient overlay for better contrast */}
+            <div className="absolute inset-0 bg-gradient-to-t from-green-900/40 to-transparent"></div>
+            <div className="absolute inset-0 bg-gradient-to-r from-green-800/20 to-transparent"></div>
+          </div>
+          
+          <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16 relative z-10">
+            <div className="grid grid-cols-1 lg:grid-cols-[1.2fr,0.8fr] xl:grid-cols-[1fr,0.7fr] gap-6 sm:gap-8 md:gap-10 lg:gap-12 xl:gap-16 items-center">
+              {/* Text content - Enhanced responsive typography */}
+              <div className="hero-content text-white z-10 relative order-2 lg:order-1 text-center lg:text-left max-w-full lg:max-w-none mx-auto lg:mx-0">
+                <div className="space-y-4 sm:space-y-5 md:space-y-6 lg:space-y-8">                  <h1 className="font-bold tracking-tight leading-[1.1] text-center lg:text-left" 
+                      style={{ 
+                        fontFamily: 'var(--font-rounded, "DM Sans", "Inter", system-ui, sans-serif)',
+                        fontSize: 'clamp(1.5rem, 4vw, 3.5rem)'
+                      }}>
+                    <span className="whitespace-nowrap">Everything Your</span>
+                    <span className="text-green-300 block mt-1 sm:mt-2">
+                      Farm Needs
+                    </span>
+                  </h1>
+                  <p className="opacity-90 max-w-2xl leading-relaxed text-green-100 tracking-wide text-center lg:text-left mx-auto lg:mx-0" 
+                     style={{ 
+                       fontFamily: 'var(--font-rounded, "DM Sans", "Inter", system-ui, sans-serif)',
+                       fontSize: 'clamp(0.875rem, 2.5vw, 1.25rem)'
+                     }}>
+                    Premium quality agricultural products delivered fast to your doorstep in Kathmandu Valley.
+                  </p>
+                </div>
+                
+                <div className="flex items-center justify-center lg:justify-start mt-4 sm:mt-6 bg-white/15 backdrop-blur-sm rounded-full py-2 sm:py-3 px-4 sm:px-6 w-fit mx-auto lg:mx-0">
+                  <div className="flex items-center text-green-300">
+                    <span className="w-2 h-2 sm:w-2.5 sm:h-2.5 bg-green-300 rounded-full mr-3 animate-pulse"></span>
+                    <span className="font-medium text-sm sm:text-base tracking-wider" style={{ fontFamily: 'var(--font-rounded, "DM Sans", "Inter", system-ui, sans-serif)' }}>Free delivery in 30 minutes</span>
+                  </div>
+                </div>
+                    <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 mt-6 sm:mt-8 justify-center lg:justify-start">
+                  <Link to="/shop" className="w-full sm:w-auto">
+                    <Button className="bg-white hover:bg-gray-100 text-[#0C831F] px-6 sm:px-8 py-3 sm:py-4 font-bold rounded-full w-full tracking-wide shadow-lg hover:shadow-xl transition-all duration-300" 
+                            style={{ fontSize: 'clamp(0.875rem, 2.5vw, 1.125rem)' }}>
+                      <span>Shop Now</span>
+                      <ArrowRight className="ml-3 h-5 w-5" />
+                    </Button>
+                  </Link>
+                  
+                  <Link to="/expert" className="w-full sm:w-auto">
+                    <Button 
+                      variant="outline" 
+                      className="border-2 border-white text-white hover:bg-white hover:text-[#0C831F] px-6 sm:px-8 py-3 sm:py-4 font-bold rounded-full w-full tracking-wide shadow-lg hover:shadow-xl transition-all duration-300 bg-transparent" 
+                      style={{ fontSize: 'clamp(0.875rem, 2.5vw, 1.125rem)' }}
+                    >
+                      <MessageCircle className="mr-3 h-5 w-5" />
+                      <span>Chat with Expert</span>
+                    </Button>
+                  </Link>
                 </div>
               </div>
-                <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 mt-6 sm:mt-8 justify-start">
-                <Link to="/shop" className="w-full sm:w-auto">
-                  <Button className="bg-white hover:bg-gray-100 text-[#0C831F] px-6 sm:px-8 py-3 sm:py-4 font-bold rounded-full w-full tracking-wide text-base sm:text-lg shadow-lg hover:shadow-xl transition-all duration-300">
-                    <span>Shop Now</span>
-                    <ArrowRight className="ml-3 h-5 w-5" />
-                  </Button>
-                </Link>
-              </div>
-            </div>
-            
-            {/* Hero Product Card - Enhanced mobile-responsive design */}
-            <div 
-              ref={heroCardRef} 
-              className="hero-product-card order-1 lg:order-2 z-10 flex justify-center lg:justify-end relative px-2 sm:px-3 md:px-0"
-            >
-              {/* Redesigned agricultural themed hero card - cleaner and optimized width */}
-              <Card className="bg-white border-0 rounded-xl sm:rounded-2xl overflow-hidden shadow-lg sm:shadow-xl hover:shadow-2xl transition-all duration-500 w-full max-w-[320px] sm:max-w-[360px] md:max-w-[340px] lg:max-w-[380px] mx-auto lg:mx-0 relative z-10">
-                <CardContent className="p-0 flex flex-col w-full relative z-10 card-content-wrapper">                  {/* Enhanced product image with better mobile optimization */}
-                  <div className="relative">
-                    <img 
-                      src={heroProduct.image} 
-                      alt={heroProduct.name}
-                      className="w-full h-36 sm:h-44 md:h-48 lg:h-52 object-cover"
-                    />
-                    
-                    {/* Save percentage badge in left corner */}
-                    <div className="absolute top-2 left-2 sm:top-3 sm:left-3 bg-gradient-to-r from-green-600 to-green-700 text-white px-2 sm:px-3 py-1 sm:py-1.5 rounded-lg text-xs sm:text-sm font-bold shadow-lg z-10">
-                      Save {heroProduct.discount}%
-                    </div>
-                    
-                    {/* Enhanced Special Offer Badge - better mobile positioning */}
-                    <div className="absolute -right-8 sm:-right-12 md:-right-14 top-4 sm:top-6 bg-gradient-to-r from-red-600 via-red-500 to-red-600 text-white py-1.5 sm:py-2 px-10 sm:px-14 md:px-16 text-xs sm:text-sm font-bold shadow-lg transform rotate-45 z-10 border-t border-b border-white/30">
-                      {heroProduct.badge}
-                    </div>
-                    
-                    {/* Simplified product title overlay - left aligned */}
-                    <div className="absolute bottom-0 left-0 right-0 p-2 sm:p-3 bg-gradient-to-t from-black/90 via-black/50 to-transparent">
-                      <h3 className="text-sm sm:text-base md:text-lg font-bold text-white drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)] leading-tight text-left">
-                        {heroProduct.name}
-                      </h3>
-                    </div>
-                  </div>
-                  
-                  {/* Simplified bottom section - cleaner design */}
-                  <div className="p-3 sm:p-4">
-                    {/* Price section and add to cart - enhanced mobile spacing */}
-                    <div className="flex items-center justify-between gap-2 sm:gap-3">
-                      <div className="flex-1">
-                        <div className="flex items-center gap-1 sm:gap-2 mb-1">
-                          <span className="text-lg sm:text-xl md:text-2xl font-bold text-[#0C831F]">रु.{heroProduct.price}</span>
-                        </div>
-                        <div className="flex items-center">
-                          <span className="text-xs sm:text-sm text-gray-500 line-through">रु.{heroProduct.originalPrice}</span>
-                        </div>
+              
+              {/* Hero Product Card - Enhanced responsive design */}
+              <div 
+                ref={heroCardRef} 
+                className="hero-product-card order-1 lg:order-2 z-10 flex justify-center lg:justify-end relative"
+              >
+                {/* Redesigned agricultural themed hero card - fully responsive */}
+                <Card className="bg-white border-0 rounded-xl sm:rounded-2xl overflow-hidden shadow-lg sm:shadow-xl hover:shadow-2xl transition-all duration-500 w-full max-w-[280px] xxs:max-w-[300px] xs:max-w-[320px] sm:max-w-[360px] md:max-w-[340px] lg:max-w-[320px] xl:max-w-[360px] mx-auto lg:mx-0 relative z-10">
+                  <CardContent className="p-0 flex flex-col w-full relative z-10 card-content-wrapper">
+                    {/* Enhanced product image with responsive height */}
+                    <div className="relative">
+                      <img 
+                        src={heroProduct.image} 
+                        alt={heroProduct.name}
+                        className="w-full object-cover"
+                        style={{ height: 'clamp(9rem, 25vw, 13rem)' }}
+                      />
+                      
+                      {/* Save percentage badge in left corner */}
+                      <div className="absolute top-2 left-2 sm:top-3 sm:left-3 bg-gradient-to-r from-green-600 to-green-700 text-white px-2 sm:px-3 py-1 sm:py-1.5 rounded-lg font-bold shadow-lg z-10"
+                           style={{ fontSize: 'clamp(0.75rem, 2vw, 0.875rem)' }}>
+                        Save {heroProduct.discount}%
                       </div>
                       
-                      <Button 
-                        ref={addToCartBtnRef}
-                        onClick={handleAddToCart}
-                        className={`bg-gradient-to-r from-[#0C831F] to-green-600 hover:from-green-600 hover:to-green-700 text-white font-semibold py-2 sm:py-2.5 px-3 sm:px-4 rounded-lg text-xs sm:text-sm shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 flex-shrink-0 ${cardAnimation ? 'card-btn-animation' : 'card-btn-hover'}`}
-                      >
-                        <ShoppingCart className="mr-1 sm:mr-2 h-3 w-3 sm:h-4 sm:w-4" />
-                        <span className="hidden xs:inline">ADD TO CART</span>
-                        <span className="xs:hidden">ADD</span>
-                      </Button>
+                      {/* Enhanced Special Offer Badge - responsive positioning */}
+                      <div className="absolute top-4 sm:top-6 bg-gradient-to-r from-red-600 via-red-500 to-red-600 text-white py-1.5 sm:py-2 px-8 sm:px-12 md:px-14 font-bold shadow-lg transform rotate-45 z-10 border-t border-b border-white/30"
+                           style={{ 
+                             right: 'clamp(-2rem, -15vw, -3.5rem)',
+                             fontSize: 'clamp(0.625rem, 1.5vw, 0.875rem)'
+                           }}>
+                        {heroProduct.badge}
+                      </div>
+                      
+                      {/* Simplified product title overlay - responsive text */}
+                      <div className="absolute bottom-0 left-0 right-0 p-2 sm:p-3 bg-gradient-to-t from-black/90 via-black/50 to-transparent">
+                        <h3 className="font-bold text-white drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)] leading-tight text-left"
+                            style={{ fontSize: 'clamp(0.875rem, 2.5vw, 1.125rem)' }}>
+                          {heroProduct.name}
+                        </h3>                      </div>
                     </div>
-                  </div>
-                </CardContent>
-              </Card>
+                    
+                    {/* Simplified bottom section - cleaner design */}
+                    <div className="p-3 sm:p-4">
+                      {/* Price section and add to cart - enhanced mobile spacing */}
+                      <div className="flex items-center justify-between gap-2 sm:gap-3">
+                        <div className="flex-1">
+                          <div className="flex items-center gap-1 sm:gap-2 mb-1">
+                            <span className="font-bold text-[#0C831F]" style={{ fontSize: 'clamp(1rem, 3vw, 1.5rem)' }}>रु.{heroProduct.price}</span>
+                          </div>
+                          <div className="flex items-center">
+                            <span className="text-gray-500 line-through" style={{ fontSize: 'clamp(0.75rem, 2vw, 0.875rem)' }}>रु.{heroProduct.originalPrice}</span>
+                          </div>
+                        </div>
+                        
+                        <Button 
+                          ref={addToCartBtnRef}
+                          onClick={handleAddToCart}
+                          className={`bg-gradient-to-r from-[#0C831F] to-green-600 hover:from-green-600 hover:to-green-700 text-white font-semibold py-2 sm:py-2.5 px-3 sm:px-4 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 flex-shrink-0 ${cardAnimation ? 'card-btn-animation' : 'card-btn-hover'}`}
+                          style={{ fontSize: 'clamp(0.75rem, 2vw, 0.875rem)' }}
+                        >
+                          <ShoppingCart className="mr-1 sm:mr-2 h-3 w-3 sm:h-4 sm:w-4" />
+                          <span className="hidden xs:inline">ADD TO CART</span>
+                          <span className="xs:hidden">ADD</span>
+                        </Button>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+              </div>
             </div>
           </div>
         </div>
       </section>
-        {/* Animation keyframes are defined in a CSS file */}        {/* Categories Section - Redesigned */}
+        
+        {/* Animation keyframes are defined in a CSS file */}
+        
+        {/* Categories Section - Redesigned */}
       <section className="py-8 sm:py-12 md:py-16 px-4 sm:px-6 lg:px-12 bg-white relative w-full">
         <div className="w-full max-w-screen-2xl mx-auto relative z-10">          <SectionTitle 
             title="Shop by Category"
@@ -418,7 +455,10 @@ const Index = () => {
               ))}
             </div>
           </div>
-        </div>      </section>      {/* Featured Products Section - Updated with consistent mobile-responsive header */}
+        </div>
+      </section>
+      
+      {/* Featured Products Section - Updated with consistent mobile-responsive header */}
       <section className="py-6 sm:py-8 md:py-10 px-3 sm:px-4 lg:px-12 bg-gray-50 border-y border-gray-100">
         <div className="mb-4 sm:mb-6">
           <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-3 sm:gap-0">
@@ -466,7 +506,9 @@ const Index = () => {
             <ArrowRight className="h-3 w-3 sm:h-4 sm:w-4 ml-1.5 sm:ml-2" />
           </Button>
         </div>
-      </section>      {/* Hot Deals - Updated with improved mobile-responsive header */}      
+      </section>
+      
+      {/* Hot Deals - Updated with improved mobile-responsive header */}      
       <section ref={featuredRef} className="py-8 sm:py-10 md:py-12 bg-white">
         <div className="px-4 sm:px-6 lg:px-12 mb-6">
           <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-3 sm:gap-0">
@@ -515,7 +557,9 @@ const Index = () => {
             <ArrowRight className="h-3 w-3 sm:h-4 sm:w-4 ml-1.5 sm:ml-2" />
           </Button>
         </div>
-      </section>      {/* New Arrivals - Updated with improved mobile-responsive header */}
+      </section>
+      
+      {/* New Arrivals - Updated with improved mobile-responsive header */}
       <section className="py-8 sm:py-10 md:py-12 bg-gray-50">
         <div className="px-4 sm:px-6 lg:px-12 mb-4 sm:mb-6">
           <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-3 sm:gap-0">
@@ -563,7 +607,10 @@ const Index = () => {
             <ArrowRight className="h-3 w-3 sm:h-4 sm:w-4 ml-1.5 sm:ml-2" />
           </Button>
         </div>
-      </section>        {/* Trust Section - Redesigned */}        <section className="py-6 sm:py-10 md:py-16 px-3 sm:px-6 lg:px-12 bg-white">
+      </section>
+        
+        {/* Trust Section - Redesigned */}
+        <section className="py-6 sm:py-10 md:py-16 px-3 sm:px-6 lg:px-12 bg-white">
         <div className="w-full max-w-screen-2xl mx-auto">
           <div className="text-center mb-4 sm:mb-8 md:mb-12">            <h2 className="text-lg sm:text-2xl md:text-3xl font-bold mb-1.5 sm:mb-3 md:mb-4 text-gray-900">Why Choose Us</h2>
             <p className="text-gray-600 text-xs sm:text-sm md:text-base max-w-2xl mx-auto">We prioritize your farm's success and your convenience</p>
@@ -679,7 +726,9 @@ const Index = () => {
                 <p className="flex items-center"><Phone className="h-3 w-3 sm:h-4 sm:w-4 mr-1.5 sm:mr-2 text-[#0C831F]" /> +977-1-4xxxxxx</p>
                 <p className="flex items-center truncate"><Mail className="h-3 w-3 sm:h-4 sm:w-4 mr-1.5 sm:mr-2 text-[#0C831F] flex-shrink-0" /> hello@Cropsay.np</p>
               </div>
-            </div>          </div><div className="border-t border-gray-800 mt-8 sm:mt-10 pt-6 sm:pt-8 text-center text-gray-400 text-xs sm:text-sm">
+            </div>
+          </div>
+          <div className="border-t border-gray-800 mt-8 sm:mt-10 pt-6 sm:pt-8 text-center text-gray-400 text-xs sm:text-sm">
             <p>&copy; 2024 Cropsay. Made with <span className="text-red-500">❤️</span> for Nepali Farmers.</p>
           </div>
         </div>
