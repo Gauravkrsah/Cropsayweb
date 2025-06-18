@@ -5,11 +5,11 @@ import {
   Youtube, ChevronRight, MapPin, Phone, Mail 
 } from "lucide-react";
 import ScrollButton from "@/components/ScrollButton";
+import ProductCard from "@/components/ProductCard";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Link } from "react-router-dom";
-import PremiumProductCard from "@/components/PremiumProductCard";
 import { DotPattern } from "@/components/ui/background-pattern";
 import SectionTitle from "@/components/ui/section-title";
 import ProductSection from "@/components/ProductSection";
@@ -460,8 +460,15 @@ const Index = () => {
         </div>
           <div className="px-0">          <div ref={featuredProductsScrollRef} className="overflow-x-auto scrollbar-hide pb-4 sm:pb-6">
             <div className="flex gap-4 w-max">              {hotDeals.slice(0, 8).map((product) => (
-                <div key={product.id} className="flex-shrink-0 w-[180px]">
-                  <PremiumProductCard product={product} />
+                <div key={product.id} className="flex-shrink-0">                  <ProductCard
+                    image={product.image}
+                    name={product.name}
+                    quantity="80g"
+                    price={product.price}
+                    originalPrice={product.originalPrice}
+                    discountPercent={product.discount}
+                    onAddToCart={(quantity) => console.log(`Added ${quantity} of ${product.name}`)}
+                  />
                 </div>
               ))}
             </div>
@@ -503,8 +510,15 @@ const Index = () => {
         </div>
             {/* Horizontal scrollable product list with improved cards */}          
         <div className="px-4 sm:px-6 lg:px-12">          <div ref={hotDealsScrollRef} className="overflow-x-auto scrollbar-hide pb-4 sm:pb-6">            <div className="flex gap-4 w-max">                  {hotDeals.map((product) => (
-                <div key={product.id} className="flex-shrink-0 w-[180px]">
-                  <PremiumProductCard product={product} />
+                <div key={product.id} className="flex-shrink-0">                  <ProductCard
+                    image={product.image}
+                    name={product.name}
+                    quantity="4x80g"
+                    price={product.price}
+                    originalPrice={product.originalPrice}
+                    discountPercent={product.discount}
+                    onAddToCart={(quantity) => console.log(`Added ${quantity} of ${product.name}`)}
+                  />
                 </div>
               ))}
             </div>
@@ -545,8 +559,14 @@ const Index = () => {
         </div>
               {/* Horizontal scrollable product list with improved cards */}
         <div className="px-4 sm:px-6 lg:px-12">          <div ref={newArrivalsScrollRef} className="overflow-x-auto scrollbar-hide pb-4 sm:pb-6">            <div className="flex gap-4 w-max">              {newArrivals.map((product) => (
-                <div key={product.id} className="flex-shrink-0 w-[180px]">
-                  <PremiumProductCard product={product} />
+                <div key={product.id} className="flex-shrink-0">                  <ProductCard
+                    image={product.image}
+                    name={product.name}
+                    quantity="250ml"
+                    price={product.price}
+                    originalPrice={product.originalPrice}
+                    onAddToCart={(quantity) => console.log(`Added ${quantity} of ${product.name}`)}
+                  />
                 </div>
               ))}
             </div>

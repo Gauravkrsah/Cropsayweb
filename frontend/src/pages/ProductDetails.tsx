@@ -5,7 +5,7 @@ import { ShoppingCart, Heart, Star, Minus, Plus, Truck, Shield, RotateCcw, Chevr
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import PremiumProductCard from "@/components/PremiumProductCard";
+import ProductCard from "@/components/ProductCard";
 
 const ProductDetails = () => {
   const { id } = useParams();  const [quantity, setQuantity] = useState(1);
@@ -21,67 +21,65 @@ const ProductDetails = () => {
       setButtonAnimation(false);
     }, 1000);
   };
-
   // Mock product data
   const product = {
     id: 1,
-    name: "Royal Canin Adult Dog Food",
-    subtitle: "Premium Nutrition Formula",
-    price: 3200,
-    originalPrice: 3800,
+    name: "Premium Wheat Seeds",
+    subtitle: "High Yield Variety",
+    price: 850,
+    originalPrice: 1000,
     images: [
-      "https://images.unsplash.com/photo-1551717743-49959800b1f6?w=600&h=600&fit=crop",
-      "https://images.unsplash.com/photo-1588943211346-0908a1fb0b01?w=600&h=600&fit=crop",
-      "https://images.unsplash.com/photo-1601758228041-f3b2795255f1?w=600&h=600&fit=crop"
+      "https://images.unsplash.com/photo-1574323347407-f5e1ad6d020b?w=600&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1416879595882-3373a0480b5b?w=600&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1605000797499-95a51c5269ae?w=600&h=600&fit=crop"
     ],
     badge: "BEST SELLER",
     rating: 4.9,
     reviews: 248,
-    category: "Food",
-    description: "Royal Canin Adult Dog Food is specially formulated to meet the nutritional needs of adult dogs. Made with high-quality ingredients, this premium formula supports optimal health and provides essential nutrients for your furry friend's well-being.",
+    category: "Seeds",
+    description: "Premium Wheat Seeds are specially selected for high yield and disease resistance. These hybrid varieties are perfect for both commercial farming and home gardening, providing excellent germination rates and robust growth.",
     features: [
-      "High-quality protein for muscle maintenance",
-      "Essential fatty acids for healthy skin and coat",
-      "Antioxidants to support immune system",
-      "Optimal fiber content for digestive health",
-      "No artificial colors or preservatives"
+      "High germination rate (95%+)",      "Disease resistant varieties",
+      "Suitable for all soil types",
+      "Fast growing (120-140 days)",
+      "High nutritional value",
+      "No GMO, natural hybrid"
     ],
     specifications: {
-      "Weight": "15 kg",
-      "Age": "Adult (1-7 years)",
-      "Breed Size": "All sizes",
-      "Ingredients": "Chicken, Rice, Corn, Vitamins & Minerals",
-      "Protein": "22% min",
-      "Fat": "12% min",
-      "Fiber": "4% max"
+      "Weight": "1 kg packet",
+      "Variety": "Hybrid Wheat (HW-2)",
+      "Germination": "95% minimum",
+      "Growing Season": "Rabi (Winter)",
+      "Maturity": "120-140 days",
+      "Yield": "40-50 quintals/hectare",
+      "Moisture": "12% maximum"
     },
     inStock: true,
     stockCount: 25
   };
-
   const relatedProducts = [
     {
       id: 2,
-      name: "Designer Dog Hoodie",
-      price: 1800,
-      originalPrice: 2200,
-      image: "https://images.unsplash.com/photo-1546975490-e8b92a360b24?w=300&h=300&fit=crop",
+      name: "Organic Fertilizer NPK",
+      price: 1200,
+      originalPrice: 1400,
+      image: "https://images.unsplash.com/photo-1416879595882-3373a0480b5b?w=300&h=300&fit=crop",
       rating: 4.8
     },
     {
       id: 3,
-      name: "Natural Dog Treats",
-      price: 950,
-      originalPrice: 1200,
-      image: "https://images.unsplash.com/photo-1588943211346-0908a1fb0b01?w=300&h=300&fit=crop",
+      name: "Garden Hand Tools Set",
+      price: 750,
+      originalPrice: 950,
+      image: "https://images.unsplash.com/photo-1416879595882-3373a0480b5b?w=300&h=300&fit=crop",
       rating: 4.7
     },
     {
       id: 4,
-      name: "Smart Puzzle Toy",
-      price: 2100,
-      originalPrice: 2500,
-      image: "https://images.unsplash.com/photo-1601758228041-f3b2795255f1?w=300&h=300&fit=crop",
+      name: "Drip Irrigation Kit",
+      price: 2500,
+      originalPrice: 3000,
+      image: "https://images.unsplash.com/photo-1464226184884-fa280b87c399?w=300&h=300&fit=crop",
       rating: 4.8
     }
   ];
@@ -314,15 +312,15 @@ const ProductDetails = () => {
             </CardContent>
           </Card>
         </div>        {/* Related Products */}        <div className="mt-16">
-          <h2 className="text-2xl font-bold mb-8 text-center">You Might Also Like</h2>          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
-            {relatedProducts.map((relatedProduct) => (
-              <div className="w-full max-w-[250px] mx-auto">
-                <PremiumProductCard 
-                  key={relatedProduct.id}
-                  product={{
-                    ...relatedProduct,
-                    subtitle: "", // Adding empty subtitle to meet the interface requirements
-                  }}
+          <h2 className="text-2xl font-bold mb-8 text-center">You Might Also Like</h2>          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">            {relatedProducts.map((relatedProduct) => (              <div key={relatedProduct.id} className="w-full max-w-[250px] mx-auto">
+                <ProductCard
+                  image={relatedProduct.image}
+                  name={relatedProduct.name}
+                  quantity="150g"
+                  price={relatedProduct.price}
+                  originalPrice={relatedProduct.originalPrice}
+                  discountPercent={Math.round(((relatedProduct.originalPrice - relatedProduct.price) / relatedProduct.originalPrice) * 100)}
+                  onAddToCart={(quantity) => console.log(`Added ${quantity} of ${relatedProduct.name}`)}
                 />
               </div>
             ))}

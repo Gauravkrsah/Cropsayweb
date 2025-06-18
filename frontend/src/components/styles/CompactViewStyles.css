@@ -1,0 +1,55 @@
+/* Compact view styles for the shop page */
+
+/* Apply these styles when the view mode is set to compact */
+.premium-product-grid.compact {
+  grid-template-columns: 1fr !important;
+  gap: 10px !important;
+}
+
+/* Compact product card styling */
+.premium-product-card.compact {
+  display: grid !important;
+  grid-template-columns: 80px 1fr auto !important;
+  grid-gap: 12px !important;
+  align-items: center !important;
+  padding: 10px !important;
+  height: auto !important;
+}
+
+/* Mobile optimizations for compact view */
+@media (max-width: 640px) {
+  .premium-product-grid.compact {
+    gap: 8px !important;
+  }
+  
+  .premium-product-card.compact {
+    grid-template-columns: 70px 1fr auto !important;
+    grid-gap: 8px !important;
+    padding: 8px !important;
+  }
+  
+  .premium-product-card.compact .product-image {
+    width: 70px !important;
+    height: 70px !important;
+  }
+  
+  .premium-product-card.compact .product-title {
+    font-size: 13px !important;
+    line-height: 1.3 !important;
+  }
+  
+  .premium-product-card.compact .product-price {
+    font-size: 12px !important;
+  }
+  
+  .premium-product-card.compact .add-to-cart-button {
+    padding: 4px 6px !important;
+    font-size: 11px !important;
+    height: 28px !important;
+  }
+}
+
+/* Make sure compact view works with the existing product cards */
+.premium-product-grid.compact .product-card-mobile-fix {
+  width: 100% !important;
+}

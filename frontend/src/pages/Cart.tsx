@@ -5,33 +5,31 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 
-const Cart = () => {
-  const [cartItems, setCartItems] = useState([
+const Cart = () => {  const [cartItems, setCartItems] = useState([
     {
       id: 1,
-      name: "Royal Canin Adult Dog Food Royal Canin Adult Dog Food",
-      price: 3200,
-      originalPrice: 3800,
-      image: "https://images.unsplash.com/photo-1551717743-49959800b1f6?w=200&h=200&fit=crop",
+      name: "Premium Wheat Seeds",
+      price: 850,
+      originalPrice: 1000,
+      image: "https://images.unsplash.com/photo-1574323347407-f5e1ad6d020b?w=200&h=200&fit=crop",
       quantity: 2,
       inStock: true
     },
     {
       id: 2,
-      name: "Designer Dog Hoodie",
-      price: 1800,
-      originalPrice: 2200,
+      name: "Organic Fertilizer NPK",
+      price: 1200,
+      originalPrice: 1400,
       image: "https://images.unsplash.com/photo-1546975490-e8b92a360b24?w=200&h=200&fit=crop",
       quantity: 1,
       inStock: true
-    },
-    {
+    },    {
       id: 3,
-      name: "Natural Dog Treats",
-      price: 950,
-      originalPrice: 1200,
-      image: "https://images.unsplash.com/photo-1588943211346-0908a1fb0b01?w=200&h=200&fit=crop",
-      quantity: 3,
+      name: "Garden Hand Tools Set",
+      price: 750,
+      originalPrice: 950,
+      image: "https://images.unsplash.com/photo-1416879595882-3373a0480b5b?w=200&h=200&fit=crop",
+      quantity: 1,
       inStock: true
     }
   ]);
@@ -55,21 +53,19 @@ const Cart = () => {
   const savings = originalTotal - subtotal;
   const shippingFee = subtotal > 2000 ? 0 : 150;
   const total = subtotal + shippingFee;
-
   const recommendedProducts = [
     {
       id: 4,
-      name: "Premium Dog Shampoo",
-      price: 850,
-      originalPrice: 1100,
-      image: "https://images.unsplash.com/photo-1601758228041-f3b2795255f1?w=200&h=200&fit=crop"
+      name: "Soil Test Kit",
+      price: 999,
+      originalPrice: 1399,
+      image: "https://images.unsplash.com/photo-1574323347407-f5e1ad6d020b?w=200&h=200&fit=crop"
     },
     {
       id: 5,
-      name: "Dental Chew Toys",
-      price: 650,
-      originalPrice: 800,
-      image: "https://images.unsplash.com/photo-1588943211346-0908a1fb0b01?w=200&h=200&fit=crop"
+      name: "Plant Growth Promoter",
+      price: 799,
+      originalPrice: 1099,      image: "https://images.unsplash.com/photo-1605000797499-95a51c5269ae?w=200&h=200&fit=crop"
     }
   ];
 

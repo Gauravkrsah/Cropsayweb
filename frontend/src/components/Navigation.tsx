@@ -2,7 +2,8 @@ import { useState, useRef, useEffect } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { 
   ShoppingCart, Menu, X, Search, User, Heart, ChevronDown, ChevronRight,
-  Home, MessageCircle, Grid, ShoppingBag, Store, XCircle, LogIn
+  Home, MessageCircle, Grid, ShoppingBag, Store, XCircle, LogIn,
+  Wheat, Zap, Wrench, Droplets, Bug, Mountain, Cog, Sprout
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -32,8 +33,17 @@ const Navigation = () => {
   const searchInputRef = useRef<HTMLInputElement>(null);
   const searchContainerRef = useRef<HTMLDivElement>(null);
   const location = useLocation();
-  const navigate = useNavigate();
-  const { totalItems, totalPrice } = useCart();
+  const navigate = useNavigate();  const { totalItems, totalPrice } = useCart();
+    // Get icon for category
+  const getCategoryIcon = (categoryName: string) => {
+    switch (categoryName) {
+      case "Seeds": return <Wheat className="h-4 w-4" />;
+      case "Fertilizers": return <Zap className="h-4 w-4" />;
+      case "Tools": return <Wrench className="h-4 w-4" />;
+      case "Equipment": return <Cog className="h-4 w-4" />;
+      default: return <Sprout className="h-4 w-4" />;
+    }
+  };
   
   // Animated placeholders
   const placeholders = ["Search for Food...", "Search for Supplies...", "Search for Grooming...", "Search for Accessories..."];
@@ -41,7 +51,7 @@ const Navigation = () => {
   const [isPlaceholderVisible, setIsPlaceholderVisible] = useState(true);
   
   // Search suggestions
-  const allCategories = ["Dog Food", "Cat Food", "Pet Supplies", "Grooming Tools", "Pet Toys", "Dog Accessories", "Cat Accessories", "Training Supplies", "Pet Beds", "Treats"];
+  const allCategories = ["Seeds", "Fertilizers", "Tools", "Irrigation", "Pesticides", "Soil", "Equipment", "Greenhouse", "Plant Care", "Harvesting"];
   const [filteredSuggestions, setFilteredSuggestions] = useState<string[]>([]);
   const [showSuggestions, setShowSuggestions] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
@@ -127,76 +137,42 @@ const Navigation = () => {
       document.removeEventListener('mousedown', handleDocumentClick);
     };
   }, []);
-
-  // Dog-focused categories
+  // Agriculture-focused categories
   const categories = [
     {
-      name: "Food",
+      name: "Seeds",
       subcategories: [
-        { name: "Dry Food", items: ["Puppy Dry Food", "Adult Dry Food", "Senior Dry Food", "Grain-Free Options", "Weight Management"] },
-        { name: "Wet Food", items: ["Puppy Wet Food", "Adult Wet Food", "Senior Wet Food", "Stews & Gravies", "Pâté"] },
-        { name: "Treats", items: ["Training Treats", "Dental Chews", "Jerky Treats", "Biscuits & Cookies", "Soft Treats"] },
-        { name: "Special Diets", items: ["Prescription Diets", "Hypoallergenic", "Sensitive Digestion", "Joint Health", "Skin & Coat"] }
+        { name: "Vegetable Seeds", items: ["Tomato Seeds", "Carrot Seeds", "Cabbage Seeds", "Spinach Seeds", "Cucumber Seeds"] },
+        { name: "Fruit Seeds", items: ["Watermelon Seeds", "Mango Seeds", "Papaya Seeds", "Lemon Seeds", "Orange Seeds"] },
+        { name: "Cereal Seeds", items: ["Wheat Seeds", "Rice Seeds", "Corn Seeds", "Barley Seeds", "Millet Seeds"] },
+        { name: "Flower Seeds", items: ["Marigold Seeds", "Rose Seeds", "Sunflower Seeds", "Jasmine Seeds", "Lotus Seeds"] }
       ]
     },
     {
-      name: "Supplies",
+      name: "Fertilizers",
       subcategories: [
-        { name: "Beds & Furniture", items: ["Orthopedic Beds", "Crate Mats", "Sofa Beds", "Elevated Beds", "Outdoor Beds"] },
-        { name: "Bowls & Feeders", items: ["Slow Feeders", "Elevated Feeders", "Water Fountains", "Travel Bowls", "Food Storage"] },
-        { name: "Crates & Carriers", items: ["Travel Crates", "Wire Crates", "Soft Carriers", "Car Seats", "Backpacks"] },
-        { name: "Cleaning & Waste", items: ["Poop Bags", "Pee Pads", "Stain Removers", "Odor Eliminators", "Sanitizers"] }
+        { name: "Organic Fertilizers", items: ["Compost", "Vermicompost", "Bio-fertilizers", "Cow Dung Manure", "Neem Cake"] },
+        { name: "Chemical Fertilizers", items: ["NPK Fertilizers", "Urea", "DAP", "Potash", "Phosphorus"] },
+        { name: "Liquid Fertilizers", items: ["Foliar Sprays", "Root Feeds", "Growth Promoters", "Bloom Boosters", "Micronutrients"] },
+        { name: "Specialty Fertilizers", items: ["Citrus Fertilizer", "Vegetable Fertilizer", "Flowering Plant Feed", "Lawn Fertilizer", "Tree Fertilizer"] }
       ]
     },
     {
-      name: "Grooming",
+      name: "Tools",
       subcategories: [
-        { name: "Shampoo & Conditioner", items: ["Sensitive Skin", "Flea & Tick", "Medicated", "Detangling", "Waterless"] },
-        { name: "Tools & Brushes", items: ["Deshedding Tools", "Slicker Brushes", "Nail Clippers", "Electric Clippers", "Combs"] },
-        { name: "Oral Care", items: ["Toothbrushes", "Toothpaste", "Dental Sprays", "Water Additives", "Dental Chews"] },
-        { name: "Coat Care", items: ["Deodorizing Sprays", "Moisturizers", "Detanglers", "Eye Wipes", "Ear Cleaners"] }
+        { name: "Hand Tools", items: ["Garden Spade", "Hand Trowel", "Pruning Shears", "Garden Fork", "Weeding Tool"] },
+        { name: "Power Tools", items: ["Electric Trimmer", "Lawn Mower", "Chainsaw", "Hedge Trimmer", "Soil Tiller"] },
+        { name: "Irrigation Tools", items: ["Garden Hose", "Sprinklers", "Drip Irrigation", "Water Timer", "Pressure Pump"] },
+        { name: "Harvesting Tools", items: ["Harvesting Knife", "Fruit Picker", "Pruning Saw", "Harvesting Basket", "Crop Cutter"] }
       ]
     },
     {
-      name: "Accessories",
+      name: "Equipment",
       subcategories: [
-        { name: "Collars & Leashes", items: ["Training Collars", "Harnesses", "Retractable Leashes", "Rope Leashes", "ID Tags"] },
-        { name: "Clothing & Gear", items: ["Winter Coats", "Rain Jackets", "Sweaters", "Bandanas", "Booties"] },
-        { name: "Toys", items: ["Chew Toys", "Interactive Toys", "Fetch Toys", "Plush Toys", "Puzzle Toys"] },
-        { name: "Training & Behavior", items: ["Training Clickers", "Anti-Bark Devices", "Training Pads", "Crate Training Aids", "Anxiety Relief"] }
-      ]
-    }
-  ];
-  
-  // Dog-focused brands with product subcategories
-  const brands = [
-    {
-      name: "Royal Canin",
-      products: ["Breed Specific Formulas", "Veterinary Diets", "Size Health Nutrition", "Puppy Food", "Royal Canin Adult Dog Food", "Senior Dog Food"]
-    },
-    {
-      name: "Pedigree",
-      products: ["Dry Dog Food", "Wet Dog Food", "Dog Treats", "Dental Sticks", "Puppy Food", "Senior Dog Food"]
-    },
-    {
-      name: "Blue Buffalo",
-      products: ["Wilderness", "Life Protection Formula", "Freedom Grain-Free", "Basics Limited Ingredient", "Natural Veterinary Diet"]
-    },
-    {
-      name: "Hill's Science Diet",
-      products: ["Puppy Food", "Adult Food", "Senior Food", "Perfect Weight", "Sensitive Skin", "Oral Care"]
-    },
-    {
-      name: "Purina Pro Plan",
-      products: ["Sport", "Focus", "Savor", "Bright Mind", "Sensitive Skin & Stomach", "Veterinary Diets"]
-    },
-    {
-      name: "Wellness",
-      products: ["CORE", "Complete Health", "Simple", "TruFood", "Treats & Supplements", "Puppy Formulas"]
-    },
-    {
-      name: "Taste of the Wild",
-      products: ["High Prairie", "Pacific Stream", "Sierra Mountain", "Wetlands", "Pine Forest", "Puppy Formula"]
+        { name: "Greenhouse Equipment", items: ["Greenhouse Kits", "Shade Nets", "Ventilation Fans", "Heating Systems", "Humidity Controllers"] },
+        { name: "Irrigation Systems", items: ["Drip Systems", "Sprinkler Systems", "Misting Systems", "Water Storage", "Filtration Systems"] },
+        { name: "Soil Equipment", items: ["Soil Testers", "pH Meters", "Thermometers", "Moisture Meters", "Soil Mixers"] },
+        { name: "Plant Support", items: ["Plant Stakes", "Trellises", "Garden Cages", "Climbing Frames", "Support Nets"] }      ]
     }
   ];
   
@@ -361,92 +337,58 @@ const Navigation = () => {
                 >
                   Shop
                   <ChevronDown className="ml-1 h-3.5 w-3.5" />
-                </MenubarTrigger>
-                <MenubarContent className="w-[800px] bg-white shadow-md rounded-md border border-gray-100 overflow-hidden">
-                  <div className="grid grid-cols-3">
-                    <div className="p-4 border-r border-gray-100">
-                      <MenubarLabel className="font-semibold text-gray-500 text-xs uppercase mb-3">
-                        Dog Categories
-                      </MenubarLabel>
-                      <div>
-                        {categories.map((category) => (
-                          <MenubarSub key={category.name}>
-                            <MenubarSubTrigger className="w-full justify-between font-medium text-gray-800 hover:text-[#0C831F] px-3 py-2">
-                              {category.name}
-                              <ChevronRight className="h-4 w-4" />
-                            </MenubarSubTrigger>
-                            <MenubarSubContent className="bg-white border border-gray-100 rounded-md shadow-md min-w-[450px] p-2">
-                              <div className="grid grid-cols-2 gap-4">
-                                {category.subcategories.map((subCat) => (
-                                  <div key={subCat.name} className="p-2">
-                                    <MenubarLabel className="font-medium text-gray-800 mb-1">
-                                      {subCat.name}
-                                    </MenubarLabel>
-                                    <div className="space-y-1 pl-2 border-l border-gray-100">
-                                      {subCat.items.map((item) => (
-                                        <MenubarItem key={item} asChild>
-                                          <Link 
-                                            to={`/shop?category=${encodeURIComponent(category.name)}&subcategory=${encodeURIComponent(subCat.name)}&item=${encodeURIComponent(item)}`}
-                                            className="block px-2 py-1.5 text-sm hover:bg-gray-50 hover:text-[#0C831F]"
-                                          >
-                                            {item}
-                                          </Link>
-                                        </MenubarItem>
-                                      ))}
-                                    </div>
+                </MenubarTrigger>                <MenubarContent className="w-[900px] bg-white shadow-md rounded-md border border-gray-100 overflow-hidden">
+                  <div className="p-6">
+                    <div className="grid grid-cols-2 gap-8">
+                      {categories.map((category) => (
+                        <div key={category.name} className="space-y-4">
+                          <div className="flex items-center gap-3 pb-3 border-b border-gray-100">
+                            {getCategoryIcon(category.name)}
+                            <h3 className="font-semibold text-gray-800 text-lg">{category.name}</h3>
+                          </div>
+                          <div className="space-y-3">
+                            {category.subcategories.map((subCat) => (
+                              <MenubarSub key={subCat.name}>
+                                <MenubarSubTrigger className="w-full justify-between font-medium text-gray-700 hover:text-[#0C831F] hover:bg-gray-50 px-3 py-2 rounded-md transition-colors">
+                                  {subCat.name}
+                                  <ChevronRight className="h-4 w-4" />
+                                </MenubarSubTrigger>
+                                <MenubarSubContent className="bg-white border border-gray-100 rounded-md shadow-lg min-w-[300px] p-3">
+                                  <div className="space-y-1">
+                                    {subCat.items.map((item) => (
+                                      <MenubarItem key={item} asChild>
+                                        <Link 
+                                          to={`/shop?category=${encodeURIComponent(category.name)}&subcategory=${encodeURIComponent(subCat.name)}&item=${encodeURIComponent(item)}`}
+                                          className="block px-3 py-2 hover:bg-gray-50 hover:text-[#0C831F] text-sm rounded-md transition-colors"
+                                        >
+                                          {item}
+                                        </Link>
+                                      </MenubarItem>
+                                    ))}
                                   </div>
-                                ))}
-                              </div>
-                              <div className="mt-2 border-t border-gray-100 pt-2">
-                                <MenubarItem asChild>
-                                  <Link 
-                                    to={`/shop?category=${encodeURIComponent(category.name)}`}
-                                    className="block px-3 py-2 text-[#0C831F] font-medium text-sm"
-                                  >
-                                    View All {category.name} Products
-                                  </Link>
-                                </MenubarItem>
-                              </div>
-                            </MenubarSubContent>
-                          </MenubarSub>
-                        ))}
-                      </div>
-                    </div>
-                    <div className="col-span-2 p-4">
-                      <MenubarLabel className="font-semibold text-gray-500 text-xs uppercase mb-3">
-                        Premium Dog Brands
-                      </MenubarLabel>
-                      <div className="grid grid-cols-2 gap-4">
-                        {brands.map((brand) => (
-                          <MenubarSub key={brand.name}>
-                            <MenubarSubTrigger className="w-full justify-between font-medium text-gray-800 hover:text-[#0C831F] px-3 py-2">
-                              {brand.name}
-                              <ChevronRight className="h-4 w-4" />
-                            </MenubarSubTrigger>
-                            <MenubarSubContent className="bg-white border border-gray-100 rounded-md shadow-md min-w-[220px] p-2">
-                              {brand.products.map((product) => (
-                                <MenubarItem key={product} asChild>
-                                  <Link 
-                                    to={`/brands/${encodeURIComponent(brand.name)}/products/${encodeURIComponent(product)}`}
-                                    className="block px-3 py-1.5 hover:bg-gray-50 hover:text-[#0C831F] text-sm"
-                                  >
-                                    {product}
-                                  </Link>
-                                </MenubarItem>
-                              ))}
-                              <MenubarSeparator />
-                              <MenubarItem asChild>
-                                <Link 
-                                  to={`/brands/${encodeURIComponent(brand.name)}`}
-                                  className="block px-3 py-1.5 text-[#0C831F] font-medium text-sm"
-                                >
-                                  All {brand.name} Products
-                                </Link>
-                              </MenubarItem>
-                            </MenubarSubContent>
-                          </MenubarSub>
-                        ))}
-                      </div>
+                                  <MenubarSeparator className="my-2" />
+                                  <MenubarItem asChild>
+                                    <Link 
+                                      to={`/shop?category=${encodeURIComponent(category.name)}&subcategory=${encodeURIComponent(subCat.name)}`}
+                                      className="block px-3 py-2 text-[#0C831F] font-medium text-sm hover:bg-green-50 rounded-md"
+                                    >
+                                      View All {subCat.name}
+                                    </Link>
+                                  </MenubarItem>
+                                </MenubarSubContent>
+                              </MenubarSub>
+                            ))}
+                            <MenubarItem asChild>
+                              <Link 
+                                to={`/shop?category=${encodeURIComponent(category.name)}`}
+                                className="block px-3 py-2 text-[#0C831F] font-semibold text-sm hover:bg-green-50 rounded-md mt-2 border-t border-gray-100 pt-3"
+                              >
+                                View All {category.name} Products →
+                              </Link>
+                            </MenubarItem>
+                          </div>
+                        </div>
+                      ))}
                     </div>
                   </div>
                 </MenubarContent>
@@ -696,12 +638,14 @@ const Navigation = () => {
               </summary>
               <div className="pt-1 pb-1 pl-3">
                 <div className="mb-3 mt-1">
-                  <span className="text-xs text-gray-500 font-medium block px-4 py-1">Dog Categories</span>
-                  <div className="border-l border-gray-100 pl-3 mt-1">
-                    {categories.map((category) => (
+                  <span className="text-xs text-gray-500 font-medium block px-4 py-1">Agriculture Categories</span>
+                  <div className="border-l border-gray-100 pl-3 mt-1">                    {categories.map((category) => (
                       <details key={category.name} className="mb-2">
                         <summary className="px-3 py-1.5 font-medium text-gray-700 cursor-pointer select-none flex justify-between items-center">
-                          {category.name}
+                          <div className="flex items-center gap-2">
+                            {getCategoryIcon(category.name)}
+                            {category.name}
+                          </div>
                           <ChevronRight className="h-4 w-4" />
                         </summary>
                         <div className="pl-2 mt-1">
@@ -734,41 +678,7 @@ const Navigation = () => {
                           </Link>
                         </div>
                       </details>
-                    ))}
-                  </div>
-                </div>
-                
-                <div>
-                  <span className="text-xs text-gray-500 font-medium block px-4 py-1">Premium Dog Brands</span>
-                  <div className="border-l border-gray-100 pl-3 mt-1">
-                    {brands.map((brand) => (
-                      <details key={brand.name} className="mb-2">
-                        <summary className="px-3 py-1.5 font-medium text-gray-700 cursor-pointer select-none flex justify-between items-center">
-                          {brand.name}
-                          <ChevronRight className="h-4 w-4" />
-                        </summary>
-                        <div className="pl-2 border-l border-gray-100 ml-2">
-                          {brand.products.map((product) => (
-                            <Link 
-                              key={product} 
-                              to={`/brands/${encodeURIComponent(brand.name)}/products/${encodeURIComponent(product)}`} 
-                              className="block py-1.5 px-3 text-gray-600 hover:text-[#0C831F] text-sm" 
-                              onClick={() => setIsMenuOpen(false)}
-                            >
-                              {product}
-                            </Link>
-                          ))}
-                          <Link 
-                            to={`/brands/${encodeURIComponent(brand.name)}`} 
-                            className="block mt-1 py-1.5 px-3 text-[#0C831F] hover:underline text-sm font-medium" 
-                            onClick={() => setIsMenuOpen(false)}
-                          >
-                            All {brand.name} Products
-                          </Link>
-                        </div>
-                      </details>
-                    ))}
-                  </div>
+                    ))}                  </div>
                 </div>
               </div>
             </details>

@@ -7,7 +7,6 @@ import Navigation from "./components/Navigation";
 import Index from "./pages/Index";
 import Shop from "./pages/Shop";
 import ProductDetails from "./pages/ProductDetails";
-import ARView from "./pages/ARView";
 import Cart from "./pages/Cart";
 import Checkout from "./pages/Checkout";
 import NotFound from "./pages/NotFound";
@@ -22,11 +21,9 @@ const App = () => (  <QueryClientProvider client={queryClient}>
           <Toaster />
           <Sonner />
           <BrowserRouter>
-            <Navigation />
-            <Routes>
+            <Navigation />            <Routes>
               <Route path="/" element={<Index />} />
               <Route path="/shop" element={<Shop />} />              <Route path="/product/:id" element={<ProductDetails />} />
-              <Route path="/ar-view/:productId" element={<ARView />} />
               <Route path="/cart" element={<Cart />} />
               <Route path="/checkout" element={<Checkout />} />
               {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}

@@ -1,23 +1,22 @@
 import { useState, useEffect, useRef, useCallback } from "react";
-import { ShoppingCart, Star, Filter, Grid, List, SlidersHorizontal, Home } from "lucide-react";
+import { ShoppingCart, Star, Filter, SlidersHorizontal, Home, Wheat, Zap, Wrench, Droplets, Bug, Mountain, Cog, Sprout } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Link, useSearchParams } from "react-router-dom";
-import ProductCardSkeleton from "@/components/ProductCardSkeleton";
+import { Skeleton } from "@/components/ui/skeleton";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { useHorizontalScroll } from "@/hooks/useHorizontalScroll";
 import { useIsMobile } from "@/hooks/use-mobile";
+import ProductCard from "@/components/ProductCard";
 import { cn } from "@/lib/utils";
 import { motion, AnimatePresence } from "framer-motion";
-import PremiumProductCard from "@/components/PremiumProductCard"; // Import PremiumProductCard
 import removeProductXButtons from "@/lib/removeProductXButtons"; // Import the X button remover utility
 import '@/components/styles/ShopStyles.css';
 import '@/components/styles/PremiumShopStyles.css';
 import '@/components/styles/HideProductX.css';
 
 const Shop = () => {
-  const [viewMode, setViewMode] = useState<'grid' | 'compact'>('grid');
   const [sortBy, setSortBy] = useState('popular');
   const [animatedButton, setAnimatedButton] = useState<number | null>(null);
   const [searchParams, setSearchParams] = useSearchParams();
@@ -160,95 +159,165 @@ const Shop = () => {
       [productId]: Math.max((prev[productId] || 1) - 1, 1)
     }));
   };
-
-  const products = [    {
+  const products = [
+    {
       id: 1,
-      name: "Royal Canin Adult Dog Food",
-      subtitle: "Premium Nutrition Formula",
-      price: 3200,
-      originalPrice: 3800,
-      image: "https://images.unsplash.com/photo-1551717743-49959800b1f6?w=400&h=400&fit=crop",
+      name: "Premium Wheat Seeds",
+      subtitle: "High Yield Variety",
+      price: 850,
+      originalPrice: 1000,
+      image: "https://images.unsplash.com/photo-1574323347407-f5e1ad6d020b?w=400&h=400&fit=crop",
       badge: "BEST SELLER",
       rating: 4.9,
       reviews: 248,
-      category: "Food",
+      category: "Seeds",
       isNew: false,
       discount: 15,
       hasAR: true
-    },    {
+    },
+    {
       id: 2,
-      name: "Designer Dog Hoodie",
-      subtitle: "Warm & Stylish Comfort",
-      price: 1800,
-      originalPrice: 2200,
-      image: "https://images.unsplash.com/photo-1546975490-e8b92a360b24?w=400&h=400&fit=crop",
-      badge: "TRENDING",
+      name: "Organic Fertilizer NPK 10-26-26",
+      subtitle: "Complete Plant Nutrition",
+      price: 1200,
+      originalPrice: 1400,
+      image: "https://images.unsplash.com/photo-1416879595882-3373a0480b5b?w=400&h=400&fit=crop",
+      badge: "ORGANIC",
       rating: 4.8,
       reviews: 156,
-      category: "Accessories",
+      category: "Fertilizers",
       isNew: true,
-      discount: 18,
+      discount: 14,
       hasAR: true
     },
     {
       id: 3,
-      name: "Natural Dog Treats",
-      subtitle: "Healthy Rewards",
-      price: 950,
-      originalPrice: 1200,
-      image: "https://images.unsplash.com/photo-1588943211346-0908a1fb0b01?w=400&h=400&fit=crop",
-      badge: "ORGANIC",
+      name: "Garden Hand Tools Set",
+      subtitle: "5-Piece Essential Kit",
+      price: 750,
+      originalPrice: 950,
+      image: "https://images.unsplash.com/photo-1416879595882-3373a0480b5b?w=400&h=400&fit=crop",
+      badge: "QUALITY",
       rating: 4.7,
       reviews: 189,
-      category: "Treats",
+      category: "Tools",
       isNew: false,
-      discount: 20
+      discount: 21
     },
     {
       id: 4,
-      name: "Smart Puzzle Toy",
-      subtitle: "Mental Stimulation",
-      price: 2100,
-      originalPrice: 2500,
-      image: "https://images.unsplash.com/photo-1601758228041-f3b2795255f1?w=400&h=400&fit=crop",
+      name: "Automatic Drip Irrigation Kit",
+      subtitle: "Water Saving System",
+      price: 2500,
+      originalPrice: 3000,
+      image: "https://images.unsplash.com/photo-1464226184884-fa280b87c399?w=400&h=400&fit=crop",
       badge: "SMART",
       rating: 4.8,
       reviews: 134,
-      category: "Toys",
+      category: "Irrigation",
       isNew: true,
-      discount: 16
+      discount: 17
     },
     {
       id: 5,
-      name: "Orthopedic Dog Bed",
-      subtitle: "Maximum Comfort",
-      price: 4500,
-      originalPrice: 5200,
-      image: "https://images.unsplash.com/photo-1583337130417-3346a1be7dee?w=400&h=400&fit=crop",
-      badge: "PREMIUM",
+      name: "Organic Pest Control Spray",
+      subtitle: "Natural Plant Protection",
+      price: 650,
+      originalPrice: 800,
+      image: "https://images.unsplash.com/photo-1416879595882-3373a0480b5b?w=400&h=400&fit=crop",
+      badge: "ECO-FRIENDLY",
       rating: 4.6,
       reviews: 98,
-      category: "Beds",
+      category: "Pesticides",
       isNew: false,
-      discount: 13
+      discount: 19
     },
     {
       id: 6,
-      name: "Professional Dog Brush",
-      subtitle: "Grooming Essential",
-      price: 1200,
-      originalPrice: 1500,
-      image: "https://images.unsplash.com/photo-1601758228041-f3b2795255f1?w=400&h=400&fit=crop",
-      badge: "QUALITY",
+      name: "Premium Potting Soil Mix",
+      subtitle: "Nutrient Rich Growing Medium",
+      price: 400,
+      originalPrice: 500,
+      image: "https://images.unsplash.com/photo-1416879595882-3373a0480b5b?w=400&h=400&fit=crop",
+      badge: "PREMIUM",
       rating: 4.5,
       reviews: 156,
-      category: "Grooming",
+      category: "Soil",
       isNew: false,
       discount: 20
+    },
+    {
+      id: 7,
+      name: "Vegetable Seeds Combo Pack",
+      subtitle: "10 Varieties Bundle",
+      price: 950,
+      originalPrice: 1200,
+      image: "https://images.unsplash.com/photo-1574323347407-f5e1ad6d020b?w=400&h=400&fit=crop",
+      badge: "COMBO",
+      rating: 4.7,
+      reviews: 203,
+      category: "Seeds",
+      isNew: true,
+      discount: 21
+    },
+    {
+      id: 8,
+      name: "Agricultural Spray Pump",
+      subtitle: "16L Capacity Manual Sprayer",
+      price: 1800,
+      originalPrice: 2200,
+      image: "https://images.unsplash.com/photo-1464226184884-fa280b87c399?w=400&h=400&fit=crop",
+      badge: "DURABLE",
+      rating: 4.6,
+      reviews: 89,
+      category: "Tools",
+      isNew: false,
+      discount: 18
+    },
+    {
+      id: 9,
+      name: "Garden Mulch Organic",
+      subtitle: "Moisture Retention & Weed Control",
+      price: 300,
+      originalPrice: 380,
+      image: "https://images.unsplash.com/photo-1416879595882-3373a0480b5b?w=400&h=400&fit=crop",
+      badge: "NATURAL",
+      rating: 4.4,
+      reviews: 76,
+      category: "Soil",
+      isNew: false,
+      discount: 21
+    },
+    {
+      id: 10,
+      name: "Greenhouse Shade Net 50%",
+      subtitle: "UV Protection for Plants",
+      price: 1500,
+      originalPrice: 1800,
+      image: "https://images.unsplash.com/photo-1464226184884-fa280b87c399?w=400&h=400&fit=crop",
+      badge: "PROTECTIVE",
+      rating: 4.5,
+      reviews: 112,
+      category: "Equipment",
+      isNew: true,
+      discount: 17
     }
   ];
+  // Get icon for category
+  const getCategoryIcon = (category: string) => {
+    switch (category) {
+      case "Seeds": return <Wheat className="h-4 w-4" />;
+      case "Fertilizers": return <Zap className="h-4 w-4" />;
+      case "Tools": return <Wrench className="h-4 w-4" />;
+      case "Irrigation": return <Droplets className="h-4 w-4" />;
+      case "Pesticides": return <Bug className="h-4 w-4" />;
+      case "Soil": return <Mountain className="h-4 w-4" />;
+      case "Equipment": return <Cog className="h-4 w-4" />;
+      default: return <Sprout className="h-4 w-4" />;
+    }
+  };
 
-  const categories = ["All", "Food", "Toys", "Accessories", "Beds", "Grooming", "Treats"];
+  const categories = ["All", "Seeds", "Fertilizers", "Tools", "Irrigation", "Pesticides", "Soil", "Equipment"];
     // Filter products based on active category
   const filteredProducts = products.filter(product => 
     (activeCategory === "All" || product.category === activeCategory)
@@ -268,11 +337,10 @@ const Shop = () => {
       default: // popular - by reviews
         return b.reviews - a.reviews;
     }
-  });
-  return (
-    <div className="premium-shop-container">
-      {/* Premium Header - Clean and minimal */}
-      <header className="premium-header">
+  });  return (
+    <div className="premium-shop-container h-screen flex flex-col">
+      {/* Premium Header - Clean and minimal - Fixed */}
+      <header className="premium-header flex-shrink-0">
         <div className="premium-content-wrapper">
           <div className="flex items-center justify-between">
             {/* Left side - Breadcrumb navigation */}
@@ -324,8 +392,7 @@ const Shop = () => {
                     {/* Categories */}
                     <div className="mb-6">
                       <h4 className="font-medium mb-3 text-sm">Categories</h4>
-                      <div className="space-y-2">
-                        {categories.map((category) => (
+                      <div className="space-y-2">                        {categories.map((category) => (
                           <label key={category} className="flex items-center cursor-pointer">
                             <input 
                               type="radio" 
@@ -334,7 +401,10 @@ const Shop = () => {
                               onChange={() => setActiveCategory(category)}
                               className="rounded-full border-gray-300 text-[#4f46e5] focus:ring-[#4f46e5]" 
                             />
-                            <span className="ml-2 text-gray-700 text-sm">{category}</span>
+                            <span className="ml-2 text-gray-700 text-sm flex items-center gap-2">
+                              {category !== "All" && getCategoryIcon(category)}
+                              {category}
+                            </span>
                           </label>
                         ))}
                       </div>
@@ -378,8 +448,7 @@ const Shop = () => {
                   </div>
                 </SheetContent>
               </Sheet>
-              
-              {/* orders link */}
+                {/* orders link */}
               <Link to="/orders">
                 <Button 
                   variant="outline" 
@@ -389,53 +458,25 @@ const Shop = () => {
                   Orders
                 </Button>
               </Link>
-              
-              {/* View toggle */}
-              <div className="flex items-center border rounded-md overflow-hidden bg-gray-50">
-                <Button
-                  variant={viewMode === 'grid' ? 'default' : 'ghost'}
-                  size="sm"
-                  onClick={() => setViewMode('grid')}
-                  className={viewMode === 'grid' 
-                    ? 'bg-[#4f46e5] text-white rounded-none h-8 w-8 p-0' 
-                    : 'text-gray-500 hover:text-gray-700 rounded-none h-8 w-8 p-0 hover:bg-gray-100'
-                  }
-                >
-                  <Grid className="h-4 w-4" />
-                </Button>
-                <Button
-                  variant={viewMode === 'compact' ? 'default' : 'ghost'}
-                  size="sm"
-                  onClick={() => setViewMode('compact')}
-                  className={viewMode === 'compact' 
-                    ? 'bg-[#4f46e5] text-white rounded-none h-8 w-8 p-0' 
-                    : 'text-gray-500 hover:text-gray-700 rounded-none h-8 w-8 p-0 hover:bg-gray-100'
-                  }
-                >
-                  <List className="h-4 w-4" />
-                </Button>
-              </div>
             </div>
           </div>
         </div>
-      </header>
-      
-      {/* Premium category tabs */}
-      <div className="premium-category-wrapper">
+      </header>      {/* Premium category tabs - Fixed position */}
+      <div className="premium-category-wrapper flex-shrink-0">
         <div className="premium-content-wrapper">
           <div 
             ref={horizontalScrollRef} 
             className="premium-category-tabs"
-          >
-            {categories.map((category) => (
+          >            {categories.map((category) => (
               <button
                 key={category}
                 onClick={() => setActiveCategory(category)}
                 className={cn(
-                  "premium-category-tab",
+                  "premium-category-tab flex items-center gap-2",
                   activeCategory === category ? "active" : ""
                 )}
               >
+                {category !== "All" && getCategoryIcon(category)}
                 {category}
               </button>
             ))}
@@ -443,8 +484,8 @@ const Shop = () => {
         </div>
       </div>
       
-      {/* Main content */}
-      <main className="flex-grow pb-8">
+      {/* Main content - Scrollable area */}
+      <main className="flex-grow overflow-y-auto pb-8">
         <div className="premium-content-wrapper">
           {/* Sort options and result count */}
           <div className="flex items-center justify-between mb-4">
@@ -489,8 +530,7 @@ const Shop = () => {
                 </Button>
               </div>
             </div>
-          ) : (            <>              <div className="premium-product-grid">
-                {sortedProducts.slice(0, displayedProducts).map((product) => (
+          ) : (            <>              <div className="premium-product-grid">                {sortedProducts.slice(0, displayedProducts).map((product) => (
                   <motion.div
                     key={product.id}
                     layout
@@ -498,9 +538,21 @@ const Shop = () => {
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, scale: 0.95 }}
                     transition={{ duration: 0.2 }}
-                    className="mx-auto w-full"
-                  >
-                    <PremiumProductCard product={product} />
+                    className="mx-auto w-full"                  >                    <ProductCard
+                      image={product.image}
+                      name={product.name}
+                      quantity={product.category === 'Seeds' ? '50g packet' : 
+                               product.category === 'Fertilizers' ? '1kg bag' : 
+                               product.category === 'Tools' ? '1 piece' : 
+                               product.category === 'Irrigation' ? '1 kit' : 
+                               product.category === 'Pesticides' ? '500ml bottle' : 
+                               product.category === 'Soil' ? '5kg bag' : 
+                               product.category === 'Equipment' ? '1 unit' : '1 piece'}
+                      price={product.price}
+                      originalPrice={product.originalPrice}
+                      discountPercent={product.discount}
+                      onAddToCart={(quantity) => console.log(`Added ${quantity} of ${product.name}`)}
+                    />
                   </motion.div>
                 ))}
                 
@@ -514,8 +566,15 @@ const Shop = () => {
                         animate={{ opacity: 1 }}
                         exit={{ opacity: 0 }}
                         transition={{ duration: 0.2 }}
-                      >
-                        <ProductCardSkeleton mode="premium" />
+                      >                        <div className="relative w-full max-w-[220px] rounded-xl bg-white shadow-md p-3 flex flex-col">
+                          <Skeleton className="h-28 sm:h-24 w-full mb-2" />
+                          <Skeleton className="h-4 w-3/4 mb-1" />
+                          <Skeleton className="h-3 w-1/2 mb-2" />
+                          <div className="flex justify-between items-end mt-2">
+                            <Skeleton className="h-5 w-16" />
+                            <Skeleton className="w-[72px] h-[32px] rounded" />
+                          </div>
+                        </div>
                       </motion.div>
                     ))}
                   </AnimatePresence>

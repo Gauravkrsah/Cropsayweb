@@ -14,6 +14,114 @@
   }
 }
 
+/* Shop page mobile optimizations */
+/* Responsive container */
+.mobile-responsive-container {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+/* Enhanced product grid for mobile */
+@media (max-width: 480px) {
+  .premium-product-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+    padding: 0 2px;
+  }
+  
+  /* Better button size for mobile */
+  .mobile-add-button {
+    padding: 4px 8px;
+    font-size: 12px !important;
+    height: auto;
+    min-height: 30px;
+  }
+  
+  /* Compact header for mobile */
+  .mobile-compact-header {
+    padding: 8px 0;
+  }
+  
+  /* Improved filters display */
+  .mobile-filter-button {
+    padding: 4px 8px;
+    font-size: 12px;
+  }
+  
+  /* Better category tabs scrolling */
+  .premium-category-tabs {
+    padding: 4px 0;
+    gap: 6px;
+  }
+    .premium-category-tab {
+    padding: 6px 10px;
+    font-size: 12px;
+  }
+  
+  /* Fix for product cards in mobile */
+  .product-card-mobile-fix {
+    max-width: 100% !important;
+    width: 100% !important;
+  }
+  
+  /* Better sizing for buttons in mobile */
+  button.add-to-cart-button {
+    font-size: 12px !important;
+    padding: 4px 8px !important;
+    height: 32px !important;
+    min-height: 32px !important;
+  }
+  
+  /* Fix product overlay for mobile */
+  .product-discount-badge {
+    font-size: 10px !important;
+    padding: 2px 4px !important;
+    min-width: 36px !important;
+  }
+}
+
+/* Better sort dropdown for mobile */
+@media (max-width: 640px) {
+  .premium-sort-control {
+    max-width: 140px;
+    font-size: 12px;
+    padding: 6px 24px 6px 8px;
+    background-position: right 6px center;
+  }
+}
+
+/* Fix for product card dimensions on mobile */
+.product-card-mobile-fix {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  min-width: 0;
+  max-width: 100%;
+}
+
+/* Fix for product images on mobile */
+.mobile-image-container {
+  width: 100%;
+  min-width: 0;
+  height: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Fix for loading indicators on mobile */
+@media (max-width: 640px) {
+  .premium-loading-indicator {
+    padding: 1rem 0;
+  }
+  
+  /* Better spacing for product grid */
+  .premium-product-grid {
+    row-gap: 12px;
+  }
+}
+
 /* Small mobile devices */
 @media (max-width: 480px) {
   .hero-content h1 {
