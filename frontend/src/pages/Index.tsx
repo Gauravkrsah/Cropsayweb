@@ -476,8 +476,8 @@ const Index = () => {
           </div>
         </div>
           <div className="px-0">          <div ref={featuredProductsScrollRef} className="overflow-x-auto scrollbar-hide pb-4 sm:pb-6">
-            <div className="flex gap-3 sm:gap-4 w-max">              {hotDeals.slice(0, 8).map((product) => (
-                <div key={product.id} className="flex-shrink-0 w-[200px] sm:w-[220px]">                  <ProductCard
+            <div className="flex gap-3 sm:gap-4 w-max">              {hotDeals.slice(0, 8).map((product) => (                <div key={product.id} className="flex-shrink-0 w-[200px] sm:w-[220px]">                  <ProductCard
+                    id={product.id}
                     image={product.image}
                     name={product.name}
                     quantity="80g"
@@ -528,8 +528,8 @@ const Index = () => {
           </div>
         </div>
             {/* Horizontal scrollable product list with improved cards */}          
-        <div className="px-4 sm:px-6 lg:px-12">          <div ref={hotDealsScrollRef} className="overflow-x-auto scrollbar-hide pb-4 sm:pb-6">            <div className="flex gap-3 sm:gap-4 w-max">                  {hotDeals.map((product) => (
-                <div key={product.id} className="flex-shrink-0 w-[200px] sm:w-[220px]">                  <ProductCard
+        <div className="px-4 sm:px-6 lg:px-12">          <div ref={hotDealsScrollRef} className="overflow-x-auto scrollbar-hide pb-4 sm:pb-6">            <div className="flex gap-3 sm:gap-4 w-max">                  {hotDeals.map((product) => (                <div key={product.id} className="flex-shrink-0 w-[200px] sm:w-[220px]">                  <ProductCard
+                    id={product.id}
                     image={product.image}
                     name={product.name}
                     quantity="4x80g"
@@ -579,8 +579,8 @@ const Index = () => {
           </div>
         </div>
               {/* Horizontal scrollable product list with improved cards */}
-        <div className="px-4 sm:px-6 lg:px-12">          <div ref={newArrivalsScrollRef} className="overflow-x-auto scrollbar-hide pb-4 sm:pb-6">            <div className="flex gap-3 sm:gap-4 w-max">              {newArrivals.map((product) => (
-                <div key={product.id} className="flex-shrink-0 w-[200px] sm:w-[220px]">                  <ProductCard
+        <div className="px-4 sm:px-6 lg:px-12">          <div ref={newArrivalsScrollRef} className="overflow-x-auto scrollbar-hide pb-4 sm:pb-6">            <div className="flex gap-3 sm:gap-4 w-max">              {newArrivals.map((product) => (                <div key={product.id} className="flex-shrink-0 w-[200px] sm:w-[220px]">                  <ProductCard
+                    id={product.id}
                     image={product.image}
                     name={product.name}
                     quantity="250ml"

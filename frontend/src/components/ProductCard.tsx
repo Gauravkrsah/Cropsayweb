@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 type Props = {
+  id?: number;
   image: string;
   name: string;
   quantity: string;
@@ -12,6 +14,7 @@ type Props = {
 };
 
 export default function ProductCard({
+  id,
   image,
   name,
   quantity,
@@ -23,6 +26,7 @@ export default function ProductCard({
 }: Props) {
   const [count, setCount] = useState(0);
   const [isMobile, setIsMobile] = useState(false);
+  const navigate = useNavigate();
 
   // Check if screen is mobile size
   useEffect(() => {
@@ -39,8 +43,7 @@ export default function ProductCard({
     setCount(newCount);
     onAddToCart?.(newCount);
   };
-  
-  const decrement = () => {
+    const decrement = () => {
     if (count === 1) {
       setCount(0);
       onAddToCart?.(0);
@@ -49,9 +52,21 @@ export default function ProductCard({
       setCount(newCount);
       onAddToCart?.(newCount);
     }
-  };return (    <div      className={        isMobile
-          ? `relative bg-white rounded-xl shadow flex flex-col w-full h-[280px] transition-all duration-300 pt-2 pb-3 px-2.5`
-          : `relative bg-white rounded-2xl shadow hover:shadow-lg p-4 flex flex-col w-full h-[360px] transition-all duration-300`
+  };
+
+  const handleCardClick = (e: React.MouseEvent) => {
+    // Don't navigate if clicking on buttons
+    if ((e.target as HTMLElement).closest('button')) {
+      return;
+    }
+    if (id) {
+      navigate(`/product/${id}`);
+    }
+  };return (    <div
+      onClick={handleCardClick}
+      className={        isMobile
+          ? `relative bg-white rounded-xl shadow flex flex-col w-full h-[280px] transition-all duration-300 pt-2 pb-3 px-2.5 ${id ? 'cursor-pointer hover:shadow-md' : ''}`
+          : `relative bg-white rounded-2xl shadow hover:shadow-lg p-4 flex flex-col w-full h-[360px] transition-all duration-300 ${id ? 'cursor-pointer' : ''}`
       }
     >
       {/* Discount Label - Blinkit Style */}

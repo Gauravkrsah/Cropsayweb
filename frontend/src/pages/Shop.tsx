@@ -539,6 +539,7 @@ const Shop = () => {
                     exit={{ opacity: 0, scale: 0.95 }}
                     transition={{ duration: 0.2 }}
                     className="mx-auto w-full"                  >                    <ProductCard
+                      id={product.id}
                       image={product.image}
                       name={product.name}
                       quantity={product.category === 'Seeds' ? '50g packet' : 
