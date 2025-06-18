@@ -131,11 +131,10 @@ const Checkout = () => {
             </div>            {/* Delivery Address */}
             <div>
               <h2 className="text-base font-medium text-gray-900 mb-3 text-left">2. Delivery Address</h2>
-              <div className="space-y-3">
-                <div>
-                  <Label className="text-sm text-gray-700 mb-1 block">
+              <div className="space-y-3">                <div>
+                  <Label className="text-sm text-gray-700 mb-1 block text-left">
                     City/District <span className="text-red-500">*</span>
-                  </Label>                  <select className="w-full px-3 py-2 text-sm border border-gray-300 rounded-md focus:border-[#0C831F] focus:ring-[#0C831F] focus:outline-none bg-white text-left">
+                  </Label><select className="w-full px-3 py-2 text-sm border border-gray-300 rounded-md focus:border-[#0C831F] focus:ring-[#0C831F] focus:outline-none bg-white text-left">
                     <option>Kathmandu Inside Ring Road</option>
                     <option>Kathmandu Outside Ring Road</option>
                     <option>Pokhara</option>
