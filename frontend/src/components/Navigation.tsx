@@ -18,7 +18,8 @@ import {
   MenubarTrigger,
   MenubarContent,
   MenubarItem,
-  MenubarSeparator,  MenubarLabel,
+  MenubarSeparator,
+  MenubarLabel,
   MenubarSub,
   MenubarSubTrigger,
   MenubarSubContent
