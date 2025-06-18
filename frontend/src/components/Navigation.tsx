@@ -183,9 +183,12 @@ const Navigation = () => {
   return (
     <nav className="bg-gradient-to-r from-white via-white to-green-50 shadow-sm border-b border-gray-100 sticky top-0 z-50">
       <div className="w-full max-w-screen-2xl mx-auto px-4 sm:px-8 lg:px-12">
-        <div className="flex items-center justify-between h-14 md:h-16">          {/* Logo - Simple and clean design with responsive sizing */}
+        <div className="flex items-center justify-between h-14 md:h-16">          {/* Logo - Responsive design with different images for mobile/desktop */}
           <Link to="/" className="flex items-center space-x-1 sm:space-x-2 flex-shrink-0 mr-1 sm:mr-4">
-            <img src="/logo.svg" alt="Paws & Paradise" className="h-4 w-auto xs:h-5 sm:h-6 md:h-7 lg:h-8" />
+            {/* Mobile Logo - Visible on small screens */}
+            <img src="/mobilelogo.svg" alt="Cropsay" className="h-6 w-auto sm:h-7 md:hidden" />
+            {/* Desktop Logo - Visible on medium and larger screens */}
+            <img src="/logo.svg" alt="Cropsay" className="hidden md:block h-10 w-auto lg:h-12 xl:h-14" />
           </Link>
             {/* Mobile Search - Takes priority in mobile view */}          
           <div className="flex-1 max-w-xs sm:max-w-md md:hidden mx-1" ref={searchContainerRef}>

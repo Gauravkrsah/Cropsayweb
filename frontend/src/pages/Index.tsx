@@ -308,28 +308,13 @@ const Index = () => {
                   <span className="font-medium text-sm sm:text-base tracking-wider" style={{ fontFamily: 'var(--font-rounded, "DM Sans", "Inter", system-ui, sans-serif)' }}>Free delivery in 30 minutes</span>
                 </div>
               </div>
-              
-              <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 mt-6 sm:mt-8 justify-start">
+                <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 mt-6 sm:mt-8 justify-start">
                 <Link to="/shop" className="w-full sm:w-auto">
                   <Button className="bg-white hover:bg-gray-100 text-[#0C831F] px-6 sm:px-8 py-3 sm:py-4 font-bold rounded-full w-full tracking-wide text-base sm:text-lg shadow-lg hover:shadow-xl transition-all duration-300">
                     <span>Shop Now</span>
                     <ArrowRight className="ml-3 h-5 w-5" />
                   </Button>
                 </Link>
-                <Button 
-                  onClick={() => {
-                    // Scroll to contact expert section or open chat
-                    const contactSection = document.getElementById('contact-expert');
-                    if (contactSection) {
-                      contactSection.scrollIntoView({ behavior: 'smooth' });
-                    }
-                  }}
-                  variant="outline" 
-                  className="bg-transparent border-2 border-white text-white hover:bg-white hover:text-[#0C831F] transition-all duration-300 px-6 sm:px-8 py-3 sm:py-4 font-medium rounded-full tracking-wide text-base sm:text-lg w-full sm:w-auto shadow-lg hover:shadow-xl"
-                >
-                  <MessageCircle className="mr-3 h-5 w-5" />
-                  <span>Contact Expert</span>
-                </Button>
               </div>
             </div>
             
@@ -596,128 +581,7 @@ const Index = () => {
                 </CardContent>
               </Card>
             ))}
-          </div>
-        </div>
-      </section>      {/* Contact Expert Section */}
-      <section id="contact-expert" className="py-12 sm:py-16 md:py-20 bg-gradient-to-br from-green-50 to-green-100 relative overflow-hidden">
-        <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxnIGZpbGw9IiMwQzgzMUYiIGZpbGwtb3BhY2l0eT0iMC4wNSI+PHBhdGggZD0iTTM2IDM0djZoNnYtNmgtNnptMCAwdi02aC02djZoNnptNiAwaDZ2LTZoLTZ2NnptLTEyIDBoLTZ2LTZoNnY2eiIvPjwvZz48L2c+PC9zdmc+')] opacity-30"></div>
-        
-        <div className="w-full max-w-6xl mx-auto px-4 sm:px-6 md:px-8 relative z-10">
-          <div className="text-center mb-8 sm:mb-12 md:mb-16">
-            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-3 sm:mb-4 md:mb-6">
-              Need Expert <span className="text-[#0C831F]">Agricultural Advice?</span>
-            </h2>
-            <p className="text-base sm:text-lg md:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-              Get personalized farming solutions from our agricultural experts. Available 24/7 to help you grow better crops.
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-2 gap-8 sm:gap-12 md:gap-16 items-center">
-            {/* Expert Info */}
-            <div className="space-y-6 sm:space-y-8">
-              <div className="bg-white rounded-2xl p-6 sm:p-8 shadow-lg">
-                <div className="flex items-center mb-4 sm:mb-6">
-                  <div className="w-12 h-12 sm:w-16 sm:h-16 bg-[#0C831F] rounded-full flex items-center justify-center mr-4 sm:mr-6">
-                    <MessageCircle className="h-6 w-6 sm:h-8 sm:w-8 text-white" />
-                  </div>
-                  <div>
-                    <h3 className="text-lg sm:text-xl font-bold text-gray-900">Agricultural Expert</h3>
-                    <p className="text-gray-600 text-sm sm:text-base">Available 24/7</p>
-                  </div>
-                </div>
-                
-                <div className="space-y-3 sm:space-y-4">
-                  <div className="flex items-center text-gray-700">
-                    <span className="w-2 h-2 bg-[#0C831F] rounded-full mr-3"></span>
-                    <span className="text-sm sm:text-base">Crop selection and planning</span>
-                  </div>
-                  <div className="flex items-center text-gray-700">
-                    <span className="w-2 h-2 bg-[#0C831F] rounded-full mr-3"></span>
-                    <span className="text-sm sm:text-base">Soil testing and fertilizer advice</span>
-                  </div>
-                  <div className="flex items-center text-gray-700">
-                    <span className="w-2 h-2 bg-[#0C831F] rounded-full mr-3"></span>
-                    <span className="text-sm sm:text-base">Pest and disease management</span>
-                  </div>
-                  <div className="flex items-center text-gray-700">
-                    <span className="w-2 h-2 bg-[#0C831F] rounded-full mr-3"></span>
-                    <span className="text-sm sm:text-base">Irrigation and water management</span>
-                  </div>
-                </div>
-              </div>
-
-              <div className="bg-white rounded-2xl p-6 sm:p-8 shadow-lg">
-                <h4 className="text-base sm:text-lg font-semibold text-gray-900 mb-3 sm:mb-4">Quick Response Time</h4>
-                <div className="flex items-center">
-                  <div className="w-8 h-8 sm:w-10 sm:h-10 bg-green-100 rounded-full flex items-center justify-center mr-3 sm:mr-4">
-                    <span className="text-lg sm:text-xl">⚡</span>
-                  </div>
-                  <div>
-                    <p className="text-[#0C831F] font-bold text-sm sm:text-base">Average response: 5 minutes</p>
-                    <p className="text-gray-600 text-xs sm:text-sm">During business hours</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* Contact Methods */}
-            <div className="space-y-4 sm:space-y-6">
-              <div className="bg-white rounded-2xl p-6 sm:p-8 shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer border-2 border-transparent hover:border-[#0C831F]">
-                <div className="flex items-center justify-between mb-4">
-                  <div className="flex items-center">
-                    <div className="w-10 h-10 sm:w-12 sm:h-12 bg-green-100 rounded-full flex items-center justify-center mr-3 sm:mr-4">
-                      <MessageCircle className="h-5 w-5 sm:h-6 sm:w-6 text-[#0C831F]" />
-                    </div>
-                    <div>
-                      <h3 className="text-base sm:text-lg font-semibold text-gray-900">WhatsApp Chat</h3>
-                      <p className="text-gray-600 text-sm">Instant messaging</p>
-                    </div>
-                  </div>
-                  <ArrowRight className="h-5 w-5 text-[#0C831F]" />
-                </div>
-                <p className="text-gray-600 text-sm sm:text-base">Get instant help via WhatsApp. Share photos of your crops for better diagnosis.</p>
-              </div>
-
-              <div className="bg-white rounded-2xl p-6 sm:p-8 shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer border-2 border-transparent hover:border-[#0C831F]">
-                <div className="flex items-center justify-between mb-4">
-                  <div className="flex items-center">                    <div className="w-10 h-10 sm:w-12 sm:h-12 bg-green-100 rounded-full flex items-center justify-center mr-3 sm:mr-4">
-                      <Phone className="h-5 w-5 sm:h-6 sm:w-6 text-green-600" />
-                    </div>
-                    <div>
-                      <h3 className="text-base sm:text-lg font-semibold text-gray-900">Phone Consultation</h3>
-                      <p className="text-gray-600 text-sm">Direct call support</p>
-                    </div>
-                  </div>
-                  <ArrowRight className="h-5 w-5 text-green-600" />
-                </div>
-                <p className="text-gray-600 text-sm sm:text-base">Talk directly with our experts. Schedule a call for detailed consultation.</p>
-              </div>
-
-              <div className="bg-white rounded-2xl p-6 sm:p-8 shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer border-2 border-transparent hover:border-[#0C831F]">
-                <div className="flex items-center justify-between mb-4">
-                  <div className="flex items-center">
-                    <div className="w-10 h-10 sm:w-12 sm:h-12 bg-red-100 rounded-full flex items-center justify-center mr-3 sm:mr-4">
-                      <Mail className="h-5 w-5 sm:h-6 sm:w-6 text-red-600" />
-                    </div>
-                    <div>
-                      <h3 className="text-base sm:text-lg font-semibold text-gray-900">Email Support</h3>
-                      <p className="text-gray-600 text-sm">Detailed inquiry</p>
-                    </div>
-                  </div>
-                  <ArrowRight className="h-5 w-5 text-red-600" />
-                </div>
-                <p className="text-gray-600 text-sm sm:text-base">Send detailed questions and get comprehensive written advice from experts.</p>
-              </div>
-
-              <div className="mt-6 sm:mt-8">
-                <Button className="w-full bg-gradient-to-r from-[#0C831F] to-green-600 hover:from-green-600 hover:to-green-700 text-white font-semibold py-3 sm:py-4 px-6 sm:px-8 rounded-xl text-base sm:text-lg shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-[1.02]">
-                  <MessageCircle className="mr-2 sm:mr-3 h-5 w-5 sm:h-6 sm:w-6" />
-                  Start Consultation Now
-                </Button>
-              </div>
-            </div>
-          </div>
-        </div>
+          </div>        </div>
       </section>
 
       {/* Footer */}<footer className="bg-gradient-to-b from-gray-900 to-gray-950 text-white py-4 sm:py-6 md:py-10 lg:py-16 px-4 sm:px-6 lg:px-12">        <div className="w-full max-w-screen-2xl mx-auto">

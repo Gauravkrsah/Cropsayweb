@@ -32,12 +32,14 @@ const LoginDialog = ({ children }: LoginDialogProps) => {  const [phoneNumber, s
           </div>
           
           {/* Main content area */}
-          <div className="p-6 pt-0 flex flex-col items-center">            {/* Logo - more responsive for smaller screens */}
+          <div className="p-6 pt-0 flex flex-col items-center">            {/* Logo - responsive for different screen sizes */}
             <div className="w-16 h-16 sm:w-20 sm:h-20 bg-yellow-200 rounded-md flex items-center justify-center mb-4 sm:mb-6">
-              <img src="/logo.svg" alt="Paw Paradise" className="w-12 h-12 sm:w-16 sm:h-16 object-contain" />
-            </div>
-              {/* Title - responsive text size */}
-            <h2 className="text-xl sm:text-2xl font-bold text-gray-800 mb-1">Paw Paradise</h2>
+              {/* Mobile Logo - Visible on small screens */}
+              <img src="/mobilelogo.svg" alt="Cropsay" className="w-12 h-12 object-contain sm:hidden" />
+              {/* Desktop Logo - Visible on larger screens */}
+              <img src="/logo.svg" alt="Cropsay" className="hidden sm:block w-16 h-16 object-contain" />
+            </div>              {/* Title - responsive text size */}
+            <h2 className="text-xl sm:text-2xl font-bold text-gray-800 mb-1">Cropsay</h2>
             <p className="text-sm sm:text-base text-gray-600 mb-4 sm:mb-6">Log in or Sign up</p>
               {/* Phone input */}
             <div className="w-full mb-4">
