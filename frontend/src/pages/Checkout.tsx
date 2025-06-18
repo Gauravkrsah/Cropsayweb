@@ -1,323 +1,345 @@
 
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { ChevronLeft, CreditCard, Truck, Shield, Check } from "lucide-react";
+import { ChevronLeft, Truck } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
-import { Badge } from "@/components/ui/badge";
-import { Separator } from "@/components/ui/separator";
 
 const Checkout = () => {
   const [paymentMethod, setPaymentMethod] = useState("cod");
   const [promoCode, setPromoCode] = useState("");
-  const [isPromoApplied, setIsPromoApplied] = useState(false);
 
   const orderItems = [
     {
       id: 1,
-      name: "Premium Dog Bed",
-      variant: "Large, Blue",
-      price: 2200,
+      name: "Premium Organic Seeds",
+      variant: "Tomato Seeds", 
+      price: 4999,
       quantity: 1,
-      image: "https://images.unsplash.com/photo-1601758228041-f3b2795255f1?w=80&h=80&fit=crop"
+      image: "/placeholder.svg"
     }
   ];
 
-  const subtotal = 2200;
+  const subtotal = 4999;
   const deliveryCharge = 100;
-  const discount = isPromoApplied ? 200 : 0;
-  const total = subtotal + deliveryCharge - discount;
-
-  const applyPromo = () => {
-    if (promoCode.toLowerCase() === "welcome10") {
-      setIsPromoApplied(true);
-    }
-  };
-
-  return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-white">
-      {/* Header */}
-      <div className="bg-white shadow-sm border-b">
-        <div className="container mx-auto px-4 py-4">
-          <div className="flex items-center justify-between">
-            <Link to="/cart" className="flex items-center text-[#0C831F] hover:text-[#2d24b8] transition-colors">
-              <ChevronLeft className="h-5 w-5 mr-2" />
-              Back to Cart
+  const total = subtotal + deliveryCharge;  return (
+    <div className="min-h-screen bg-gray-50">
+      {/* Simple Header */}
+      <div className="bg-white border-b border-gray-200">
+        <div className="max-w-6xl mx-auto px-4 py-4">
+          <div className="flex items-center">
+            <Link to="/cart" className="text-gray-600 hover:text-[#0C831F] mr-4">
+              <ChevronLeft className="h-5 w-5" />
             </Link>
-            <div className="text-center">
-              <h1 className="text-2xl font-bold text-gray-900">Secure Checkout</h1>
-              <div className="flex items-center justify-center mt-2 text-sm text-gray-600">
-                <Shield className="h-4 w-4 mr-1 text-green-600" />
-                SSL Secured
-              </div>
-            </div>
-            <div className="w-24"></div>
+            <h1 className="text-2xl font-semibold text-gray-900">Checkout</h1>
           </div>
         </div>
-      </div>
+      </div>      <div className="max-w-6xl mx-auto px-4 py-6">
+        <div className="grid lg:grid-cols-2 gap-8">
+          {/* Mobile Order Summary First - Hidden on Desktop */}
+          <div className="lg:hidden">
+            <div className="bg-white rounded-lg border border-gray-200 p-5 mb-6">
+              <h2 className="text-base font-medium text-gray-900 mb-4 text-left">Order Summary</h2>
+              
+              {/* Order Items */}
+              <div className="space-y-3 mb-5">
+                {orderItems.map((item) => (
+                  <div key={item.id} className="flex items-center space-x-3">
+                    <div className="relative">
+                      <img 
+                        src={item.image}
+                        alt={item.name}
+                        className="w-12 h-12 object-cover rounded-lg bg-gray-100"
+                      />
+                      <div className="absolute -top-1 -right-1 bg-[#0C831F] text-white text-xs rounded-full w-4 h-4 flex items-center justify-center font-medium">
+                        {item.quantity}
+                      </div>
+                    </div>
+                    <div className="flex-1 text-left">
+                      <h4 className="text-sm font-medium text-gray-900">{item.name}</h4>
+                      <p className="text-xs text-gray-600">₹ {item.price} ×{item.quantity}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
 
-      <div className="container mx-auto px-4 py-8">
-        <div className="grid lg:grid-cols-3 gap-8">
-          {/* Checkout Form */}
-          <div className="lg:col-span-2 space-y-6">
-            {/* Customer Information */}
-            <Card className="border-0 shadow-lg rounded-2xl">
-              <CardHeader className="pb-4">
-                <CardTitle className="flex items-center text-xl">
-                  <span className="bg-[#0C831F] text-white rounded-full w-8 h-8 flex items-center justify-center text-sm mr-3">1</span>
-                  Customer Information
-                </CardTitle>
-              </CardHeader>
-              <CardContent className="space-y-4">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              {/* Price Breakdown */}
+              <div className="space-y-2 mb-4 text-left">
+                <div className="flex justify-between text-sm">
+                  <span className="text-gray-600">Sub-total</span>
+                  <span>₹ {subtotal}</span>
+                </div>
+                <div className="flex justify-between text-sm">
+                  <span className="text-gray-600">Delivery Charge [1 KG]</span>
+                  <span>₹ {deliveryCharge}</span>
+                </div>
+                <div className="border-t pt-2">
+                  <div className="flex justify-between font-medium">
+                    <span>Total</span>
+                    <span>₹ {total}</span>
+                  </div>
+                </div>
+              </div>              {/* Promo Code */}
+              <div className="mb-4 text-left">
+                <Label className="text-sm text-gray-700 mb-1 block">Promo Code</Label>
+                <div className="flex space-x-2">
+                  <Input 
+                    placeholder="FREE30"
+                    value={promoCode}
+                    onChange={(e) => setPromoCode(e.target.value)}
+                    className="flex-1 text-sm text-left"
+                  />
+                  <Button className="bg-[#0C831F] hover:bg-green-700 text-white px-4 text-sm">
+                    APPLY
+                  </Button>
+                </div>
+              </div>
+            </div>
+          </div>{/* Left Side - Forms */}
+          <div className="space-y-6">
+            {/* General Information */}
+            <div>
+              <h2 className="text-base font-medium text-gray-900 mb-3 text-left">1. General Information</h2>
+              <div className="space-y-3">                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                   <div>
-                    <Label htmlFor="fullName" className="text-sm font-medium text-gray-700">
+                    <Label className="text-sm text-gray-700 mb-1 block text-left">
                       Full Name <span className="text-red-500">*</span>
                     </Label>
-                    <Input 
-                      id="fullName" 
-                      placeholder="Enter your full name"
-                      className="mt-1 border-gray-300 focus:border-[#0C831F] focus:ring-[#0C831F]"
-                    />
+                    <Input placeholder="Ram Bahadur" className="text-sm text-left" />
                   </div>
                   <div>
-                    <Label htmlFor="email" className="text-sm font-medium text-gray-700">Email</Label>
-                    <Input 
-                      id="email" 
-                      type="email" 
-                      placeholder="your.email@example.com"
-                      className="mt-1 border-gray-300 focus:border-[#0C831F] focus:ring-[#0C831F]"
-                    />
+                    <Label className="text-sm text-gray-700 mb-1 block text-left">Email</Label>
+                    <Input placeholder="john@gmail.com" className="text-sm text-left" />
                   </div>
                 </div>
                 <div>
-                  <Label htmlFor="phone" className="text-sm font-medium text-gray-700">
+                  <Label className="text-sm text-gray-700 mb-1 block text-left">
                     Phone Number <span className="text-red-500">*</span>
                   </Label>
-                  <Input 
-                    id="phone" 
-                    placeholder="98XXXXXXXX"
-                    className="mt-1 border-gray-300 focus:border-[#0C831F] focus:ring-[#0C831F]"
-                  />
+                  <Input placeholder="9862200000" className="text-sm text-left" />
                 </div>
                 <div>
-                  <Label htmlFor="orderNote" className="text-sm font-medium text-gray-700">
-                    Order Note (Optional)
-                  </Label>
+                  <Label className="text-sm text-gray-700 mb-1 block text-left">Order Note (any message for us)</Label>
                   <Textarea 
-                    id="orderNote" 
-                    placeholder="Any special instructions for your order..."
-                    className="mt-1 border-gray-300 focus:border-[#0C831F] focus:ring-[#0C831F]"
-                    rows={3}
+                    placeholder="I was searching for this product from so long."
+                    className="text-sm min-h-[60px] text-left"
                   />
                 </div>
-              </CardContent>
-            </Card>
-
-            {/* Delivery Address */}
-            <Card className="border-0 shadow-lg rounded-2xl">
-              <CardHeader className="pb-4">
-                <CardTitle className="flex items-center text-xl">
-                  <span className="bg-[#0C831F] text-white rounded-full w-8 h-8 flex items-center justify-center text-sm mr-3">2</span>
-                  Delivery Address
-                </CardTitle>
-              </CardHeader>
-              <CardContent className="space-y-4">
+              </div>
+            </div>            {/* Delivery Address */}
+            <div>
+              <h2 className="text-base font-medium text-gray-900 mb-3 text-left">2. Delivery Address</h2>
+              <div className="space-y-3">
                 <div>
-                  <Label htmlFor="city" className="text-sm font-medium text-gray-700">
+                  <Label className="text-sm text-gray-700 mb-1 block">
                     City/District <span className="text-red-500">*</span>
-                  </Label>
-                  <select className="w-full mt-1 px-3 py-2 border border-gray-300 rounded-md focus:border-[#0C831F] focus:ring-[#0C831F] focus:outline-none">
-                    <option>Kathmandu</option>
-                    <option>Lalitpur</option>
+                  </Label>                  <select className="w-full px-3 py-2 text-sm border border-gray-300 rounded-md focus:border-[#0C831F] focus:ring-[#0C831F] focus:outline-none bg-white text-left">
+                    <option>Kathmandu Inside Ring Road</option>
+                    <option>Kathmandu Outside Ring Road</option>
+                    <option>Pokhara</option>
+                    <option>Biratnagar</option>
+                    <option>Dharan</option>
+                    <option>Itahari</option>
+                    <option>Butwal</option>
+                    <option>Achham</option>
+                    <option>Arghakhanchi</option>
+                    <option>Baglung</option>
+                    <option>Baitadi</option>
+                    <option>Bajhang</option>
+                    <option>Bajura</option>
+                    <option>Banke</option>
+                    <option>Bara</option>
+                    <option>Bardiya</option>
                     <option>Bhaktapur</option>
+                    <option>Bhojpur</option>
+                    <option>Chitwan</option>
+                    <option>Dadeldhura</option>
+                    <option>Dailekh</option>
+                    <option>Dang</option>
+                    <option>Darchula</option>
+                    <option>Dhading</option>
+                    <option>Dhankuta</option>
+                    <option>Dhanusa</option>
+                    <option>Dolakha</option>
+                    <option>Dolpa</option>
+                    <option>Doti</option>
+                    <option>Gorkha</option>
+                    <option>Gulmi</option>
+                    <option>Humla</option>
+                    <option>Ilam</option>
+                    <option>Jajarkot</option>
+                    <option>Jhapa</option>
+                    <option>Jumla</option>
+                    <option>Kailali</option>
+                    <option>Kalikot</option>
+                    <option>Kanchanpur</option>
+                    <option>Kapilvastu</option>
+                    <option>Kaski</option>
+                    <option>Kathmandu</option>
+                    <option>Kavrepalanchok</option>
+                    <option>Khotang</option>
+                    <option>Lalitpur</option>
+                    <option>Lamjung</option>
+                    <option>Mahottari</option>
+                    <option>Makwanpur</option>
+                    <option>Manang</option>
+                    <option>Morang</option>
+                    <option>Mugu</option>
+                    <option>Mustang</option>
+                    <option>Myagdi</option>
+                    <option>Nawalparasi</option>
+                    <option>Nuwakot</option>
+                    <option>Okhaldhunga</option>
+                    <option>Palpa</option>
+                    <option>Panchthar</option>
+                    <option>Parbat</option>
+                    <option>Parsa</option>
+                    <option>Pyuthan</option>
+                    <option>Ramechhap</option>
+                    <option>Rasuwa</option>
+                    <option>Rautahat</option>
+                    <option>Rolpa</option>
+                    <option>Rukum</option>
+                    <option>Rupandehi</option>
+                    <option>Salyan</option>
+                    <option>Sankhuwasabha</option>
+                    <option>Saptari</option>
+                    <option>Sarlahi</option>
+                    <option>Sindhuli</option>
+                    <option>Sindhupalchok</option>
+                    <option>Siraha</option>
+                    <option>Solukhumbu</option>
+                    <option>Sunsari</option>
+                    <option>Surkhet</option>
+                    <option>Syangja</option>
+                    <option>Tanahu</option>
+                    <option>Taplejung</option>
+                    <option>Terhathum</option>
+                    <option>Udayapur</option>
                   </select>
-                </div>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                </div>                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                   <div>
-                    <Label htmlFor="address" className="text-sm font-medium text-gray-700">
+                    <Label className="text-sm text-gray-700 mb-1 block text-left">
                       Address <span className="text-red-500">*</span>
                     </Label>
-                    <Input 
-                      id="address" 
-                      placeholder="Street, Area"
-                      className="mt-1 border-gray-300 focus:border-[#0C831F] focus:ring-[#0C831F]"
-                    />
+                    <Input placeholder="kathmandu, tinkune" className="text-sm text-left" />
                   </div>
                   <div>
-                    <Label htmlFor="landmark" className="text-sm font-medium text-gray-700">Landmark</Label>
-                    <Input 
-                      id="landmark" 
-                      placeholder="Near landmark"
-                      className="mt-1 border-gray-300 focus:border-[#0C831F] focus:ring-[#0C831F]"
-                    />
+                    <Label className="text-sm text-gray-700 mb-1 block text-left">Landmark</Label>
+                    <Input placeholder="madan bhandari park" className="text-sm text-left" />
                   </div>
                 </div>
-              </CardContent>
-            </Card>
-
-            {/* Payment Methods */}
-            <Card className="border-0 shadow-lg rounded-2xl">
-              <CardHeader className="pb-4">
-                <CardTitle className="flex items-center text-xl">
-                  <span className="bg-[#0C831F] text-white rounded-full w-8 h-8 flex items-center justify-center text-sm mr-3">3</span>
-                  Payment Method
-                </CardTitle>
-              </CardHeader>
-              <CardContent className="space-y-4">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <div 
-                    className={`border-2 rounded-xl p-4 cursor-pointer transition-all ${
-                      paymentMethod === "cod" 
-                        ? "border-[#0C831F] bg-[#0C831F]/5" 
-                        : "border-gray-200 hover:border-gray-300"
-                    }`}
-                    onClick={() => setPaymentMethod("cod")}
-                  >
-                    <div className="flex items-center space-x-3">
-                      <div className={`w-5 h-5 rounded-full border-2 flex items-center justify-center ${
-                        paymentMethod === "cod" ? "border-[#0C831F] bg-[#0C831F]" : "border-gray-300"
-                      }`}>
-                        {paymentMethod === "cod" && <Check className="h-3 w-3 text-white" />}
-                      </div>
-                      <div>
-                        <div className="flex items-center">
-                          <Truck className="h-5 w-5 mr-2 text-[#0C831F]" />
-                          <span className="font-semibold">Cash on Delivery</span>
-                        </div>
-                        <p className="text-sm text-gray-600">Pay when you receive</p>
-                      </div>
+              </div>
+            </div>            {/* Payment Methods */}
+            <div>
+              <h2 className="text-base font-medium text-gray-900 mb-3 text-left">3. Payment Methods</h2>
+              <div className="grid grid-cols-2 gap-3">
+                <div 
+                  className={`border-2 rounded-lg p-3 cursor-pointer transition-all ${
+                    paymentMethod === "cod" 
+                      ? "border-[#0C831F] bg-green-50" 
+                      : "border-gray-200 hover:border-gray-300"
+                  }`}
+                  onClick={() => setPaymentMethod("cod")}
+                >
+                  <div className="flex items-center space-x-2">
+                    <div className={`w-4 h-4 rounded-full border-2 flex items-center justify-center ${
+                      paymentMethod === "cod" ? "border-[#0C831F] bg-[#0C831F]" : "border-gray-300"
+                    }`}>
+                      {paymentMethod === "cod" && <div className="w-2 h-2 bg-white rounded-full"></div>}
                     </div>
-                  </div>
-
-                  <div 
-                    className={`border-2 rounded-xl p-4 cursor-pointer transition-all ${
-                      paymentMethod === "online" 
-                        ? "border-[#0C831F] bg-[#0C831F]/5" 
-                        : "border-gray-200 hover:border-gray-300"
-                    }`}
-                    onClick={() => setPaymentMethod("online")}
-                  >
-                    <div className="flex items-center space-x-3">
-                      <div className={`w-5 h-5 rounded-full border-2 flex items-center justify-center ${
-                        paymentMethod === "online" ? "border-[#0C831F] bg-[#0C831F]" : "border-gray-300"
-                      }`}>
-                        {paymentMethod === "online" && <Check className="h-3 w-3 text-white" />}
-                      </div>
-                      <div>
-                        <div className="flex items-center">
-                          <CreditCard className="h-5 w-5 mr-2 text-[#0C831F]" />
-                          <span className="font-semibold">Online Payment</span>
-                        </div>
-                        <p className="text-sm text-gray-600">eSewa, Khalti, Cards</p>
-                      </div>
-                    </div>
+                    <Truck className="h-4 w-4 text-gray-600" />
+                    <span className="text-sm font-medium text-gray-900">Cash on delivery</span>
                   </div>
                 </div>
-              </CardContent>
-            </Card>
-          </div>
 
-          {/* Order Summary */}
-          <div className="lg:col-span-1">
-            <Card className="border-0 shadow-xl rounded-2xl sticky top-4">
-              <CardHeader>
-                <CardTitle className="text-xl">Order Summary</CardTitle>
-              </CardHeader>
-              <CardContent className="space-y-6">
-                {/* Order Items */}
-                <div className="space-y-4">
-                  {orderItems.map((item) => (
-                    <div key={item.id} className="flex items-center space-x-4">
-                      <div className="relative">
-                        <img 
-                          src={item.image}
-                          alt={item.name}
-                          className="w-16 h-16 object-cover rounded-lg"
-                        />
-                        <Badge className="absolute -top-2 -right-2 bg-[#0C831F] text-white text-xs">
-                          {item.quantity}
-                        </Badge>
-                      </div>
-                      <div className="flex-1">
-                        <h4 className="font-semibold text-gray-900">{item.name}</h4>
-                        <p className="text-sm text-gray-600">{item.variant}</p>
-                        <p className="font-bold text-[#0C831F]">NPR {item.price}</p>
-                      </div>
-                    </div>
-                  ))}
+                <div 
+                  className={`border-2 rounded-lg p-3 cursor-pointer transition-all ${
+                    paymentMethod === "fonepay" 
+                      ? "border-[#0C831F] bg-green-50" 
+                      : "border-gray-200 hover:border-gray-300"
+                  }`}
+                  onClick={() => setPaymentMethod("fonepay")}
+                >
+                  <div className="flex items-center space-x-2">
+                    <div className={`w-4 h-4 rounded-full border-2 flex items-center justify-center ${
+                      paymentMethod === "fonepay" ? "border-[#0C831F] bg-[#0C831F]" : "border-gray-300"
+                    }`}>
+                      {paymentMethod === "fonepay" && <div className="w-2 h-2 bg-white rounded-full"></div>}
+                    </div>                    <div className="w-4 h-4 bg-red-600 rounded text-white text-xs flex items-center justify-center font-bold">F</div>
+                    <span className="text-sm font-medium text-gray-900">FonePay</span>
+                  </div>
                 </div>
+              </div>
+            </div>
 
-                <Separator />
-
-                {/* Promo Code */}
-                <div className="space-y-3">
-                  <Label className="text-sm font-medium">Promo Code</Label>
-                  <div className="flex space-x-2">
-                    <Input 
-                      placeholder="Enter promo code"
-                      value={promoCode}
-                      onChange={(e) => setPromoCode(e.target.value)}
-                      className="flex-1"
-                    />
-                    <Button 
-                      onClick={applyPromo}
-                      variant="outline"
-                      className="border-[#0C831F] text-[#0C831F] hover:bg-[#0C831F] hover:text-white"
-                    >
-                      Apply
-                    </Button>
-                  </div>
-                  {isPromoApplied && (
-                    <p className="text-sm text-green-600 flex items-center">
-                      <Check className="h-4 w-4 mr-1" />
-                      Promo code applied successfully!
-                    </p>
-                  )}
-                </div>
-
-                <Separator />
-
-                {/* Price Breakdown */}
-                <div className="space-y-3">
-                  <div className="flex justify-between">
-                    <span className="text-gray-700">Subtotal</span>
-                    <span className="font-semibold">NPR {subtotal}</span>
-                  </div>
-                  <div className="flex justify-between">
-                    <span className="text-gray-700">Delivery Charge</span>
-                    <span className="font-semibold">NPR {deliveryCharge}</span>
-                  </div>
-                  {isPromoApplied && (
-                    <div className="flex justify-between text-green-600">
-                      <span>Discount</span>
-                      <span className="font-semibold">-NPR {discount}</span>
+            {/* Mobile Place Order Button - After Payment Methods */}
+            <div className="lg:hidden mt-6">
+              <Button className="w-full bg-[#0C831F] hover:bg-green-700 text-white py-3 text-base font-medium">
+                Place Order
+              </Button>
+            </div>
+          </div>{/* Right Side - Order Summary (Hidden on Mobile) */}
+          <div className="hidden lg:block">
+            <div className="bg-white rounded-lg border border-gray-200 p-5 sticky top-6">
+              <h2 className="text-base font-medium text-gray-900 mb-4 text-left">Order Summary</h2>
+              
+              {/* Order Items */}
+              <div className="space-y-3 mb-5">
+                {orderItems.map((item) => (
+                  <div key={item.id} className="flex items-center space-x-3">
+                    <div className="relative">
+                      <img 
+                        src={item.image}
+                        alt={item.name}
+                        className="w-12 h-12 object-cover rounded-lg bg-gray-100"
+                      />
+                      <div className="absolute -top-1 -right-1 bg-[#0C831F] text-white text-xs rounded-full w-4 h-4 flex items-center justify-center font-medium">
+                        {item.quantity}
+                      </div>
+                    </div>                    <div className="flex-1 text-left">
+                      <h4 className="text-sm font-medium text-gray-900">{item.name}</h4>
+                      <p className="text-xs text-gray-600">₹ {item.price} ×{item.quantity}</p>
                     </div>
-                  )}
-                  <Separator />
-                  <div className="flex justify-between text-lg font-bold">
+                  </div>
+                ))}
+              </div>              {/* Price Breakdown */}
+              <div className="space-y-2 mb-4 text-left">
+                <div className="flex justify-between text-sm">
+                  <span className="text-gray-600">Sub-total</span>
+                  <span>₹ {subtotal}</span>
+                </div>
+                <div className="flex justify-between text-sm">
+                  <span className="text-gray-600">Delivery Charge [1 KG]</span>
+                  <span>₹ {deliveryCharge}</span>
+                </div>
+                <div className="border-t pt-2">
+                  <div className="flex justify-between font-medium">
                     <span>Total</span>
-                    <span className="text-[#0C831F]">NPR {total}</span>
+                    <span>₹ {total}</span>
                   </div>
                 </div>
-
-                <Button className="w-full bg-[#0C831F] hover:bg-[#2d24b8] text-white py-3 text-lg font-semibold transition-all duration-300 hover:scale-105">
-                  Place Order
-                </Button>
-
-                <div className="text-center text-xs text-gray-500 space-y-1">
-                  <div className="flex items-center justify-center">
-                    <Shield className="h-4 w-4 mr-1 text-green-600" />
-                    Your payment information is secure
-                  </div>
-                  <p>By placing your order, you agree to our terms and conditions</p>
+              </div>              {/* Promo Code */}
+              <div className="mb-4 text-left">
+                <Label className="text-sm text-gray-700 mb-1 block text-left">Promo Code</Label>
+                <div className="flex space-x-2">
+                  <Input 
+                    placeholder="FREE30"
+                    value={promoCode}
+                    onChange={(e) => setPromoCode(e.target.value)}
+                    className="flex-1 text-sm text-left"
+                  />
+                  <Button className="bg-[#0C831F] hover:bg-green-700 text-white px-4 text-sm">
+                    APPLY
+                  </Button>
                 </div>
-              </CardContent>
-            </Card>
-          </div>
+              </div>              {/* Place Order Button */}
+              <Button className="w-full bg-[#0C831F] hover:bg-green-700 text-white py-2.5 text-sm font-medium">
+                Place Order
+              </Button>
+            </div>          </div>
         </div>
       </div>
     </div>
