@@ -130,41 +130,56 @@ const ProductDetails = () => {
       description: "Choose from 5000+ products across food, personal care, household & other categories"
     }
   ];
-
   const relatedProducts = [
     {
       id: 2,
-      name: "Aashirvaad Organic Atta",
-      price: 164,
-      originalPrice: 180,
-      image: "https://images.unsplash.com/photo-1416879595882-3373a0480b5b?w=300&h=300&fit=crop",
+      name: "Capsicum Seeds",
+      price: 75,
+      originalPrice: 85,
+      image: "https://images.unsplash.com/photo-1583658697388-f040b630312b?w=300&h=300&fit=crop",
       rating: 4.8
     },
     {
       id: 3,
-      name: "Nature Fresh Wheat Organic",
-      price: 207,
-      originalPrice: 230,
-      image: "https://images.unsplash.com/photo-1416879595882-3373a0480b5b?w=300&h=300&fit=crop",
+      name: "Carrot Seeds",
+      price: 60,
+      originalPrice: 70,
+      image: "https://images.unsplash.com/photo-1598300042247-d088f8ab3a91?w=300&h=300&fit=crop",
       rating: 4.7
     },
     {
       id: 4,
-      name: "24 Mantra Organic Sooji",
-      price: 93,
-      originalPrice: 110,
-      image: "https://images.unsplash.com/photo-1464226184884-fa280b87c399?w=300&h=300&fit=crop",
+      name: "Lettuce Seeds",
+      price: 45,
+      originalPrice: 55,
+      image: "https://images.unsplash.com/photo-1622206151226-18ca2c9ab4a1?w=300&h=300&fit=crop",
       rating: 4.6
     },
     {
       id: 5,
-      name: "Nature's Bounty Organic Flour",
-      price: 295,
-      originalPrice: 320,
-      image: "https://images.unsplash.com/photo-1464226184884-fa280b87c399?w=300&h=300&fit=crop",
+      name: "Brinjal Seeds",
+      price: 80,
+      originalPrice: 95,
+      image: "https://images.unsplash.com/photo-1659261200833-ec8761558af7?w=300&h=300&fit=crop",
       rating: 4.8
+    },
+    {
+      id: 6,
+      name: "Spinach Seeds",
+      price: 40,
+      originalPrice: 50,
+      image: "https://images.unsplash.com/photo-1576045057995-568f588f82fb?w=300&h=300&fit=crop",
+      rating: 4.5
+    },
+    {
+      id: 7,
+      name: "Okra Seeds",
+      price: 55,
+      originalPrice: 65,
+      image: "https://images.unsplash.com/photo-1631300983318-9e4069d21ff6?w=300&h=300&fit=crop",
+      rating: 4.7
     }
-  ];  return (
+  ];return (
     <div className="min-h-screen bg-white">      {/* Mobile Header */}
       <div className="lg:hidden sticky top-0 z-50 bg-white shadow-sm px-4 py-3 border-b">
         <div className="flex items-center">
@@ -597,27 +612,42 @@ const ProductDetails = () => {
           </div>
         </div>
       </div>      {/* Related Products Section */}
-      <div className="bg-white">
-        <div className="max-w-6xl mx-auto px-4 py-8">
-          <h2 className="text-xl font-bold mb-6 text-gray-900 text-left">You might also like</h2>
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-4">
-            {relatedProducts.map((relatedProduct) => (
-              <div key={relatedProduct.id} className="w-full">
-                <ProductCard
-                  id={relatedProduct.id}
-                  image={relatedProduct.image}
-                  name={relatedProduct.name}
-                  quantity="500g"
-                  price={relatedProduct.price}
-                  originalPrice={relatedProduct.originalPrice}
-                  discountPercent={Math.round(((relatedProduct.originalPrice - relatedProduct.price) / relatedProduct.originalPrice) * 100)}
-                  onAddToCart={(quantity) => console.log(`Added ${quantity} of ${relatedProduct.name}`)}
-                />
+      <section className="py-6 sm:py-8 md:py-10 px-3 sm:px-4 lg:px-12 bg-gray-50 border-y border-gray-100">
+        <div className="mb-4 sm:mb-6">
+          <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-3 sm:gap-0">
+            <div className="text-left">
+              <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-3">
+                <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-900 leading-tight">You might also like</h2>
+                <Badge className="bg-blue-100 text-blue-700 hover:bg-blue-600 hover:text-white px-2 py-1 text-xs font-semibold rounded-md border border-blue-200 hover:border-blue-600 w-fit transition-all duration-200">
+                  RECOMMENDED
+                </Badge>
               </div>
-            ))}
+              <p className="text-gray-500 text-sm sm:text-base mt-1 sm:mt-2">Related seed varieties for your garden</p>
+            </div>
           </div>
         </div>
-      </div>
+        
+        <div className="px-0">
+          <div className="overflow-x-auto scrollbar-hide pb-4 sm:pb-6">
+            <div className="flex gap-3 sm:gap-4 w-max">
+              {relatedProducts.map((relatedProduct) => (
+                <div key={relatedProduct.id} className="flex-shrink-0 w-[200px] sm:w-[220px]">
+                  <ProductCard
+                    id={relatedProduct.id}
+                    image={relatedProduct.image}
+                    name={relatedProduct.name}
+                    quantity="10g pack"
+                    price={relatedProduct.price}
+                    originalPrice={relatedProduct.originalPrice}
+                    discountPercent={Math.round(((relatedProduct.originalPrice - relatedProduct.price) / relatedProduct.originalPrice) * 100)}
+                    onAddToCart={(quantity) => console.log(`Added ${quantity} of ${relatedProduct.name}`)}
+                  />
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
     </div>
   );
 };
