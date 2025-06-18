@@ -63,10 +63,9 @@ export default function ProductCard({
       navigate(`/product/${id}`);
     }
   };return (    <div
-      onClick={handleCardClick}
-      className={        isMobile
-          ? `relative bg-white rounded-xl shadow flex flex-col w-full h-[280px] transition-all duration-300 pt-2 pb-3 px-2.5 ${id ? 'cursor-pointer hover:shadow-md' : ''}`
-          : `relative bg-white rounded-2xl shadow hover:shadow-lg p-4 flex flex-col w-full h-[360px] transition-all duration-300 ${id ? 'cursor-pointer' : ''}`
+      onClick={handleCardClick}      className={        isMobile
+          ? `relative bg-white rounded-xl shadow flex flex-col w-full h-[280px] pt-2 pb-3 px-2.5 ${id ? 'cursor-pointer hover:shadow-md' : ''}`
+          : `relative bg-white rounded-2xl shadow hover:shadow-lg p-4 flex flex-col w-full h-[360px] ${id ? 'cursor-pointer' : ''}`
       }
     >
       {/* Discount Label - Blinkit Style */}
@@ -124,7 +123,7 @@ export default function ProductCard({
                 ₹{originalPrice}
               </div>
             )}
-          </div><div className="flex justify-center flex-shrink-0 transition-all duration-300">          {isMobile
+          </div>          <div className="flex justify-center flex-shrink-0">          {isMobile
             ? count === 0
               ? (
                 <button
@@ -132,7 +131,7 @@ export default function ProductCard({
                     setCount(1);
                     onAddToCart?.(1);
                   }}
-                  className="bg-green-600 text-white text-xs font-bold rounded-md hover:bg-green-700 transition-all flex items-center justify-center"
+                  className="bg-green-600 text-white text-xs font-bold rounded-md hover:bg-green-700 flex items-center justify-center"
                   style={{ 
                     height: '32px', 
                     width: '100px',
@@ -180,7 +179,7 @@ export default function ProductCard({
                   setCount(1);
                   onAddToCart?.(1);
                 }}
-                className="bg-green-600 text-white text-sm font-bold rounded-md hover:bg-green-700 transition-all flex items-center justify-center"                style={{ 
+                className="bg-green-600 text-white text-sm font-bold rounded-md hover:bg-green-700 flex items-center justify-center"                style={{ 
                   height: '36px', 
                   width: '110px',
                   minWidth: '110px',

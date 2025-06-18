@@ -533,12 +533,11 @@ const Shop = () => {
           ) : (            <>              <div className="premium-product-grid">                {sortedProducts.slice(0, displayedProducts).map((product) => (
                   <motion.div
                     key={product.id}
-                    layout
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, scale: 0.95 }}
                     transition={{ duration: 0.2 }}
-                    className="mx-auto w-full"                  >                    <ProductCard
+                    className="mx-auto w-full">                    <ProductCard
                       id={product.id}
                       image={product.image}
                       name={product.name}
