@@ -280,9 +280,8 @@ const Index = () => {
       </div>
       
       {/* Hero Section - Enhanced responsive design for all screen sizes */}
-      <section ref={heroRef} className="hero-section relative bg-gradient-to-br from-green-600 via-[#0C831F] to-[#0a6b1a] overflow-hidden w-full">
-        {/* Dynamic responsive padding and min-height */}
-        <div className="py-6 sm:py-8 md:py-12 lg:py-16 xl:py-20 min-h-[90vh] xxs:min-h-[85vh] xs:min-h-[80vh] sm:min-h-[75vh] md:min-h-[70vh] lg:min-h-[75vh] xl:min-h-[80vh] flex items-center">
+      <section ref={heroRef} className="hero-section relative bg-gradient-to-br from-green-600 via-[#0C831F] to-[#0a6b1a] overflow-hidden w-full">        {/* Dynamic responsive padding and min-height - optimized for mobile */}
+        <div className="py-1 xs:py-2 sm:py-6 md:py-8 lg:py-12 xl:py-16 min-h-[calc(100vh-6rem)] xs:min-h-[calc(100vh-5rem)] sm:min-h-[75vh] md:min-h-[70vh] lg:min-h-[75vh] xl:min-h-[80vh] flex items-center">
           {/* Enhanced background patterns with better mobile optimization */}
           <div className="absolute top-0 left-0 w-full h-full overflow-hidden">
             {/* Simplified background pattern for better mobile performance */}
@@ -347,32 +346,24 @@ const Index = () => {
               <div 
                 ref={heroCardRef} 
                 className="hero-product-card order-1 lg:order-2 z-10 flex justify-center lg:justify-end relative"
-              >
-                {/* Redesigned agricultural themed hero card - fully responsive */}
-                <Card className="bg-white border-0 rounded-xl sm:rounded-2xl overflow-hidden shadow-lg sm:shadow-xl hover:shadow-2xl transition-all duration-500 w-full max-w-[280px] xxs:max-w-[300px] xs:max-w-[320px] sm:max-w-[360px] md:max-w-[340px] lg:max-w-[320px] xl:max-w-[360px] mx-auto lg:mx-0 relative z-10">
-                  <CardContent className="p-0 flex flex-col w-full relative z-10 card-content-wrapper">
-                    {/* Enhanced product image with responsive height */}
-                    <div className="relative">
-                      <img 
+              >                {/* Redesigned agricultural themed hero card - bigger size and no hover effects */}
+                <Card className="bg-white border-0 rounded-2xl sm:rounded-3xl overflow-hidden shadow-lg sm:shadow-xl w-full max-w-[320px] xxs:max-w-[340px] xs:max-w-[360px] sm:max-w-[400px] md:max-w-[420px] lg:max-w-[380px] xl:max-w-[420px] 2xl:max-w-[450px] mx-auto lg:mx-0 relative z-10">
+                  <CardContent className="p-0 flex flex-col w-full relative z-10">
+                    {/* Enhanced product image with responsive height - no overflow on hover */}
+                    <div className="relative overflow-hidden rounded-t-2xl sm:rounded-t-3xl">                      <img 
                         src={heroProduct.image} 
                         alt={heroProduct.name}
-                        className="w-full object-cover"
-                        style={{ height: 'clamp(9rem, 25vw, 13rem)' }}
-                      />
-                      
-                      {/* Save percentage badge in left corner */}
-                      <div className="absolute top-2 left-2 sm:top-3 sm:left-3 bg-gradient-to-r from-green-600 to-green-700 text-white px-2 sm:px-3 py-1 sm:py-1.5 rounded-lg font-bold shadow-lg z-10"
+                        className="w-full object-cover transition-none"
+                        style={{ height: 'clamp(16rem, 38vw, 20rem)' }}
+                      />{/* Save percentage badge in left corner */}
+                      <div className="absolute top-3 left-3 bg-gradient-to-r from-green-600 to-green-700 text-white px-3 py-1.5 rounded-lg font-bold shadow-lg z-10"
                            style={{ fontSize: 'clamp(0.75rem, 2vw, 0.875rem)' }}>
                         Save {heroProduct.discount}%
                       </div>
                       
-                      {/* Enhanced Special Offer Badge - responsive positioning */}
-                      <div className="absolute top-4 sm:top-6 bg-gradient-to-r from-red-600 via-red-500 to-red-600 text-white py-1.5 sm:py-2 px-8 sm:px-12 md:px-14 font-bold shadow-lg transform rotate-45 z-10 border-t border-b border-white/30"
-                           style={{ 
-                             right: 'clamp(-2rem, -15vw, -3.5rem)',
-                             fontSize: 'clamp(0.625rem, 1.5vw, 0.875rem)'
-                           }}>
-                        {heroProduct.badge}
+                      {/* Ribbon style special offer badge */}
+                      <div className="hero-ribbon">
+                        <span>{heroProduct.badge}</span>
                       </div>
                       
                       {/* Simplified product title overlay - responsive text */}
@@ -380,7 +371,8 @@ const Index = () => {
                         <h3 className="font-bold text-white drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)] leading-tight text-left"
                             style={{ fontSize: 'clamp(0.875rem, 2.5vw, 1.125rem)' }}>
                           {heroProduct.name}
-                        </h3>                      </div>
+                        </h3>
+                      </div>
                     </div>
                     
                     {/* Simplified bottom section - cleaner design */}

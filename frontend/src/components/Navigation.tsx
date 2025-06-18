@@ -31,6 +31,8 @@ const Navigation = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
   const [isSearchFocused, setIsSearchFocused] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false); // Add login state
+  const [userName, setUserName] = useState(""); // Add user name state
   const searchInputRef = useRef<HTMLInputElement>(null);
   const searchContainerRef = useRef<HTMLDivElement>(null);
   const location = useLocation();
@@ -57,6 +59,18 @@ const Navigation = () => {
   const [showSuggestions, setShowSuggestions] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   
+  // Handle login success (you can expand this to integrate with real auth)
+  const handleLoginSuccess = (name: string) => {
+    setIsLoggedIn(true);
+    setUserName(name);
+  };
+
+  // Handle logout
+  const handleLogout = () => {
+    setIsLoggedIn(false);
+    setUserName("");
+  };
+
   // Handle search submission
   const handleSearchSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -176,10 +190,8 @@ const Navigation = () => {
         { name: "Plant Support", items: ["Plant Stakes", "Trellises", "Garden Cages", "Climbing Frames", "Support Nets"] }      ]
     }
   ];
-  
-  const isActive = (path: string) => location.pathname === path;
+    const isActive = (path: string) => location.pathname === path;
   const isShopActive = location.pathname.startsWith('/shop') || location.pathname.startsWith('/brands') || location.pathname.startsWith('/categories');
-  const isSubscriptionActive = location.pathname.startsWith('/subscription');
   
   return (
     <nav className="bg-gradient-to-r from-white via-white to-green-50 shadow-sm border-b border-gray-100 sticky top-0 z-50">
@@ -202,8 +214,7 @@ const Navigation = () => {
                   scale: isSearchFocused ? 1.02 : 1
                 }}
                 transition={{ duration: 0.2 }}
-              >
-                <input 
+              >                <input 
                   type="text" 
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
@@ -217,7 +228,7 @@ const Navigation = () => {
                       }
                     }, 150);
                   }}
-                  className="w-full pl-10 pr-8 py-2 search-input focus:outline-none border-0 text-sm"
+                  className="w-full pl-10 pr-10 py-2 search-input focus:outline-none border-0 text-sm"
                   aria-label="Search products"
                 />
                 <div className="absolute left-4 top-1/2 transform -translate-y-1/2 pointer-events-none text-gray-400">
@@ -241,10 +252,8 @@ const Navigation = () => {
                         </motion.span>
                       )}
                     </AnimatePresence>
-                  </div>
-                )}
-                
-                <button
+                  </div>                )}
+                  <button
                   type="submit" 
                   className="hidden"
                   aria-label="Submit search"
@@ -259,7 +268,7 @@ const Navigation = () => {
                     exit={{ opacity: 0, scale: 0.8 }}
                     type="button"
                     onClick={clearSearch}
-                    className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600"
+                    className="absolute right-3 top-0 bottom-0 my-auto text-gray-400 hover:text-gray-600 w-5 h-5 flex items-center justify-center"
                     aria-label="Clear search"
                   >
                     <XCircle className="h-4 w-4" />
@@ -412,8 +421,7 @@ const Navigation = () => {
                   </Link>
                 </MenubarTrigger>
               </MenubarMenu>
-              
-              <MenubarMenu>
+                <MenubarMenu>
                 <MenubarTrigger asChild>
                   <Link 
                     to="/contact" 
@@ -424,21 +432,6 @@ const Navigation = () => {
                     }`}
                   >
                     Contact
-                  </Link>
-                </MenubarTrigger>
-              </MenubarMenu>
-              
-              <MenubarMenu>
-                <MenubarTrigger asChild>
-                  <Link 
-                    to="/subscription" 
-                    className={`px-4 py-1.5 font-medium text-sm ${
-                      isActive("/subscription") 
-                        ? "text-[#0C831F] font-semibold border-b-2 border-[#0C831F]" 
-                        : "text-gray-700 hover:text-[#0C831F]"
-                    }`}
-                  >
-                    Subscription
                   </Link>
                 </MenubarTrigger>
               </MenubarMenu>
@@ -476,7 +469,7 @@ const Navigation = () => {
                         }
                       }, 150);
                     }}
-                    className="w-[28rem] pl-10 pr-8 py-2 search-input focus:outline-none border-0 text-sm"
+                    className="w-[28rem] pl-10 pr-10 py-2 search-input focus:outline-none border-0 text-sm"
                     aria-label="Search products"
                   />
                   
@@ -510,16 +503,14 @@ const Navigation = () => {
                     aria-label="Submit search"
                   >
                     <span>Submit</span>
-                  </button>
-                  
-                  {searchQuery && (
+                  </button>                  {searchQuery && (
                     <motion.button
                       initial={{ opacity: 0, scale: 0.8 }}
                       animate={{ opacity: 1, scale: 1 }}
                       exit={{ opacity: 0, scale: 0.8 }}
                       type="button"
                       onClick={clearSearch}
-                      className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600"
+                      className="absolute right-3 top-0 bottom-0 my-auto text-gray-400 hover:text-gray-600 w-5 h-5 flex items-center justify-center"
                       aria-label="Clear search"
                     >
                       <XCircle className="h-4 w-4" />
@@ -569,20 +560,45 @@ const Navigation = () => {
                     </motion.div>
                   )}
                 </AnimatePresence>
-              </form>            </div>
-              {/* Account and Cart - Improved responsive design */}
+              </form>            </div>              {/* Account and Cart - Improved responsive design */}
             <div className="flex items-center gap-2 md:gap-3 ml-2">
               {/* Account - Login Dialog */}
-              <LoginDialog>
-                <Button 
-                  variant="ghost" 
-                  size="sm" 
-                  className="px-2 md:px-3 lg:px-4 py-1.5 hover:bg-gray-100 rounded-md text-gray-700 hover:text-[#0C831F] transition-colors flex items-center"
-                >
-                  <span className="mr-1 md:mr-1.5 text-xs md:text-sm hidden md:inline">Login</span>
-                  <User className="h-4 w-4" />
-                </Button>
-              </LoginDialog>
+              {isLoggedIn ? (
+                <div className="flex items-center gap-2">
+                  <Button
+                    variant="ghost"
+                    size="sm"
+                    className="px-3 py-1.5 hover:bg-gray-100 rounded-md text-gray-700 hover:text-[#0C831F] transition-colors flex items-center gap-2"
+                    onClick={() => navigate('/account')}
+                  >
+                    <div className="w-6 h-6 bg-[#0C831F] rounded-full flex items-center justify-center">
+                      <span className="text-white text-xs font-medium">
+                        {userName.charAt(0).toUpperCase()}
+                      </span>
+                    </div>
+                    <span className="text-sm hidden lg:inline">{userName}</span>
+                  </Button>
+                  <Button
+                    variant="ghost"
+                    size="sm"
+                    className="px-3 py-1.5 hover:bg-gray-100 rounded-md text-gray-700 hover:text-red-600 transition-colors text-sm hidden md:inline"
+                    onClick={handleLogout}
+                  >
+                    Logout
+                  </Button>
+                </div>
+              ) : (
+                <LoginDialog onLoginSuccess={handleLoginSuccess}>
+                  <Button 
+                    variant="ghost" 
+                    size="sm" 
+                    className="px-2 md:px-3 lg:px-4 py-1.5 hover:bg-gray-100 rounded-md text-gray-700 hover:text-[#0C831F] transition-colors flex items-center"
+                  >
+                    <span className="mr-1 md:mr-1.5 text-xs md:text-sm hidden md:inline">Login</span>
+                    <User className="h-4 w-4" />
+                  </Button>
+                </LoginDialog>
+              )}
               
               {/* Cart - Responsive design with better mobile adaptation */}
               <Link to="/cart" className="cart-button">
@@ -597,12 +613,40 @@ const Navigation = () => {
                   </span>
                 </div>
               </Link>
-            </div>
-          </div>          {/* Mobile Menu Toggle - Enhanced responsive design */}
+            </div>          </div>          {/* Mobile Login/Account Button - Icon only for mobile */}
+          <div className="md:hidden">
+            {isLoggedIn ? (
+              <Button
+                variant="ghost"
+                size="sm"
+                className="p-2 hover:bg-gray-100 rounded-full transition-colors"
+                onClick={() => navigate('/account')}
+              >
+                <div className="w-6 h-6 bg-[#0C831F] rounded-full flex items-center justify-center">
+                  <span className="text-white text-xs font-medium">
+                    {userName.charAt(0).toUpperCase()}
+                  </span>
+                </div>
+              </Button>
+            ) : (
+              <LoginDialog onLoginSuccess={handleLoginSuccess}>
+                <Button 
+                  variant="ghost" 
+                  size="sm" 
+                  className="p-2 hover:bg-gray-100 rounded-full text-gray-700 hover:text-[#0C831F] transition-colors"
+                >
+                  <User className="h-5 w-5" />
+                </Button>
+              </LoginDialog>
+            )}
+          </div>
+
+          {/* Desktop Menu Toggle - Hidden, no longer needed as we have bottom nav menu */}
+          {/* Mobile Menu Toggle - Enhanced responsive design */}
           <Button
             variant="ghost"
             size="sm"
-            className="md:hidden p-1 sm:p-1.5 hover:bg-gray-100 rounded-full transition-colors"
+            className="hidden p-1 sm:p-1.5 hover:bg-gray-100 rounded-full transition-colors"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
           >
             {isMenuOpen ? 
@@ -705,8 +749,7 @@ const Navigation = () => {
                 <span>Expert</span>
               </div>
             </Link>
-            
-            <Link 
+              <Link 
               to="/contact" 
               className={`block px-4 py-2.5 rounded-lg ${
                 isActive("/contact") 
@@ -718,40 +761,59 @@ const Navigation = () => {
               <div className="flex items-center">
                 <Grid className="h-4 w-4 mr-3" />
                 <span>Contact</span>
-              </div>
-            </Link>
+              </div>            </Link>
             
-            <Link 
-              to="/subscription" 
-              className={`block px-4 py-2.5 rounded-lg ${
-                isActive("/subscription") 
-                  ? "text-white font-medium bg-gradient-to-r from-[#0C831F] to-green-500" 
-                  : "text-gray-700 hover:bg-gray-50"
-              }`} 
-              onClick={() => setIsMenuOpen(false)}
-            >
-              <div className="flex items-center">
-                <ShoppingBag className="h-4 w-4 mr-3" />
-                <span>Subscription</span>
-              </div>
-            </Link>            <LoginDialog>
-              <button 
-                className={`block w-full text-left px-4 py-2 rounded-lg 
-                  ${isActive("/account") 
-                    ? "text-white font-medium bg-gradient-to-r from-[#0C831F] to-green-500" 
-                    : "text-gray-700 hover:bg-gray-50"
+            {/* Account/Login Section */}
+            {isLoggedIn ? (
+              <>
+                <Link 
+                  to="/account" 
+                  className={`block px-4 py-2.5 rounded-lg ${
+                    isActive("/account") 
+                      ? "text-white font-medium bg-gradient-to-r from-[#0C831F] to-green-500" 
+                      : "text-gray-700 hover:bg-gray-50"
                   }`} 
-                onClick={(e) => {
-                  e.stopPropagation();
-                  setIsMenuOpen(false);
-                }}
-              >
-                <div className="flex items-center">
-                  <User className="h-3.5 w-3.5 mr-2.5" />
-                  <span className="text-sm">Login / Sign up</span>
-                </div>
-              </button>
-            </LoginDialog>
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  <div className="flex items-center">
+                    <User className="h-4 w-4 mr-3" />
+                    <span>My Account ({userName})</span>
+                  </div>
+                </Link>
+                
+                <button 
+                  className="block w-full text-left px-4 py-2.5 rounded-lg text-gray-700 hover:bg-gray-50"
+                  onClick={() => {
+                    handleLogout();
+                    setIsMenuOpen(false);
+                  }}
+                >
+                  <div className="flex items-center">
+                    <LogIn className="h-4 w-4 mr-3" />
+                    <span>Logout</span>
+                  </div>
+                </button>
+              </>
+            ) : (
+              <LoginDialog onLoginSuccess={handleLoginSuccess}>
+                <button 
+                  className={`block w-full text-left px-4 py-2.5 rounded-lg 
+                    ${isActive("/account") 
+                      ? "text-white font-medium bg-gradient-to-r from-[#0C831F] to-green-500" 
+                      : "text-gray-700 hover:bg-gray-50"
+                    }`} 
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setIsMenuOpen(false);
+                  }}
+                >
+                  <div className="flex items-center">
+                    <User className="h-3.5 w-3.5 mr-2.5" />
+                    <span className="text-sm">Login / Sign up</span>
+                  </div>
+                </button>
+              </LoginDialog>
+            )}
           </div>
         </div>
         
