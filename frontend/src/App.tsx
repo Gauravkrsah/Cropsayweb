@@ -10,6 +10,7 @@ import ProductDetails from "./pages/ProductDetails";
 import Cart from "./pages/Cart";
 import Checkout from "./pages/Checkout";
 import Contact from "./pages/Contact";
+import Experts from "./pages/Experts";
 import NotFound from "./pages/NotFound";
 import { CartProvider } from "./context/CartContext";
 import "./components/styles/MobileOptimizedClean.css";
@@ -29,6 +30,7 @@ const App = () => (  <QueryClientProvider client={queryClient}>
               <Route path="/cart" element={<Cart />} />
               <Route path="/checkout" element={<Checkout />} />
               <Route path="/contact" element={<Contact />} />
+              <Route path="/experts" element={<Experts />} />
               {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
               <Route path="*" element={<NotFound />} />
             </Routes>

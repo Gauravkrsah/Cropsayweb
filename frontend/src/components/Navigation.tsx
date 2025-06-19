@@ -48,9 +48,8 @@ const Navigation = () => {
       default: return <Sprout className="h-4 w-4" />;
     }
   };
-  
-  // Animated placeholders
-  const placeholders = ["Search for Food...", "Search for Supplies...", "Search for Grooming...", "Search for Accessories..."];
+    // Animated placeholders
+  const placeholders = ["Search for Tomato Seeds...", "Search for Organic Fertilizer...", "Search for Plant Care...", "Search for Garden Tools...", "Search for Irrigation Systems...", "Search for Pesticides...", "Search for Soil Testing...", "Search for Greenhouse Equipment..."];
   const [currentPlaceholder, setCurrentPlaceholder] = useState(0);
   const [isPlaceholderVisible, setIsPlaceholderVisible] = useState(true);
   
@@ -406,19 +405,17 @@ const Navigation = () => {
                     </div>
                   </div>
                 </MenubarContent>
-              </MenubarMenu>
-
-              <MenubarMenu>
+              </MenubarMenu>              <MenubarMenu>
                 <MenubarTrigger asChild>
                   <Link 
-                    to="/expert" 
+                    to="/experts" 
                     className={`px-4 py-1.5 font-medium text-sm ${
-                      isActive("/expert") 
+                      isActive("/experts") 
                         ? "text-[#0C831F] font-semibold border-b-2 border-[#0C831F]" 
                         : "text-gray-700 hover:text-[#0C831F]"
                     }`}
                   >
-                    Expert
+                    Experts
                   </Link>
                 </MenubarTrigger>
               </MenubarMenu>
@@ -599,19 +596,24 @@ const Navigation = () => {
                     <User className="h-4 w-4" />
                   </Button>
                 </LoginDialog>
-              )}
-              
-              {/* Cart - Responsive design with better mobile adaptation */}
+              )}              {/* Cart - Stacked design for desktop, keep mobile version simple */}
               <Link to="/cart" className="cart-button">
                 <ShoppingCart className="h-4 w-4 md:h-5 md:w-5 flex-shrink-0" />
-                <div className="flex flex-col md:flex-row md:items-center md:gap-2">
-                  <span className="cart-count text-xs md:text-sm leading-tight">
-                    <span className="hidden sm:inline">{totalItems} {totalItems === 1 ? 'item' : 'items'}</span>
-                    <span className="sm:hidden">{totalItems}</span>
-                  </span>
-                  <span className="cart-price text-xs md:text-sm leading-tight">
-                    <span className="rupee-symbol">रु.</span>{totalPrice}
-                  </span>
+                <div className="cart-content">
+                  {/* Desktop: Stacked format - items on top, price below */}
+                  <div className="hidden md:flex flex-col items-start">
+                    <span className="cart-count">{totalItems} {totalItems === 1 ? 'item' : 'items'}</span>
+                    <span className="cart-price">
+                      <span className="rupee-symbol">₹</span>{totalPrice}
+                    </span>
+                  </div>
+                  {/* Mobile: Keep simple format */}
+                  <div className="md:hidden flex flex-col">
+                    <span className="cart-count text-xs leading-tight">{totalItems}</span>
+                    <span className="cart-price text-xs leading-tight">
+                      <span className="rupee-symbol">₹</span>{totalPrice}
+                    </span>
+                  </div>
                 </div>
               </Link>
             </div>          </div>          {/* Mobile Login/Account Button - Icon only for mobile */}
@@ -735,11 +737,10 @@ const Navigation = () => {
                 </div>
               </div>
             </details>
-            
-            <Link 
-              to="/expert" 
+              <Link 
+              to="/experts" 
               className={`block px-4 py-2.5 rounded-lg ${
-                isActive("/expert") 
+                isActive("/experts") 
                   ? "text-white font-medium bg-gradient-to-r from-[#0C831F] to-green-500" 
                   : "text-gray-700 hover:bg-gray-50"
               }`} 
@@ -747,7 +748,7 @@ const Navigation = () => {
             >
               <div className="flex items-center">
                 <MessageCircle className="h-4 w-4 mr-3" />
-                <span>Expert</span>
+                <span>Experts</span>
               </div>
             </Link>
               <Link 
@@ -827,12 +828,11 @@ const Navigation = () => {
               </div>
               <span className={`text-xs mt-0.5 transition-colors ${isActive("/") ? "text-[#0C831F] font-medium" : "text-gray-500"}`}>Home</span>
             </Link>
-            
-            <Link to="/expert" className="flex flex-col items-center justify-center">
-              <div className={`p-1.5 rounded-full transition-colors ${isActive("/expert") ? "text-[#0C831F]" : "text-gray-500"}`}>
+              <Link to="/experts" className="flex flex-col items-center justify-center">
+              <div className={`p-1.5 rounded-full transition-colors ${isActive("/experts") ? "text-[#0C831F]" : "text-gray-500"}`}>
                 <MessageCircle className="h-5 w-5" />
               </div>
-              <span className={`text-xs mt-0.5 transition-colors ${isActive("/expert") ? "text-[#0C831F] font-medium" : "text-gray-500"}`}>Expert</span>
+              <span className={`text-xs mt-0.5 transition-colors ${isActive("/experts") ? "text-[#0C831F] font-medium" : "text-gray-500"}`}>Experts</span>
             </Link>
             
             {/* Shop Button in Center - Elevated and Highlighted with improved animation */}

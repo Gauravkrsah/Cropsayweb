@@ -1,0 +1,97 @@
+/* ProductCarousel.css */
+/* Override any hover effects - Disable ALL transforms and transitions */
+.product-carousel-card {
+  transition: none !important;
+  transform: none !important;
+  animation: none !important;
+  transform-style: flat !important;
+  will-change: auto !important;
+  perspective: none !important;
+  backface-visibility: visible !important;
+}
+
+/* Comprehensive override for hover effects */
+.product-carousel-card:hover,
+.product-carousel-card:active,
+.product-carousel-card:focus {
+  transform: none !important;
+  translate: none !important;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25) !important;
+  animation: none !important;
+  transform: translateY(0) !important;
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+  z-index: 0 !important;
+  transition: none !important;
+}
+
+/* Override for global product-card animations */
+.product-card:hover,
+.product-carousel-card.product-card:hover {
+  animation: none !important;
+  transform: none !important;
+  transition: none !important;
+  transform: translateY(0) !important;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25) !important;
+}
+
+/* Apply to all children elements as well */
+.product-carousel-card *,
+.product-carousel-card *:hover {
+  transition: none !important;
+  transform: none !important;
+  animation: none !important;
+  transform-style: flat !important;
+}
+
+/* Override the pulse-border animation completely */
+@keyframes pulse-border-override {
+  0% { box-shadow: 0 0 0 0 transparent; }
+  100% { box-shadow: 0 0 0 0 transparent; }
+}
+
+.product-carousel-card,
+.product-carousel-card:hover {
+  animation: pulse-border-override 0s infinite !important;
+}
+
+/* Prevent image scaling */
+.product-carousel-card img:hover {
+  transform: none !important;
+  transition: none !important;
+}
+
+/* Prevent arrow scaling */
+.carousel-nav-button {
+  background: none !important;
+  transform: none !important;
+  transition: none !important;
+  box-shadow: none !important;
+  border: none !important;
+  outline: none !important;
+}
+
+.carousel-nav-button:hover,
+.carousel-nav-button:focus,
+.carousel-nav-button:active {
+  background: none !important;
+  transform: none !important;
+  box-shadow: none !important;
+  border: none !important;
+  outline: none !important;
+}
+
+.carousel-nav-button svg {
+  background: none !important;
+  transform: none !important;
+  transition: none !important;
+}
+
+.carousel-nav-button:hover svg,
+.carousel-nav-button:focus svg,
+.carousel-nav-button:active svg {
+  background: none !important;
+  transform: none !important;
+}

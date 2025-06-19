@@ -14,6 +14,7 @@ import { DotPattern } from "@/components/ui/background-pattern";
 import SectionTitle from "@/components/ui/section-title";
 import ProductSection from "@/components/ProductSection";
 import ViewAllButton from "@/components/ViewAllButton";
+import ProductCarousel from "@/components/ui/ProductCarousel";
 import "@/components/styles/HideScrollbar.css";
 import "@/components/styles/HeroAnimation.css";
 import "@/components/styles/HeroCard.css";
@@ -24,22 +25,7 @@ const Index = () => {
   const featuredRef = useRef<HTMLElement>(null);
   const hotDealsScrollRef = useRef<HTMLDivElement>(null);
   const newArrivalsScrollRef = useRef<HTMLDivElement>(null);
-  const featuredProductsScrollRef = useRef<HTMLDivElement>(null);
-  const heroCardRef = useRef<HTMLDivElement>(null);
-  const addToCartBtnRef = useRef<HTMLButtonElement>(null);
-    // State to control animations
-  const [showAnimation, setShowAnimation] = useState(false);
-  const [cardAnimation, setCardAnimation] = useState(false);
-    // Agricultural site - no audio context needed// Handler for Add to Cart button - with smoother animation
-  const handleAddToCart = () => {
-    setCardAnimation(true);
-    setShowAnimation(true);
-    
-    // Reset animation after it completes
-    setTimeout(() => {
-      setCardAnimation(false);
-    }, 1000);
-  };
+  const featuredProductsScrollRef = useRef<HTMLDivElement>(null);  const heroCardRef = useRef<HTMLDivElement>(null);
     // Scroll handlers for product lists
   const scrollProducts = (containerRef: React.RefObject<HTMLDivElement>, direction: 'left' | 'right') => {
     if (!containerRef.current) return;
@@ -257,20 +243,8 @@ const Index = () => {
       rating: 4.9,
       reviews: 78,
       isNew: true
-    }
-  ];  const heroProduct = {
-    id: 'hero-combo',
-    name: "Premium Seeds",
-    subtitle: "High-yield collection",
-    description: "Quality hybrid seeds for better harvest",
-    price: 2499,
-    originalPrice: 3999,
-    image: "https://images.unsplash.com/photo-1416879595882-3373a0480b5b?w=600&h=500&fit=crop",
-    badge: "SPECIAL OFFER",
-    rating: 4.9,
-    reviews: 235,
-    discount: 38
-  };
+    }  ];
+
   return (
     <div className="min-h-screen bg-white overflow-x-hidden">
       {/* Announcement Bar - Improved with gradient */}
@@ -341,67 +315,12 @@ const Index = () => {
                   </Link>
                 </div>
               </div>
-              
-              {/* Hero Product Card - Enhanced responsive design */}
+                {/* Hero Product Carousel - Enhanced responsive design */}
               <div 
                 ref={heroCardRef} 
                 className="hero-product-card order-1 lg:order-2 z-10 flex justify-center lg:justify-end relative"
-              >                {/* Redesigned agricultural themed hero card - bigger size and no hover effects */}
-                <Card className="bg-white border-0 rounded-2xl sm:rounded-3xl overflow-hidden shadow-lg sm:shadow-xl w-full max-w-[320px] xxs:max-w-[340px] xs:max-w-[360px] sm:max-w-[400px] md:max-w-[420px] lg:max-w-[380px] xl:max-w-[420px] 2xl:max-w-[450px] mx-auto lg:mx-0 relative z-10">
-                  <CardContent className="p-0 flex flex-col w-full relative z-10">
-                    {/* Enhanced product image with responsive height - no overflow on hover */}
-                    <div className="relative overflow-hidden rounded-t-2xl sm:rounded-t-3xl">                      <img 
-                        src={heroProduct.image} 
-                        alt={heroProduct.name}
-                        className="w-full object-cover transition-none"
-                        style={{ height: 'clamp(16rem, 38vw, 20rem)' }}
-                      />{/* Save percentage badge in left corner */}
-                      <div className="absolute top-3 left-3 bg-gradient-to-r from-green-600 to-green-700 text-white px-3 py-1.5 rounded-lg font-bold shadow-lg z-10"
-                           style={{ fontSize: 'clamp(0.75rem, 2vw, 0.875rem)' }}>
-                        Save {heroProduct.discount}%
-                      </div>
-                      
-                      {/* Ribbon style special offer badge */}
-                      <div className="hero-ribbon">
-                        <span>{heroProduct.badge}</span>
-                      </div>
-                      
-                      {/* Simplified product title overlay - responsive text */}
-                      <div className="absolute bottom-0 left-0 right-0 p-2 sm:p-3 bg-gradient-to-t from-black/90 via-black/50 to-transparent">
-                        <h3 className="font-bold text-white drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)] leading-tight text-left"
-                            style={{ fontSize: 'clamp(0.875rem, 2.5vw, 1.125rem)' }}>
-                          {heroProduct.name}
-                        </h3>
-                      </div>
-                    </div>
-                    
-                    {/* Simplified bottom section - cleaner design */}
-                    <div className="p-3 sm:p-4">
-                      {/* Price section and add to cart - enhanced mobile spacing */}
-                      <div className="flex items-center justify-between gap-2 sm:gap-3">
-                        <div className="flex-1">
-                          <div className="flex items-center gap-1 sm:gap-2 mb-1">
-                            <span className="font-bold text-[#0C831F]" style={{ fontSize: 'clamp(1rem, 3vw, 1.5rem)' }}>रु.{heroProduct.price}</span>
-                          </div>
-                          <div className="flex items-center">
-                            <span className="text-gray-500 line-through" style={{ fontSize: 'clamp(0.75rem, 2vw, 0.875rem)' }}>रु.{heroProduct.originalPrice}</span>
-                          </div>
-                        </div>
-                        
-                        <Button 
-                          ref={addToCartBtnRef}
-                          onClick={handleAddToCart}
-                          className={`bg-gradient-to-r from-[#0C831F] to-green-600 hover:from-green-600 hover:to-green-700 text-white font-semibold py-2 sm:py-2.5 px-3 sm:px-4 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 flex-shrink-0 ${cardAnimation ? 'card-btn-animation' : 'card-btn-hover'}`}
-                          style={{ fontSize: 'clamp(0.75rem, 2vw, 0.875rem)' }}
-                        >
-                          <ShoppingCart className="mr-1 sm:mr-2 h-3 w-3 sm:h-4 sm:w-4" />
-                          <span className="hidden xs:inline">ADD TO CART</span>
-                          <span className="xs:hidden">ADD</span>
-                        </Button>
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
+              >
+                <ProductCarousel />
               </div>
             </div>
           </div>
